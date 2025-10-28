@@ -6,61 +6,121 @@ import (
 )
 
 // Program es el nodo raíz del AST
-// Representa: program id ; <VARS> <P_FUNCS> main <Body> end
 type Program struct {
 	Keyword   string `@Keyword`
 	ID        string `@Ident`
 	Semicolon string `@";"`
 
-	Vars *Vars `@@?` // Opcional: <VARS>
+	Vars *Vars `@@?`
 	// TODO: Implementar P_FUNCS
-	// Por ahora los omitimos
 
-	Main string `@Keyword`
-	// Body omitido por ahora hasta implementar la estructura completa
+	Main    string `@Keyword`
+	Body    *Body  `@@?`
 	EndStmt string `@Keyword`
 }
 
 // Vars representa <VARS>
-// <VARS> -> var <F_VAR> <P_VAR>
-// Para manejar múltiples declaraciones, aceptamos cero o más FVar
 type Vars struct {
-	VarKeyword string `@Keyword` // "var"
+	VarKeyword string `@Keyword`
 	FVar       FVar   `@@`
 }
 
 // FVar representa <F_VAR>
-// <F_VAR> -> id <R_ID> : <TYPE> ;
 type FVar struct {
 	ID    string   `@Ident`
-	RID   []string `(@"," @Ident)*` // Lista de más IDs
+	RID   []string `(@"," @Ident)*`
 	Colon string   `@":"`
 	Type  Type     `@@`
 	Semi  string   `@";"`
 }
 
 // Type representa <TYPE>
-// <TYPE> -> int | float
 type Type struct {
 	Name string `@Type`
 }
 
-// Body representa <Body>
-// Placeholder por ahora - solo capturamos tokens como stmts simples
+// Body representa <BODY>
 type Body struct {
-	// TODO: Definir la estructura completa de <Body>
-	// Por ahora solo indicamos que existe
+	LBrace string      `@"{"`
+	PStat  []Statement `@@*`
+	RBrace string      `@"}"`
 }
 
-// MustBuildParser crea el parser usando participle con lexer personalizado
+// Statement representa <STATEMENT>
+type Statement struct {
+	Assign    *Assign    `@@`
+	Condition *Condition `@@`
+	Cycle     *Cycle     `@@`
+	Print     *Print     `@@`
+}
+
+// Assign representa <ASSIGN>
+type Assign struct {
+	ID     string     `@Ident`
+	Assign string     `@"="`
+	Expr   Expression `@@`
+	Semi   string     `@";"`
+}
+
+// Condition representa <CONDITION>
+type Condition struct {
+	IfKeyword string     `@Keyword`
+	LParen    string     `@"("`
+	Expr      Expression `@@`
+	RParen    string     `@")"`
+	Body      Body       `@@`
+	Else      *Else      `@@?`
+	Semi      string     `@";"`
+}
+
+// Else representa <ELSE>
+type Else struct {
+	ElseKeyword string `@Keyword`
+	Body        Body   `@@`
+}
+
+// Cycle representa <CYCLE>
+type Cycle struct {
+	WhileKeyword string     `@Keyword`
+	LParen       string     `@"("`
+	Expr         Expression `@@`
+	RParen       string     `@")"`
+	DoKeyword    string     `@Keyword`
+	Body         Body       `@@`
+	Semi         string     `@";"`
+}
+
+// Print representa <PRINT>
+// <PRINT> -> print ( <PRINT_P> ) ;
+// PrintP debe ser Expression o String
+type Print struct {
+	PrintKeyword string   `@Keyword`
+	LParen       string   `@"("`
+	PrintP       []string `(@String | @Ident | @Int | @Float)+` // Al menos uno
+	RParen       string   `@")"`
+	Semi         string   `@";"`
+}
+
+// Expression representa <EXPRESION>
+// Versión simplificada que evita recursión izquierda
+type Expression struct {
+	// Puede ser un identificador, número, o string
+	Ident  string `@Ident?`
+	Int    string `@Int?`
+	Float  string `@Float?`
+	String string `@String?`
+}
+
 func MustBuildParser() *participle.Parser[Program] {
-	// Definir el lexer con tokens del lenguaje
 	def := lexer.MustSimple([]lexer.SimpleRule{
-		// Keywords deben ir antes de Ident para prioridad
-		{Name: "Keyword", Pattern: `(?i)\b(program|var|main|end)\b`},
+		{Name: "Keyword", Pattern: `(?i)\b(program|var|main|end|void|while|do|if|else|print)\b`},
 		{Name: "Type", Pattern: `(?i)\b(int|float)\b`},
+		{Name: "String", Pattern: `"(\\"|[^"])*"`},
+		{Name: "Int", Pattern: `\d+`},
+		{Name: "Float", Pattern: `\d+\.\d+`},
 		{Name: "Ident", Pattern: `[a-zA-Z_][a-zA-Z0-9_]*`},
-		{Name: "Punctuation", Pattern: `[;:(),]`},
+		{Name: "Punctuation", Pattern: `[;:(),{}[\]]`},
+		{Name: "Operator", Pattern: `[=+\-*/<>!]+`},
 		{Name: "whitespace", Pattern: `\s+`},
 	})
 

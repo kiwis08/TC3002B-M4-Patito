@@ -9,10 +9,9 @@ func main() {
 	// Construir el parser
 	parser := MustBuildParser()
 
-	// Programa de ejemplo con variables
+	// Programa de ejemplo con variables y cuerpo
 	example := `
 program ejemplo ;
-var x, y, z : int ;
 main
 end
 `
@@ -37,10 +36,18 @@ end
 
 	if program.Vars != nil {
 		fmt.Printf("  ✓ Tiene sección de variables\n")
-		// TODO: Mostrar detalles de las variables parseadas
+		fmt.Printf("    - Variables: %s, %s : %s\n",
+			program.Vars.FVar.ID,
+			program.Vars.FVar.RID,
+			program.Vars.FVar.Type.Name)
 	}
 
 	fmt.Printf("  Keyword (main): %s\n", program.Main)
+
+	if program.Body != nil {
+		fmt.Printf("  ✓ Tiene cuerpo del programa con %d statements\n", len(program.Body.PStat))
+	}
+
 	fmt.Printf("  Keyword (end): %s\n", program.EndStmt)
 
 	fmt.Println("\n✓ Scanner y Parser implementados correctamente")
