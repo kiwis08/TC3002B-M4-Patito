@@ -1,0 +1,222 @@
+/// Lexical Part
+
+/* Identifiers & literals */
+id          : ('a'-'z' | 'A'-'Z' | '_') { 'a'-'z' | 'A'-'Z' | '0'-'9' | '_' } ;
+cte_int     : '0' | ('1'-'9' {'0'-'9'}) ;
+cte_float   : {'0'-'9'} '.' {'0'-'9'} ;
+cte_string  : '"' { ' '-'!' | '#'-'~' } '"' ;
+
+/* Ignore whitespace & comments */
+!whitespace    : ' ' | '\t' | '\n' | '\r' ;
+!comment_line  : '/' '/' { '\t' | ' '-'~' } ( '\n' | '\r' ) ;
+!comment_block : '/' '*' { '\t' | ' '-'~' | '\n' | '\r' } '*' '/' ;
+
+/// Syntax Part
+
+<< >>
+
+/// Program
+Program
+  : "program" id ";" P_VAR P_FUNCS "main" BODY "end"
+  ;
+
+/// VARS and related
+P_VAR
+  : VARS
+  | empty
+  ;
+
+VARS
+  : "var" FVAR_LIST
+  ;
+
+FVAR_LIST
+  : F_VAR FVAR_LIST
+  | empty
+  ;
+
+F_VAR
+  : id R_ID ":" TYPE ";"
+  ;
+
+R_ID
+  : "," id R_ID
+  | empty
+  ;
+
+TYPE
+  : "int"
+  | "float"
+  ;
+
+/// Functions
+P_FUNCS
+  : empty
+  | FUNCS P_FUNCS
+  ;
+
+F_T
+  : TYPE
+  | "void"
+  ;
+
+FUNCS
+  : F_T id "(" S_T ")" FUNC_LOCALS BODY ";"
+  ;
+
+FUNC_LOCALS
+  : "[" S_V "]"
+  | empty
+  ;
+
+S_T
+  : I_T R_T
+  | empty
+  ;
+
+R_T
+  : "," I_T R_T
+  | empty
+  ;
+
+S_V
+  : VARS
+  | empty
+  ;
+
+I_T
+  : id ":" TYPE
+  ;
+
+/// Body & statements
+BODY
+  : "{" P_STAT "}"
+  ;
+
+P_STAT
+  : STATEMENT P_STAT
+  | empty
+  ;
+
+STATEMENT
+  : ASSIGN
+  | CONDITION
+  | CYCLE
+  | F_CALL ";"          /* call as statement */
+  | PRINT
+  | "[" P_STAT "]"
+  ;
+
+/// print
+PRINT
+  : "print" "(" PRINT_P ")" ";"
+  ;
+
+PRINT_P
+  : E_PRINT R_PRINT
+  ;
+
+E_PRINT
+  : EXPRESSION
+  | cte_string
+  ;
+
+R_PRINT
+  : "," PRINT_P
+  | empty
+  ;
+
+/// assignment
+ASSIGN
+  : id "=" EXPRESSION ";"
+  ;
+
+/// while
+CYCLE
+  : "while" "(" EXPRESSION ")" "do" BODY ";"
+  ;
+
+/// condition
+CONDITION
+  : "if" "(" EXPRESSION ")" BODY ";"
+  | "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+  ;
+
+/// Expressions
+EXPRESSION
+  : EXP REL_TAIL
+  ;
+
+REL_TAIL
+  : REL_OP EXP
+  | empty
+  ;
+
+REL_OP
+  : ">"
+  | "<"
+  | "!="
+  | "=="
+  ;
+
+EXP
+  : TERMINO EXP_P
+  ;
+
+EXP_P
+  : "+" TERMINO EXP_P
+  | "-" TERMINO EXP_P
+  | empty
+  ;
+
+TERMINO
+  : FACTOR TERMINO_P
+  ;
+
+TERMINO_P
+  : "*" FACTOR TERMINO_P
+  | "/" FACTOR TERMINO_P
+  | empty
+  ;
+
+
+FACTOR
+  : S_OP FACTOR_CORE
+  ;
+
+FACTOR_CORE
+  : "(" EXPRESSION ")"
+  | id FACTOR_SUFFIX
+  | CTE
+  ;
+
+FACTOR_SUFFIX
+  : "(" S_E ")"
+  | empty
+  ;
+
+S_OP
+  : "+"
+  | "-"
+  | empty
+  ;
+
+CTE
+  : cte_int
+  | cte_float
+  ;
+
+/// Calls
+F_CALL
+  : id "(" S_E ")"
+  ;
+
+S_E
+  : EXPRESSION R_E
+  | empty
+  ;
+
+R_E
+  : "," EXPRESSION R_E
+  | empty
+  ;
