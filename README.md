@@ -1,126 +1,119 @@
-## Patito – Documento de la entrega
+# Patito - Compilador
 
-Aquí explico qué hice, cómo definí las reglas del lenguaje y qué pruebas uso. Lo iré ampliando en próximas entregas.
+Compilador para el lenguaje Patito desarrollado en Go.
 
-### Herramientas: qué probé y qué uso
+## Descripción
 
-- **Primero intenté con Participle**
-  - Probé `github.com/alecthomas/participle` porque permite definir el AST con etiquetas en Go.
-  - ¿Por qué no me funcionó bien aquí?
-    - La precedencia de operadores se volvía complicada y requería trabajo manual.
-    - Resolver ambigüedades clásicas (como el `else` colgante) era menos directo.
-    - Quería separar claramente el léxico de la gramática y ver conflictos LR.
+Patito es un lenguaje de programación que incluye:
+- Variables (int, float)
+- Funciones con parámetros y variables locales
+- Estructuras de control (if/else, while)
+- Llamadas a funciones
+- Sentencias de impresión y asignación
 
-- **Me quedé con gocc**
-  - Con `gocc` definí léxico y gramática en `patito.bnf` y genero `lexer/`, `parser/`, `token/` y `util/`.
-  - Ventajas:
-    - Reporte claro de conflictos LR(1) al generar.
-    - Separación limpia entre tokens (regex) y reglas gramaticales.
-    - Precedencia de expresiones clara usando el patrón `EXP/TERMINO/FACTOR`.
-  - Conflictos que arreglé:
-    - `if/else`: separé en dos reglas (`if` con y sin `else`) para eliminar el `dangling-else`.
-    - Llamadas vs identificadores: `id` puede tener un sufijo `(...)`; si está, es llamada; si no, es `id` normal.
+## Requisitos
 
-### Cómo definí las reglas (léxico y gramática)
+- Go 1.25 o superior
+- gocc (generador de parser) instalado
 
-Todo está en `patito.bnf`. Hay dos partes:
+### Instalación de gocc
 
-- **Léxico (regex)**: define tokens como `id`, `cte_int`, `cte_float`, `cte_string` y lo que se ignora (espacios y comentarios):
-
-```bnf
-id          : ('a'-'z' | 'A'-'Z' | '_') { 'a'-'z' | 'A'-'Z' | '0'-'9' | '_' } ;
-cte_int     : '0' | ('1'-'9' {'0'-'9'}) ;
-cte_float   : {'0'-'9'} '.' {'0'-'9'} ;
-cte_string  : '"' { ' '-'!' | '#'-'~' } '"' ;
-!whitespace : ' ' | '\t' | '\n' | '\r' ;
+```bash
+go install github.com/goccmack/gocc
 ```
 
-- **Sintaxis (gramática)**: define la estructura del lenguaje. Ejemplos clave:
+## Estructura del Proyecto
 
-```bnf
-Program  : "program" id ";" P_VAR P_FUNCS "main" BODY "end" ;
-
-CONDITION
-  : "if" "(" EXPRESSION ")" BODY ";"
-  | "if" "(" EXPRESSION ")" BODY "else" BODY ";"
-  ;
-
-FACTOR
-  : S_OP FACTOR_CORE
-  ;
-FACTOR_CORE
-  : "(" EXPRESSION ")"
-  | id FACTOR_SUFFIX
-  | CTE
-  ;
-FACTOR_SUFFIX
-  : "(" S_E ")"
-  | empty
-  ;
+```
+.
+├── patito.bnf              # Definición léxica y gramatical del lenguaje
+├── lexer/                  # Lexer generado por gocc
+├── parser/                 # Parser generado por gocc
+├── token/                  # Tokens generados por gocc
+├── ast/                    # Estructura de datos del AST
+├── errors/                 # Manejo de errores
+├── patito_test/            # Pruebas unitarias
+├── pkg/                    # Utilidades del parser
+├── util/                   # Utilidades generales
+└── main.go                 # Punto de entrada del programa
 ```
 
-Con esto:
-- `if/else` ya no es ambiguo.
-- `id` y `id(...)` se distinguen por un sufijo opcional.
+## Generación del Parser
 
-### Test-cases principales
-
-Están en `patito_test/patito_test.go` usando `testify/assert`. Casos más importantes:
-
-- **Estructura base**: `program p; main { } end` y errores por faltar `id`, `;` o `end`.
-- **Variables**: `var x:int;`, `var x,y,z:float;` y `var x:string;` (debe fallar).
-- **Statements**:
-  - Asignación: `x = 42;`, `y = (1+2)*3;`
-  - Condicionales: `if (x > 0) { x = 1; };` y `if (x < 0) { x = 1; } else { x = 2; };`
-  - Ciclo: `while (x != 0) do { x = x - 1; };`
-  - `print`: `print("x=", x+1);`
-  - Bloques: `[ x = 1; y = 2; ]`
-  - Llamadas: `foo(1,2,3);` y como factor `x = (foo(1,2*3));`
-- **Funciones**: `void f()[]{};` y `void f(a:int, b:float)[ var x:int; ] { print("ok"); };`
-- **Expresiones**: `1 + 2 * 3` vs `(1 + 2) * 3`, y `x > 0`, `x != 0`.
-- **Borde**: entrada vacía o solo espacios debe fallar.
-
-### Generación y ejecución
-
-- Generar lexer/parser desde la gramática:
+Antes de ejecutar el código, es necesario generar el lexer y parser desde la gramática:
 
 ```bash
 gocc patito.bnf
 ```
 
-- Correr pruebas (en mi máquina):
+Este comando genera los archivos en los directorios `lexer/`, `parser/`, `token/` y `util/`.
+
+## Ejecución
+
+### Parsear un archivo
+
+```bash
+go run . path/to/file.patito
+```
+
+### Parsear desde entrada estándar
+
+```bash
+cat programa.patito | go run .
+```
+
+### Salida esperada
+
+Si el programa es válido:
+```
+OK: parsed Patito successfully
+```
+
+Si hay errores, se mostrará un mensaje de error descriptivo.
+
+## Pruebas
+
+Ejecutar todas las pruebas:
 
 ```bash
 go test ./...
 ```
 
-- Ejecutar el parser:
+Ejecutar pruebas en un directorio específico:
 
 ```bash
-# Desde archivo
-go run . path/al/archivo.patito
-
-# Desde stdin
-cat programa.patito | go run .
+go test ./patito_test
 ```
 
-Salida esperada si todo va bien:
+## Documentación por Entrega
 
-```
-OK: parsed Patito successfully
-```
+Cada entrega tiene su propio documento con información específica:
 
-### Estructura del proyecto (parcial)
+- [Entrega 1](ENTREGA1.md) - Implementación inicial del parser
 
-- `patito.bnf`: reglas léxicas y gramaticales.
-- `lexer/`, `parser/`, `token/`, `util`: generado por `gocc`.
-- `patito_test/`: pruebas del lenguaje.
-- `main.go`: CLI de parseo.
-- `errors/`, `ast/`, `pkg/`: módulos de soporte.
+## Desarrollo
 
-### Siguientes pasos
+### Agregar nuevas características
 
-- Voy a mantener la gramática sin conflictos LR(1) tras cambios.
-- Agregaré nuevas features manteniendo la precedencia y claridad del AST.
-- Documentaré nuevos casos y decisiones en este README conforme avance el proyecto.
+1. Modificar `patito.bnf` con las nuevas reglas léxicas o gramaticales
+2. Regenerar el parser con `gocc patito.bnf`
+3. Agregar pruebas en `patito_test/patito_test.go`
+4. Actualizar la documentación correspondiente
+
+### Manejo de conflictos
+
+Si aparecen conflictos LR(1) durante la generación:
+- Revisar la gramática en `patito.bnf`
+- Considerar refactorizar reglas ambiguas
+- Consultar `ENTREGA1.md` para ejemplos de resolución de conflictos comunes
+
+## Herramientas Utilizadas
+
+- **gocc**: Generador de parser LR(1) para Go
+- **testify**: Framework de pruebas para Go
+- **Go**: Lenguaje de programación base
+
+## Estado del Proyecto
+
+Este proyecto está en desarrollo activo. Cada entrega documenta el progreso y las características implementadas.
 
