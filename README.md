@@ -90,6 +90,7 @@ go test ./patito_test
 Cada entrega tiene su propio documento con información específica:
 
 - [Entrega 1](ENTREGA1.md) - Implementación inicial del parser
+- [Entrega 2](ENTREGA2.md) - Semántica de Variables
 
 ## Desarrollo
 

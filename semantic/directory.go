@@ -1,0 +1,196 @@
+package semantic
+
+import (
+	"fmt"
+
+	"Patito/token"
+)
+
+// ScopeKind ayuda a describir el contexto en el que se declara un símbolo.
+type ScopeKind int
+
+const (
+	ScopeGlobal ScopeKind = iota
+	ScopeLocal
+	ScopeParam
+)
+
+func (s ScopeKind) String() string {
+	switch s {
+	case ScopeGlobal:
+		return "global"
+	case ScopeLocal:
+		return "local"
+	case ScopeParam:
+		return "parámetros"
+	default:
+		return "desconocido"
+	}
+}
+
+// VariableSpec es el resultado intermedio que producen las acciones del parser.
+// Agrupa nombre, tipo y posición para luego insertarlo en la tabla definitiva.
+type VariableSpec struct {
+	Name string
+	Type Type
+	Pos  token.Pos
+}
+
+// VariableEntry es el elemento almacenado en una tabla después de validar duplicados.
+type VariableEntry struct {
+	Name       string
+	Type       Type
+	Scope      ScopeKind
+	DeclaredAt token.Pos
+}
+
+// VariableTable mantiene las variables de un determinado scope.
+type VariableTable struct {
+	kind    ScopeKind
+	entries map[string]*VariableEntry
+	order   []*VariableEntry
+}
+
+func NewVariableTable(kind ScopeKind) *VariableTable {
+	return &VariableTable{
+		kind:    kind,
+		entries: make(map[string]*VariableEntry),
+		order:   make([]*VariableEntry, 0),
+	}
+}
+
+func (vt *VariableTable) Add(spec *VariableSpec) error {
+	if spec == nil {
+		return fmt.Errorf("variable spec nil")
+	}
+	if existing, ok := vt.entries[spec.Name]; ok {
+		return &DuplicateSymbolError{
+			Name:      spec.Name,
+			Scope:     vt.kind,
+			FirstPos:  existing.DeclaredAt,
+			SecondPos: spec.Pos,
+		}
+	}
+	entry := &VariableEntry{
+		Name:       spec.Name,
+		Type:       spec.Type,
+		Scope:      vt.kind,
+		DeclaredAt: spec.Pos,
+	}
+	vt.entries[spec.Name] = entry
+	vt.order = append(vt.order, entry)
+	return nil
+}
+
+func (vt *VariableTable) AddMany(specs []*VariableSpec) error {
+	for _, spec := range specs {
+		if err := vt.Add(spec); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (vt *VariableTable) Has(name string) bool {
+	_, ok := vt.entries[name]
+	return ok
+}
+
+func (vt *VariableTable) Entries() []*VariableEntry {
+	result := make([]*VariableEntry, len(vt.order))
+	copy(result, vt.order)
+	return result
+}
+
+// FunctionEntry representa una función registrada en el directorio.
+type FunctionEntry struct {
+	Name       string
+	ReturnType Type
+	DeclaredAt token.Pos
+
+	Params *VariableTable
+	Locals *VariableTable
+}
+
+// FunctionDirectory centraliza la tabla de funciones y la tabla global.
+type FunctionDirectory struct {
+	ProgramName string
+	ProgramPos  token.Pos
+
+	Globals   *VariableTable
+	Functions map[string]*FunctionEntry
+}
+
+func NewFunctionDirectory() *FunctionDirectory {
+	return &FunctionDirectory{
+		Globals:   NewVariableTable(ScopeGlobal),
+		Functions: make(map[string]*FunctionEntry),
+	}
+}
+
+func (fd *FunctionDirectory) SetProgram(name string, pos token.Pos) error {
+	if fd.ProgramName == "" {
+		fd.ProgramName = name
+		fd.ProgramPos = pos
+		return nil
+	}
+	return &ProgramRedefinitionError{
+		Name:         name,
+		Existing:     fd.ProgramName,
+		ExistingPos:  fd.ProgramPos,
+		RedeclaredAt: pos,
+	}
+}
+
+func (fd *FunctionDirectory) AddGlobals(specs []*VariableSpec) error {
+	if len(specs) == 0 {
+		return nil
+	}
+	return fd.Globals.AddMany(specs)
+}
+
+func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token.Pos, params []*VariableSpec, locals []*VariableSpec) (*FunctionEntry, error) {
+	if existing, ok := fd.Functions[name]; ok {
+		return nil, &FunctionRedefinitionError{
+			Name:         name,
+			ExistingPos:  existing.DeclaredAt,
+			RedeclaredAt: pos,
+		}
+	}
+
+	paramTable := NewVariableTable(ScopeParam)
+	if err := paramTable.AddMany(params); err != nil {
+		return nil, err
+	}
+
+	localTable := NewVariableTable(ScopeLocal)
+	for _, spec := range locals {
+		if paramTable.Has(spec.Name) {
+			return nil, &DuplicateSymbolError{
+				Name:      spec.Name,
+				Scope:     ScopeLocal,
+				FirstPos:  paramTable.entries[spec.Name].DeclaredAt,
+				SecondPos: spec.Pos,
+			}
+		}
+		if err := localTable.Add(spec); err != nil {
+			return nil, err
+		}
+	}
+
+	fn := &FunctionEntry{
+		Name:       name,
+		ReturnType: returnType,
+		DeclaredAt: pos,
+		Params:     paramTable,
+		Locals:     localTable,
+	}
+
+	fd.Functions[name] = fn
+	return fn, nil
+}
+
+func (fd *FunctionDirectory) GetFunction(name string) (*FunctionEntry, bool) {
+	fn, ok := fd.Functions[name]
+	return fn, ok
+}
