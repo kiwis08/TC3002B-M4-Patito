@@ -194,3 +194,37 @@ func (fd *FunctionDirectory) GetFunction(name string) (*FunctionEntry, bool) {
 	fn, ok := fd.Functions[name]
 	return fn, ok
 }
+
+// GetVariableType busca una variable en el directorio y devuelve su tipo
+// Busca primero en globales, luego en función main (si existe)
+// Nota: En el cuerpo de main, las variables globales están disponibles
+func (fd *FunctionDirectory) GetVariableType(name string) (Type, error) {
+	// Buscar en globales primero (disponibles en todo el programa)
+	if entry, ok := fd.Globals.entries[name]; ok {
+		return entry.Type, nil
+	}
+
+	// Buscar en función main (si existe) - locales y parámetros
+	if mainFn, ok := fd.Functions["main"]; ok {
+		if entry, ok := mainFn.Locals.entries[name]; ok {
+			return entry.Type, nil
+		}
+		if entry, ok := mainFn.Params.entries[name]; ok {
+			return entry.Type, nil
+		}
+	}
+
+	return TypeInvalid, fmt.Errorf("variable '%s' no declarada", name)
+}
+
+// GetVariableTypeFromContext busca una variable primero en el contexto (tipos temporales)
+// y luego en el directorio
+func GetVariableTypeFromContext(ctx *Context, name string) (Type, error) {
+	// Buscar primero en VariableTypes (tipos temporales durante parsing)
+	if varType, ok := ctx.VariableTypes[name]; ok {
+		return varType, nil
+	}
+
+	// Buscar en el directorio
+	return ctx.Directory.GetVariableType(name)
+}

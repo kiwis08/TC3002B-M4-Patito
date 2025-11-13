@@ -1,0 +1,10 @@
+program test3;
+var i: int;
+main {
+    i = 0;
+    while (i < 10) do {
+        i = i + 1;
+    };
+}
+end
+

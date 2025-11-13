@@ -33,6 +33,34 @@ func init() {
 	setReduceFunc(23, passThrough)
 	setReduceFunc(24, returnEmptySpecs)
 	setReduceFunc(25, reduceParam)
+	// Expresiones y estatutos
+	setReduceFunc(37, reduceEPrintExpression)
+	setReduceFunc(38, reduceEPrintString)
+	setReduceFunc(39, reduceRPrint)
+	setReduceFunc(40, returnEmptySpecs)
+	setReduceFunc(41, reduceAssign)
+	setReduceFunc(42, reduceCycle)
+	setReduceFunc(43, reduceCondition)
+	setReduceFunc(44, reduceConditionElse)
+	setReduceFunc(45, reduceExpression)
+	setReduceFunc(46, reduceRelTail)
+	setReduceFunc(48, reduceRelOpGt)
+	setReduceFunc(49, reduceRelOpLt)
+	setReduceFunc(50, reduceRelOpNeq)
+	setReduceFunc(51, reduceRelOpEq)
+	setReduceFunc(52, reduceExp)
+	setReduceFunc(53, reduceExpPAdd)
+	setReduceFunc(54, reduceExpPSub)
+	setReduceFunc(55, returnEmptySpecs)
+	setReduceFunc(56, reduceTermino)
+	setReduceFunc(57, reduceTerminoPMul)
+	setReduceFunc(58, reduceTerminoPDiv)
+	setReduceFunc(59, returnEmptySpecs)
+	setReduceFunc(60, reduceFactor)
+	setReduceFunc(61, reduceFactorCoreParen)
+	setReduceFunc(62, reduceFactorCoreId)
+	setReduceFunc(63, reduceFactorCoreCte)
+	setReduceFunc(65, returnEmptySpecs)
 }
 
 func setReduceFunc(index int, fn reduceFunc) {
@@ -144,7 +172,11 @@ func concatSpecSlices(X []Attrib, _ interface{}) (Attrib, error) {
 	return out, nil
 }
 
-func reduceVarDeclaration(X []Attrib, _ interface{}) (Attrib, error) {
+func reduceVarDeclaration(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
 	firstID, err := tokenFromAttrib(X[0])
 	if err != nil {
 		return nil, err
@@ -158,8 +190,11 @@ func reduceVarDeclaration(X []Attrib, _ interface{}) (Attrib, error) {
 	idTokens := append([]*token.Token{firstID}, otherIDs...)
 	specs := make([]*semantic.VariableSpec, 0, len(idTokens))
 	for _, tok := range idTokens {
+		varName := tok.IDValue()
+		// Almacenar tipo en contexto para uso inmediato durante parsing
+		ctx.VariableTypes[varName] = typeVal
 		specs = append(specs, &semantic.VariableSpec{
-			Name: tok.IDValue(),
+			Name: varName,
 			Type: typeVal,
 			Pos:  tok.Pos,
 		})
@@ -251,4 +286,318 @@ func reduceParam(X []Attrib, _ interface{}) (Attrib, error) {
 		Type: typ,
 		Pos:  idTok.Pos,
 	}, nil
+}
+
+// --- Funciones de reducción para generación de cuádruplos ---
+
+// reduceFactorCoreCte: CTE -> cte_int | cte_float
+func reduceFactorCoreCte(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	tok, err := tokenFromAttrib(X[0])
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.PushConstant(ctx, tok); err != nil {
+		return nil, err
+	}
+	return tok, nil
+}
+
+// reduceFactorCoreId: FACTOR_CORE -> id FACTOR_SUFFIX
+func reduceFactorCoreId(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	idTok, err := tokenFromAttrib(X[0])
+	if err != nil {
+		return nil, err
+	}
+	// Si tiene sufijo, es una llamada a función (por ahora no implementamos)
+	// Si no, es una variable
+	if err := semantic.PushVariable(ctx, idTok.IDValue(), idTok.Pos); err != nil {
+		return nil, err
+	}
+	return idTok, nil
+}
+
+// reduceFactorCoreParen: FACTOR_CORE -> "(" EXPRESSION ")"
+func reduceFactorCoreParen(X []Attrib, C interface{}) (Attrib, error) {
+	// La expresión ya procesó todo, solo pasamos
+	return X[1], nil
+}
+
+// reduceFactor: FACTOR -> S_OP FACTOR_CORE
+func reduceFactor(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// Si hay operador unario (S_OP)
+	if len(X) >= 2 && X[0] != nil {
+		if opTok, ok := X[0].(*token.Token); ok {
+			op := string(opTok.Lit)
+			if op == "+" {
+				// + unario no hace nada, solo retornar el factor
+				return X[1], nil
+			} else if op == "-" {
+				// - unario: procesar después de que FACTOR_CORE haya apilado el operando
+				// El operando ya está en la pila, solo aplicar el operador unario
+				if err := semantic.ProcessUnaryOperator(ctx, "u-"); err != nil {
+					return nil, err
+				}
+			}
+		}
+		// Si X[0] es nil, S_OP era empty, no hay operador unario
+	}
+	return X[1], nil
+}
+
+// reduceTermino: TERMINO -> FACTOR TERMINO_P
+func reduceTermino(X []Attrib, C interface{}) (Attrib, error) {
+	// Solo pasamos, TERMINO_P ya procesó los operadores
+	return X[0], nil
+}
+
+// reduceTerminoPMul: TERMINO_P -> "*" FACTOR TERMINO_P
+func reduceTerminoPMul(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessOperator(ctx, "*"); err != nil {
+		return nil, err
+	}
+	return X[2], nil
+}
+
+// reduceTerminoPDiv: TERMINO_P -> "/" FACTOR TERMINO_P
+func reduceTerminoPDiv(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessOperator(ctx, "/"); err != nil {
+		return nil, err
+	}
+	return X[2], nil
+}
+
+// reduceExp: EXP -> TERMINO EXP_P
+func reduceExp(X []Attrib, C interface{}) (Attrib, error) {
+	// Solo pasamos, EXP_P ya procesó los operadores
+	return X[0], nil
+}
+
+// reduceExpPAdd: EXP_P -> "+" TERMINO EXP_P
+func reduceExpPAdd(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessOperator(ctx, "+"); err != nil {
+		return nil, err
+	}
+	return X[2], nil
+}
+
+// reduceExpPSub: EXP_P -> "-" TERMINO EXP_P
+func reduceExpPSub(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessOperator(ctx, "-"); err != nil {
+		return nil, err
+	}
+	return X[2], nil
+}
+
+// reduceRelOpGt: REL_OP -> ">"
+func reduceRelOpGt(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	ctx.OpStack.Push(">")
+	return X[0], nil
+}
+
+// reduceRelOpLt: REL_OP -> "<"
+func reduceRelOpLt(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	ctx.OpStack.Push("<")
+	return X[0], nil
+}
+
+// reduceRelOpNeq: REL_OP -> "!="
+func reduceRelOpNeq(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	ctx.OpStack.Push("!=")
+	return X[0], nil
+}
+
+// reduceRelOpEq: REL_OP -> "=="
+func reduceRelOpEq(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	ctx.OpStack.Push("==")
+	return X[0], nil
+}
+
+// reduceRelTail: REL_TAIL -> REL_OP EXP
+func reduceRelTail(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// Procesar la expresión relacional completa
+	if err := semantic.ProcessRelationalExpression(ctx); err != nil {
+		return nil, err
+	}
+	return X[1], nil
+}
+
+// reduceExpression: EXPRESSION -> EXP REL_TAIL
+func reduceExpression(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// Si no hay REL_TAIL, solo procesar EXP
+	if X[1] == nil {
+		if err := semantic.ProcessExpressionEnd(ctx); err != nil {
+			return nil, err
+		}
+	}
+	// Si hay REL_TAIL, ya se procesó en reduceRelTail
+	return X[0], nil
+}
+
+// reduceAssign: ASSIGN -> id "=" EXPRESSION ";"
+func reduceAssign(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	idTok, err := tokenFromAttrib(X[0])
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessAssignment(ctx, idTok.IDValue(), idTok.Pos); err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// reduceEPrintExpression: E_PRINT -> EXPRESSION
+func reduceEPrintExpression(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// Procesar expresión si hay operadores pendientes
+	if err := semantic.ProcessExpressionEnd(ctx); err != nil {
+		return nil, err
+	}
+	// Obtener resultado
+	result, ok := ctx.OperandStack.Pop()
+	if !ok {
+		return nil, fmt.Errorf("error: no hay expresión para print")
+	}
+	ctx.TypeStack.Pop() // Remover tipo
+	// Generar cuádruplo de print
+	semantic.ProcessPrint(ctx, result, false)
+	return X[0], nil
+}
+
+// reduceEPrintString: E_PRINT -> cte_string
+func reduceEPrintString(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	tok, err := tokenFromAttrib(X[0])
+	if err != nil {
+		return nil, err
+	}
+	// Generar cuádruplo de print para string
+	semantic.ProcessPrint(ctx, tok.StringValue(), true)
+	return X[0], nil
+}
+
+// reduceRPrint: R_PRINT -> "," PRINT_P
+func reduceRPrint(X []Attrib, C interface{}) (Attrib, error) {
+	// Solo pasamos, PRINT_P ya procesó
+	return X[1], nil
+}
+
+// reduceCondition: CONDITION -> "if" "(" EXPRESSION ")" BODY ";"
+func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
+	if _, err := semantic.ProcessIf(ctx); err != nil {
+		return nil, err
+	}
+	// Al final del BODY, completar el if
+	if err := semantic.ProcessIfEnd(ctx); err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// reduceConditionElse: CONDITION -> "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
+	if _, err := semantic.ProcessIf(ctx); err != nil {
+		return nil, err
+	}
+	// Después del primer BODY, procesar else
+	if _, err := semantic.ProcessElse(ctx); err != nil {
+		return nil, err
+	}
+	// Al final del segundo BODY, completar el if-else
+	if err := semantic.ProcessIfElseEnd(ctx); err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// reduceCycle: CYCLE -> "while" "(" EXPRESSION ")" "do" BODY ";"
+func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	// La EXPRESSION (X[2]) ya fue procesada
+	// Procesar la condición: esto genera el GOTOF y guarda el índice de inicio
+	if startIndex, err := semantic.ProcessWhileCondition(ctx); err != nil {
+		return nil, err
+	} else {
+		// Guardar el índice de inicio del ciclo (donde está la condición)
+		ctx.JumpStack.Push(startIndex)
+	}
+	// Al final del BODY, completar el while
+	if err := semantic.ProcessWhileEnd(ctx); err != nil {
+		return nil, err
+	}
+	return nil, nil
 }

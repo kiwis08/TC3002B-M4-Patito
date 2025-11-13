@@ -1,4 +1,4 @@
-## Patito – Entrega 2: Generación de Código Intermedio (Cuádruplos)
+## Patito – Entrega 3: Generación de Código Intermedio (Cuádruplos)
 
 Esta entrega documenta la implementación de la generación de código intermedio mediante cuádruplos para el lenguaje Patito.
 
@@ -208,33 +208,9 @@ La salida mostrará:
 
 A continuación se incluirán diagramas del lenguaje Patito con los puntos neurálgicos claramente señalados:
 
-#### Diagrama 1: Expresiones Aritméticas
-[Diagrama que muestre el flujo de procesamiento de expresiones aritméticas con los puntos donde se apilan operandos, se procesan operadores y se generan cuádruplos]
-
-#### Diagrama 2: Expresiones Relacionales
-[Diagrama que muestre el flujo de procesamiento de expresiones relacionales]
-
-#### Diagrama 3: Estatuto If
-[Diagrama que muestre el flujo de generación de cuádruplos para if, incluyendo GOTOF y backpatching]
-
-#### Diagrama 4: Estatuto While
-[Diagrama que muestre el flujo de generación de cuádruplos para while, incluyendo GOTO y GOTOF]
-
-#### Diagrama 5: Asignación
-[Diagrama que muestre el flujo de generación de cuádruplos para asignaciones]
-
-### Descripción de Acciones en Puntos Neurálgicos
 
 **ESPACIO RESERVADO PARA DESCRIPCIONES DETALLADAS**
 
-Se documentarán las acciones específicas que se realizan en cada punto neurálgico identificado en los diagramas:
-
-1. **Punto de entrada de operando**: Apilado en pilas de operandos y tipos
-2. **Punto de encuentro de operador**: Evaluación de precedencia y generación de cuádruplos
-3. **Punto de final de expresión**: Procesamiento de operadores pendientes
-4. **Punto de condición en if/while**: Generación de GOTOF con backpatching
-5. **Punto de final de bloque**: Completado de saltos pendientes
-6. **Punto de asignación**: Validación de tipos y generación de cuádruplo de asignación
 
 ### Notas de Implementación
 
@@ -243,3 +219,4 @@ Se documentarán las acciones específicas que se realizan en cada punto neurál
 - Las variables temporales se generan automáticamente (t1, t2, t3, ...)
 - La validación semántica se realiza en tiempo de generación mediante el cubo semántico
 - Los tipos se mantienen sincronizados con los operandos mediante la pila de tipos
+

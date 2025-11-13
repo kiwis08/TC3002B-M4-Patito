@@ -1,0 +1,16 @@
+program test2;
+var a, b: int;
+main {
+    a = 10;
+    b = 5;
+    if (a > b) {
+        a = 20;
+    };
+    if (a != b) {
+        b = 15;
+    } else {
+        a = 0;
+    };
+}
+end
+

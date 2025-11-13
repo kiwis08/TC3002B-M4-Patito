@@ -1,0 +1,18 @@
+program test5;
+var a, b, c: int;
+main {
+    a = 5;
+    b = 3;
+    c = a * b + 2;
+    if (c > 10) {
+        print("c es mayor que 10");
+        while (a < c) do {
+            a = a + 1;
+            print("a = ", a);
+        };
+    } else {
+        print("c es menor o igual a 10");
+    };
+}
+end
+

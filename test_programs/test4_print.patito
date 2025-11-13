@@ -1,0 +1,11 @@
+program test4;
+var x, y: int;
+main {
+    x = 10;
+    y = 20;
+    print("x = ", x);
+    print("y = ", y);
+    print("x + y = ", x + y);
+}
+end
+
