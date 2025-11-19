@@ -285,9 +285,6 @@ func (fd *FunctionDirectory) GetVariableAddress(name string) (int, error) {
 		return entry.Address, nil
 	}
 
-	// Debug: verificar si la variable está en el directorio pero con otro nombre
-	// (esto no debería ser necesario, pero ayuda a debuggear)
-
 	// Buscar en función main (si existe)
 	if mainFn, ok := fd.Functions["main"]; ok {
 		if entry, ok := mainFn.Locals.entries[name]; ok {
