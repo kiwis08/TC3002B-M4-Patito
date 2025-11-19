@@ -236,23 +236,37 @@ func (s *JumpStack) IsEmpty() bool {
 }
 
 // TempCounter mantiene un contador para generar direcciones temporales únicas
+// Ahora usa direcciones virtuales en lugar de nombres
 type TempCounter struct {
-	counter int
+	addressManager *VirtualAddressManager
 }
 
 // NewTempCounter crea un nuevo contador de temporales
 func NewTempCounter() *TempCounter {
-	return &TempCounter{counter: 0}
+	return &TempCounter{}
 }
 
-// Next genera el siguiente nombre de temporal
-func (tc *TempCounter) Next() string {
-	tc.counter++
-	return fmt.Sprintf("t%d", tc.counter)
+// SetAddressManager establece el gestor de direcciones virtuales
+func (tc *TempCounter) SetAddressManager(vam *VirtualAddressManager) {
+	tc.addressManager = vam
 }
 
-// Reset reinicia el contador
+// Next genera la siguiente dirección virtual temporal
+func (tc *TempCounter) Next() int {
+	if tc.addressManager == nil {
+		panic("TempCounter: addressManager no inicializado")
+	}
+	return tc.addressManager.NextTemporal()
+}
+
+// NextString genera la siguiente dirección temporal como string
+func (tc *TempCounter) NextString() string {
+	return AddressToString(tc.Next())
+}
+
+// Reset reinicia el contador (reinicia el contador de temporales en el address manager)
 func (tc *TempCounter) Reset() {
-	tc.counter = 0
+	if tc.addressManager != nil {
+		tc.addressManager.ResetTemporals()
+	}
 }
-

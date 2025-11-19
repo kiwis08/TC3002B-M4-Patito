@@ -128,8 +128,12 @@ func reduceProgram(X []Attrib, C interface{}) (Attrib, error) {
 		return nil, err
 	}
 	if globals := specsFromAttrib(X[3]); len(globals) > 0 {
-		if err := ctx.Directory.AddGlobals(globals); err != nil {
+		if err := ctx.Directory.AddGlobals(globals, ctx.AddressManager); err != nil {
 			return nil, err
+		}
+		// Almacenar direcciones en VariableAddresses para uso inmediato
+		for _, spec := range globals {
+			ctx.VariableAddresses[spec.Name] = spec.Address
 		}
 	}
 	return ctx.Directory, nil
@@ -242,8 +246,15 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	params := specsFromAttrib(X[3])
 	locals := specsFromAttrib(X[5])
 
-	if _, err := ctx.Directory.AddFunction(fnID.IDValue(), returnType, fnID.Pos, params, locals); err != nil {
+	if _, err := ctx.Directory.AddFunction(fnID.IDValue(), returnType, fnID.Pos, params, locals, ctx.AddressManager); err != nil {
 		return nil, err
+	}
+	// Almacenar direcciones de parámetros y locales en VariableAddresses para uso inmediato
+	for _, spec := range params {
+		ctx.VariableAddresses[spec.Name] = spec.Address
+	}
+	for _, spec := range locals {
+		ctx.VariableAddresses[spec.Name] = spec.Address
 	}
 	return nil, nil
 }
@@ -588,12 +599,9 @@ func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
 		return nil, err
 	}
 	// La EXPRESSION (X[2]) ya fue procesada
-	// Procesar la condición: esto genera el GOTOF y guarda el índice de inicio
-	if startIndex, err := semantic.ProcessWhileCondition(ctx); err != nil {
+	// Procesar la condición: esto genera el GOTOF y guarda los índices necesarios
+	if err := semantic.ProcessWhileCondition(ctx); err != nil {
 		return nil, err
-	} else {
-		// Guardar el índice de inicio del ciclo (donde está la condición)
-		ctx.JumpStack.Push(startIndex)
 	}
 	// Al final del BODY, completar el while
 	if err := semantic.ProcessWhileEnd(ctx); err != nil {

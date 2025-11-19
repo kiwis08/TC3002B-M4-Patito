@@ -62,8 +62,8 @@ func ProcessOperator(ctx *Context, op string) error {
 				return err
 			}
 			
-			// Generar temporal
-			temp := ctx.TempCounter.Next()
+			// Generar temporal (dirección virtual)
+			temp := ctx.TempCounter.NextString()
 			
 			// Generar cuádruplo
 			generateQuadruple(ctx, topOp, left, right, temp)
@@ -98,8 +98,8 @@ func ProcessUnaryOperator(ctx *Context, op string) error {
 		return err
 	}
 	
-	// Generar temporal
-	temp := ctx.TempCounter.Next()
+	// Generar temporal (dirección virtual)
+	temp := ctx.TempCounter.NextString()
 	
 	// Generar cuádruplo (operador unario, operando, vacío, resultado)
 	generateQuadruple(ctx, op, operand, "", temp)
@@ -117,26 +117,37 @@ func PushOperand(ctx *Context, operand string, operandType Type) {
 }
 
 // PushConstant apila una constante y determina su tipo
+// Asigna una dirección virtual a la constante si no existe
 func PushConstant(ctx *Context, tok *token.Token) error {
 	var operandType Type
-	var operand string
+	var value string
 	
 	switch tok.Type {
 	case token.TokMap.Type("cte_int"):
 		operandType = TypeInt
-		operand = string(tok.Lit)
+		value = string(tok.Lit)
 	case token.TokMap.Type("cte_float"):
 		operandType = TypeFloat
-		operand = string(tok.Lit)
+		value = string(tok.Lit)
 	default:
-		return fmt.Errorf("tipo de constante no soportado: %s", tok.Type)
+		return fmt.Errorf("tipo de constante no soportado: %v", tok.Type)
 	}
 	
+	// Buscar o crear entrada en tabla de constantes
+	entry, exists := ctx.ConstantTable.Get(value, operandType)
+	if !exists {
+		// Crear nueva constante con dirección virtual
+		address := ctx.AddressManager.NextConstant()
+		entry = ctx.ConstantTable.Add(value, operandType, address)
+	}
+	
+	// Apilar la dirección virtual como string
+	operand := AddressToString(entry.Address)
 	PushOperand(ctx, operand, operandType)
 	return nil
 }
 
-// PushVariable apila una variable y busca su tipo en el directorio
+// PushVariable apila una variable y busca su tipo y dirección virtual en el directorio
 func PushVariable(ctx *Context, varName string, pos token.Pos) error {
 	// Buscar variable primero en contexto, luego en directorio
 	varType, err := GetVariableTypeFromContext(ctx, varName)
@@ -144,7 +155,15 @@ func PushVariable(ctx *Context, varName string, pos token.Pos) error {
 		return err
 	}
 	
-	PushOperand(ctx, varName, varType)
+	// Obtener dirección virtual
+	address, err := GetVariableAddressFromContext(ctx, varName)
+	if err != nil {
+		return err
+	}
+	
+	// Apilar la dirección virtual como string
+	operand := AddressToString(address)
+	PushOperand(ctx, operand, varType)
 	return nil
 }
 
@@ -181,8 +200,8 @@ func ProcessExpressionEnd(ctx *Context) error {
 			return err
 		}
 		
-		// Generar temporal
-		temp := ctx.TempCounter.Next()
+		// Generar temporal (dirección virtual)
+		temp := ctx.TempCounter.NextString()
 		
 		// Generar cuádruplo
 		generateQuadruple(ctx, op, left, right, temp)
@@ -220,8 +239,14 @@ func ProcessAssignment(ctx *Context, varName string, pos token.Pos) error {
 		return err
 	}
 	
-	// Generar cuádruplo de asignación
-	generateQuadruple(ctx, "=", result, "", varName)
+	// Obtener dirección virtual de la variable
+	varAddress, err := GetVariableAddressFromContext(ctx, varName)
+	if err != nil {
+		return err
+	}
+	
+	// Generar cuádruplo de asignación (usar dirección virtual)
+	generateQuadruple(ctx, "=", result, "", AddressToString(varAddress))
 	
 	return nil
 }
@@ -269,8 +294,8 @@ func ProcessRelationalExpression(ctx *Context) error {
 		return err
 	}
 	
-	// Generar temporal para el resultado booleano
-	temp := ctx.TempCounter.Next()
+	// Generar temporal para el resultado booleano (dirección virtual)
+	temp := ctx.TempCounter.NextString()
 	
 	// Generar cuádruplo
 	generateQuadruple(ctx, relOp, left, right, temp)
@@ -384,60 +409,54 @@ func ProcessWhileStart(ctx *Context) int {
 
 // ProcessWhileCondition procesa la condición del while
 // Asume que la expresión condicional ya fue procesada y el resultado está en la pila
-// Retorna el índice donde comienza el ciclo (donde está la condición)
-// Nota: La condición ya fue evaluada. El índice de inicio es donde está la condición,
-// que es el último cuádruplo generado antes de este punto (antes del cuerpo del while)
-func ProcessWhileCondition(ctx *Context) (int, error) {
+// Guarda el índice donde comienza el ciclo (donde se evalúa la condición)
+func ProcessWhileCondition(ctx *Context) error {
 	// Obtener resultado de la condición (ya procesada)
 	condition, ok := ctx.OperandStack.Pop()
 	if !ok {
-		return -1, fmt.Errorf("error: no hay condición para while")
+		return fmt.Errorf("error: no hay condición para while")
 	}
 	
 	ctx.TypeStack.Pop() // Remover tipo de la condición
 	
-	// El índice de inicio del ciclo es donde está la condición
-	// Como la condición ya fue evaluada antes del cuerpo, necesitamos encontrar
-	// el índice del último cuádruplo antes del cuerpo.
-	// Por simplicidad, asumimos que la condición es el penúltimo cuádruplo
-	// (el último es algo del cuerpo, el penúltimo es la condición)
-	// Pero esto no es confiable. Mejor: el índice de inicio es donde generaremos el GOTOF - 1
-	// (asumiendo que la condición está justo antes)
-	currentIndex := ctx.Quadruples.NextIndex()
-	// El índice de inicio es el índice actual (donde se generará el GOTOF)
-	// pero la condición está antes. Por ahora, usamos currentIndex - 1 como aproximación
-	// Esto asume que la condición es el cuádruplo inmediatamente anterior
-	startIndex := currentIndex - 1
+	// El índice de inicio del ciclo es donde se evalúa la condición
+	// Como la condición ya fue evaluada, el último cuádruplo generado es el de la condición
+	// (el que produce el resultado booleano). Ese es el índice donde comienza el ciclo.
+	// Usamos Size() en lugar de NextIndex() porque NextIndex() ya incluye el espacio para el GOTOF
+	quadSize := ctx.Quadruples.Size()
+	startIndex := quadSize - 1
 	if startIndex < 0 {
 		startIndex = 0
 	}
+	
+	// Guardar el índice de inicio primero (para que sea el último en la pila)
+	ctx.JumpStack.Push(startIndex)
 	
 	// Generar GOTOF (salto si falso, salir del ciclo)
 	gotoIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "GOTOF", condition, "", "")
 	
-	// Guardar índice del GOTOF para completar después
+	// Guardar índice del GOTOF para completar después (será el primero en la pila)
 	ctx.JumpStack.Push(gotoIndex)
 	
-	// Retornar el índice de inicio (aproximación: condición está en startIndex)
-	return startIndex, nil
+	return nil
 }
 
 // ProcessWhileEnd completa el while
 func ProcessWhileEnd(ctx *Context) error {
-	// Obtener el índice del GOTOF
+	// Obtener el índice del GOTOF (último que se pusó)
 	gotoIndex, ok := ctx.JumpStack.Pop()
 	if !ok {
 		return fmt.Errorf("error: no hay salto pendiente para while")
 	}
 	
-	// Obtener el índice de inicio del ciclo (donde está la condición)
+	// Obtener el índice de inicio del ciclo (penúltimo que se pusó)
 	startIndex, ok := ctx.JumpStack.Pop()
 	if !ok {
 		return fmt.Errorf("error: no hay índice de inicio para while")
 	}
 	
-	// Generar GOTO al inicio del ciclo (donde está la condición)
+	// Generar GOTO al inicio del ciclo (donde se evalúa la condición)
 	generateQuadruple(ctx, "GOTO", "", "", fmt.Sprintf("%d", startIndex))
 	
 	// Actualizar el GOTOF con el índice después del ciclo (en Result)

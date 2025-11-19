@@ -100,6 +100,7 @@ Cada entrega tiene su propio documento con información específica:
 
 - [Entrega 1](ENTREGA1.md) - Implementación inicial del parser
 - [Entrega 3](ENTREGA3.md) - Generación de código intermedio (cuádruplos)
+- [Entrega 4](ENTREGA4.md) - Direcciones virtuales y cuádruplos para estatutos de control
 
 ---
 

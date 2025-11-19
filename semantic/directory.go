@@ -31,9 +31,10 @@ func (s ScopeKind) String() string {
 // VariableSpec es el resultado intermedio que producen las acciones del parser.
 // Agrupa nombre, tipo y posición para luego insertarlo en la tabla definitiva.
 type VariableSpec struct {
-	Name string
-	Type Type
-	Pos  token.Pos
+	Name    string
+	Type    Type
+	Pos     token.Pos
+	Address int // Dirección virtual asignada
 }
 
 // VariableEntry es el elemento almacenado en una tabla después de validar duplicados.
@@ -42,6 +43,7 @@ type VariableEntry struct {
 	Type       Type
 	Scope      ScopeKind
 	DeclaredAt token.Pos
+	Address    int // Dirección virtual asignada
 }
 
 // VariableTable mantiene las variables de un determinado scope.
@@ -76,6 +78,7 @@ func (vt *VariableTable) Add(spec *VariableSpec) error {
 		Type:       spec.Type,
 		Scope:      vt.kind,
 		DeclaredAt: spec.Pos,
+		Address:    spec.Address, // Dirección virtual asignada
 	}
 	vt.entries[spec.Name] = entry
 	vt.order = append(vt.order, entry)
@@ -142,19 +145,35 @@ func (fd *FunctionDirectory) SetProgram(name string, pos token.Pos) error {
 	}
 }
 
-func (fd *FunctionDirectory) AddGlobals(specs []*VariableSpec) error {
+func (fd *FunctionDirectory) AddGlobals(specs []*VariableSpec, addressManager *VirtualAddressManager) error {
 	if len(specs) == 0 {
 		return nil
+	}
+	// Asignar direcciones virtuales a variables globales
+	for _, spec := range specs {
+		if spec.Address == 0 { // Si no tiene dirección asignada
+			spec.Address = addressManager.NextGlobal()
+		}
 	}
 	return fd.Globals.AddMany(specs)
 }
 
-func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token.Pos, params []*VariableSpec, locals []*VariableSpec) (*FunctionEntry, error) {
+func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token.Pos, params []*VariableSpec, locals []*VariableSpec, addressManager *VirtualAddressManager) (*FunctionEntry, error) {
 	if existing, ok := fd.Functions[name]; ok {
 		return nil, &FunctionRedefinitionError{
 			Name:         name,
 			ExistingPos:  existing.DeclaredAt,
 			RedeclaredAt: pos,
+		}
+	}
+
+	// Reiniciar contador de locales para esta función
+	addressManager.ResetLocals()
+
+	// Asignar direcciones virtuales a parámetros
+	for _, spec := range params {
+		if spec.Address == 0 { // Si no tiene dirección asignada
+			spec.Address = addressManager.NextLocal()
 		}
 	}
 
@@ -164,7 +183,11 @@ func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token
 	}
 
 	localTable := NewVariableTable(ScopeLocal)
+	// Asignar direcciones virtuales a variables locales
 	for _, spec := range locals {
+		if spec.Address == 0 { // Si no tiene dirección asignada
+			spec.Address = addressManager.NextLocal()
+		}
 		if paramTable.Has(spec.Name) {
 			return nil, &DuplicateSymbolError{
 				Name:      spec.Name,
@@ -227,4 +250,59 @@ func GetVariableTypeFromContext(ctx *Context, name string) (Type, error) {
 
 	// Buscar en el directorio
 	return ctx.Directory.GetVariableType(name)
+}
+
+// GetVariableAddressFromContext busca la dirección virtual de una variable
+func GetVariableAddressFromContext(ctx *Context, name string) (int, error) {
+	// Buscar primero en VariableAddresses (direcciones durante parsing)
+	if addr, ok := ctx.VariableAddresses[name]; ok && addr != 0 {
+		return addr, nil
+	}
+
+	// Si no está en VariableAddresses, verificar si la variable existe
+	// Si existe pero no tiene dirección asignada todavía, asignarla ahora
+	if _, ok := ctx.VariableTypes[name]; ok {
+		// Variable existe pero dirección no asignada todavía
+		// Asignar dirección temporalmente (será reemplazada cuando se agregue al directorio)
+		// Esto puede pasar si la variable se usa antes de que reduceProgram termine
+		// Por ahora, asignar una dirección global temporal
+		addr := ctx.AddressManager.NextGlobal()
+		ctx.VariableAddresses[name] = addr
+		return addr, nil
+	}
+
+	// Si no está en VariableAddresses ni en VariableTypes, buscar en el directorio
+	return ctx.Directory.GetVariableAddress(name)
+}
+
+// GetVariableAddress busca una variable en el directorio y devuelve su dirección virtual
+func (fd *FunctionDirectory) GetVariableAddress(name string) (int, error) {
+	// Buscar en globales primero
+	if entry, ok := fd.Globals.entries[name]; ok {
+		if entry.Address == 0 {
+			return 0, fmt.Errorf("variable '%s' tiene dirección 0 (no asignada)", name)
+		}
+		return entry.Address, nil
+	}
+
+	// Debug: verificar si la variable está en el directorio pero con otro nombre
+	// (esto no debería ser necesario, pero ayuda a debuggear)
+
+	// Buscar en función main (si existe)
+	if mainFn, ok := fd.Functions["main"]; ok {
+		if entry, ok := mainFn.Locals.entries[name]; ok {
+			if entry.Address == 0 {
+				return 0, fmt.Errorf("variable '%s' tiene dirección 0 (no asignada)", name)
+			}
+			return entry.Address, nil
+		}
+		if entry, ok := mainFn.Params.entries[name]; ok {
+			if entry.Address == 0 {
+				return 0, fmt.Errorf("variable '%s' tiene dirección 0 (no asignada)", name)
+			}
+			return entry.Address, nil
+		}
+	}
+
+	return 0, fmt.Errorf("variable '%s' no declarada", name)
 }
