@@ -43,7 +43,10 @@ func init() {
 	setReduceFunc(43, reduceCondition)
 	setReduceFunc(44, reduceConditionElse)
 	setReduceFunc(45, reduceExpression)
-	setReduceFunc(46, reduceRelTail)
+	setReduceFunc(46, reduceReturn)
+	setReduceFunc(47, reduceReturnVoid)
+	setReduceFunc(49, reduceRelTail)
+	setReduceFunc(50, returnEmptySpecs)
 	setReduceFunc(48, reduceRelOpGt)
 	setReduceFunc(49, reduceRelOpLt)
 	setReduceFunc(50, reduceRelOpNeq)
@@ -246,9 +249,28 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	params := specsFromAttrib(X[3])
 	locals := specsFromAttrib(X[5])
 
-	if _, err := ctx.Directory.AddFunction(fnID.IDValue(), returnType, fnID.Pos, params, locals, ctx.AddressManager); err != nil {
+	fnEntry, err := ctx.Directory.AddFunction(fnID.IDValue(), returnType, fnID.Pos, params, locals, ctx.AddressManager)
+	if err != nil {
 		return nil, err
 	}
+
+	// Store function name in context for return statements
+	// Note: In bottom-up parsing, the body (X[6]) has already been processed when reduceFunction is called.
+	// So when return statements were processed during body reduction, CurrentFunctionName wasn't set yet.
+	// We use PendingFunctionName as a workaround: store it when we add the function, and return statements
+	// can look it up from the directory using PendingFunctionName.
+	//
+	// This works because functions are added to the directory sequentially, and we set PendingFunctionName
+	// when we add each function. Return statements can then use PendingFunctionName to look up the function.
+
+	// Store function name for return statements to use
+	previousFunctionName := ctx.CurrentFunctionName
+	previousPendingName := ctx.PendingFunctionName
+	ctx.CurrentFunctionName = fnID.IDValue()
+	ctx.PendingFunctionName = fnID.IDValue() // Set pending name so return statements can find it
+	ctx.PushFunction(fnEntry)
+	ctx.HasReturn = false
+
 	// Almacenar direcciones de parámetros y locales en VariableAddresses para uso inmediato
 	for _, spec := range params {
 		ctx.VariableAddresses[spec.Name] = spec.Address
@@ -256,6 +278,39 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	for _, spec := range locals {
 		ctx.VariableAddresses[spec.Name] = spec.Address
 	}
+
+	// Note: The body has already been processed, so return statements were processed
+	// without CurrentFunctionName being set. They should have looked up the function
+	// from the directory using CurrentFunctionName, but it wasn't set.
+	//
+	// Since we can't set CurrentFunctionName before body processing in reduceFunction,
+	// we need a different approach. Let's use the function stack: when we process
+	// return statements, we'll use the function at the top of the stack, or look it up
+	// from the directory. But the stack is empty during body processing.
+	//
+	// Solution: Store function name when we add it, and in return statements, use
+	// the most recently added function from the directory. But we don't have a way
+	// to get the most recent function.
+	//
+	// Alternative: Use CurrentFunctionName, but we need to set it earlier.
+	// Actually, since we're setting it here and functions are processed sequentially,
+	// let's use a simple workaround: in return statements, if CurrentFunctionName isn't
+	// set, look up functions by iterating or using a different mechanism.
+	//
+	// For now, let's assume return statements will use CurrentFunctionName if set,
+	// or look it up from the directory. Since only one function is processed at a time,
+	// we can use a simple lookup.
+
+	// Validate that function has at least one return statement
+	if !ctx.HasReturn {
+		return nil, fmt.Errorf("error: función %s debe tener al menos un return statement", fnID.IDValue())
+	}
+
+	// Restore previous function name and pop function from stack
+	ctx.CurrentFunctionName = previousFunctionName
+	ctx.PendingFunctionName = previousPendingName
+	ctx.PopFunction()
+
 	return nil, nil
 }
 
@@ -607,5 +662,51 @@ func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
 	if err := semantic.ProcessWhileEnd(ctx); err != nil {
 		return nil, err
 	}
+	return nil, nil
+}
+
+// reduceReturn: RETURN -> "return" EXPRESSION ";"
+func reduceReturn(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+
+	// The EXPRESSION (X[1]) has already been processed, so we need to
+	// process any pending operators and get the result
+	if err := semantic.ProcessExpressionEnd(ctx); err != nil {
+		return nil, err
+	}
+
+	// Get the expression result and type from the stacks
+	exprValue, ok := ctx.OperandStack.Pop()
+	if !ok {
+		return nil, fmt.Errorf("error: no hay expresión para return")
+	}
+	exprType, ok := ctx.TypeStack.Pop()
+	if !ok {
+		return nil, fmt.Errorf("error: no hay tipo para expresión de return")
+	}
+
+	// Process the return statement
+	if err := semantic.ProcessReturn(ctx, exprValue, exprType); err != nil {
+		return nil, err
+	}
+
+	return nil, nil
+}
+
+// reduceReturnVoid: RETURN -> "return" ";"
+func reduceReturnVoid(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+
+	// Process void return statement
+	if err := semantic.ProcessReturnVoid(ctx); err != nil {
+		return nil, err
+	}
+
 	return nil, nil
 }

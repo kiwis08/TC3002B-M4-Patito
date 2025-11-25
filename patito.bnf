@@ -104,6 +104,7 @@ STATEMENT
   | CYCLE
   | F_CALL ";"          /* call as statement */
   | PRINT
+  | RETURN
   | "[" P_STAT "]"
   ;
 
@@ -140,6 +141,12 @@ CYCLE
 CONDITION
   : "if" "(" EXPRESSION ")" BODY ";"
   | "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+  ;
+
+/// return
+RETURN
+  : "return" EXPRESSION ";"
+  | "return" ";"
   ;
 
 /// Expressions

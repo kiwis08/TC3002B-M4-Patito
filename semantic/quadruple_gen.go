@@ -1,8 +1,8 @@
 package semantic
 
 import (
-	"fmt"
 	"Patito/token"
+	"fmt"
 )
 
 // getOperatorPrecedence devuelve la precedencia de un operador
@@ -44,30 +44,30 @@ func ProcessOperator(ctx *Context, op string) error {
 		if getOperatorPrecedence(topOp) >= getOperatorPrecedence(op) {
 			// Generar cuádruplo para el operador del tope
 			ctx.OpStack.Pop()
-			
+
 			// Obtener operandos y tipos
 			right, ok1 := ctx.OperandStack.Pop()
 			rightType, _ := ctx.TypeStack.Pop()
 			left, ok2 := ctx.OperandStack.Pop()
 			leftType, _ := ctx.TypeStack.Pop()
-			
+
 			if !ok1 || !ok2 {
 				return fmt.Errorf("error: operandos insuficientes para operador %s", topOp)
 			}
-			
+
 			// Validar con cubo semántico
 			operator := Operator(topOp)
 			resultType, err := ctx.Cube.Result(operator, leftType, rightType)
 			if err != nil {
 				return err
 			}
-			
+
 			// Generar temporal (dirección virtual)
 			temp := ctx.TempCounter.NextString()
-			
+
 			// Generar cuádruplo
 			generateQuadruple(ctx, topOp, left, right, temp)
-			
+
 			// Apilar resultado
 			ctx.OperandStack.Push(temp)
 			ctx.TypeStack.Push(resultType)
@@ -75,7 +75,7 @@ func ProcessOperator(ctx *Context, op string) error {
 			break
 		}
 	}
-	
+
 	// Apilar el nuevo operador
 	ctx.OpStack.Push(op)
 	return nil
@@ -88,25 +88,25 @@ func ProcessUnaryOperator(ctx *Context, op string) error {
 	if !ok {
 		return fmt.Errorf("error: operando insuficiente para operador unario %s", op)
 	}
-	
+
 	operandType, _ := ctx.TypeStack.Pop()
-	
+
 	// Validar con cubo semántico
 	operator := Operator(op)
 	resultType, err := ctx.Cube.ResultUnary(operator, operandType)
 	if err != nil {
 		return err
 	}
-	
+
 	// Generar temporal (dirección virtual)
 	temp := ctx.TempCounter.NextString()
-	
+
 	// Generar cuádruplo (operador unario, operando, vacío, resultado)
 	generateQuadruple(ctx, op, operand, "", temp)
-	
+
 	// Apilar resultado
 	PushOperand(ctx, temp, resultType)
-	
+
 	return nil
 }
 
@@ -121,7 +121,7 @@ func PushOperand(ctx *Context, operand string, operandType Type) {
 func PushConstant(ctx *Context, tok *token.Token) error {
 	var operandType Type
 	var value string
-	
+
 	switch tok.Type {
 	case token.TokMap.Type("cte_int"):
 		operandType = TypeInt
@@ -132,7 +132,7 @@ func PushConstant(ctx *Context, tok *token.Token) error {
 	default:
 		return fmt.Errorf("tipo de constante no soportado: %v", tok.Type)
 	}
-	
+
 	// Buscar o crear entrada en tabla de constantes
 	entry, exists := ctx.ConstantTable.Get(value, operandType)
 	if !exists {
@@ -140,7 +140,7 @@ func PushConstant(ctx *Context, tok *token.Token) error {
 		address := ctx.AddressManager.NextConstant()
 		entry = ctx.ConstantTable.Add(value, operandType, address)
 	}
-	
+
 	// Apilar la dirección virtual como string
 	operand := AddressToString(entry.Address)
 	PushOperand(ctx, operand, operandType)
@@ -154,13 +154,13 @@ func PushVariable(ctx *Context, varName string, pos token.Pos) error {
 	if err != nil {
 		return err
 	}
-	
+
 	// Obtener dirección virtual
 	address, err := GetVariableAddressFromContext(ctx, varName)
 	if err != nil {
 		return err
 	}
-	
+
 	// Apilar la dirección virtual como string
 	operand := AddressToString(address)
 	PushOperand(ctx, operand, varType)
@@ -179,33 +179,33 @@ func ProcessExpressionEnd(ctx *Context) error {
 		if op == "(" {
 			return fmt.Errorf("error: paréntesis no balanceado")
 		}
-		
+
 		// Desapilar el operador
 		ctx.OpStack.Pop()
-		
+
 		// Obtener operandos
 		right, ok1 := ctx.OperandStack.Pop()
 		rightType, _ := ctx.TypeStack.Pop()
 		left, ok2 := ctx.OperandStack.Pop()
 		leftType, _ := ctx.TypeStack.Pop()
-		
+
 		if !ok1 || !ok2 {
 			return fmt.Errorf("error: operandos insuficientes para operador %s", op)
 		}
-		
+
 		// Validar con cubo semántico
 		operator := Operator(op)
 		resultType, err := ctx.Cube.Result(operator, leftType, rightType)
 		if err != nil {
 			return err
 		}
-		
+
 		// Generar temporal (dirección virtual)
 		temp := ctx.TempCounter.NextString()
-		
+
 		// Generar cuádruplo
 		generateQuadruple(ctx, op, left, right, temp)
-		
+
 		// Apilar resultado
 		PushOperand(ctx, temp, resultType)
 	}
@@ -218,36 +218,36 @@ func ProcessAssignment(ctx *Context, varName string, pos token.Pos) error {
 	if err := ProcessExpressionEnd(ctx); err != nil {
 		return err
 	}
-	
+
 	// Obtener el resultado de la expresión
 	result, ok := ctx.OperandStack.Pop()
 	if !ok {
 		return fmt.Errorf("error: no hay resultado de expresión para asignar")
 	}
-	
+
 	resultType, _ := ctx.TypeStack.Pop()
-	
+
 	// Verificar tipo de variable
 	varType, err := GetVariableTypeFromContext(ctx, varName)
 	if err != nil {
 		return err
 	}
-	
+
 	// Validar asignación con cubo semántico
 	_, err = ctx.Cube.Result(OpAssign, varType, resultType)
 	if err != nil {
 		return err
 	}
-	
+
 	// Obtener dirección virtual de la variable
 	varAddress, err := GetVariableAddressFromContext(ctx, varName)
 	if err != nil {
 		return err
 	}
-	
+
 	// Generar cuádruplo de asignación (usar dirección virtual)
 	generateQuadruple(ctx, "=", result, "", AddressToString(varAddress))
-	
+
 	return nil
 }
 
@@ -257,10 +257,10 @@ func ProcessRelationalOperator(ctx *Context, op string) error {
 	if err := ProcessExpressionEnd(ctx); err != nil {
 		return err
 	}
-	
+
 	// Apilar el operador relacional
 	ctx.OpStack.Push(op)
-	
+
 	return nil
 }
 
@@ -270,39 +270,39 @@ func ProcessRelationalExpression(ctx *Context) error {
 	if err := ProcessExpressionEnd(ctx); err != nil {
 		return err
 	}
-	
+
 	// Debe haber un operador relacional en la pila
 	relOp, ok := ctx.OpStack.Pop()
 	if !ok {
 		return fmt.Errorf("error: se esperaba operador relacional")
 	}
-	
+
 	// Obtener operandos
 	right, ok1 := ctx.OperandStack.Pop()
 	rightType, _ := ctx.TypeStack.Pop()
 	left, ok2 := ctx.OperandStack.Pop()
 	leftType, _ := ctx.TypeStack.Pop()
-	
+
 	if !ok1 || !ok2 {
 		return fmt.Errorf("error: operandos insuficientes para operador relacional %s", relOp)
 	}
-	
+
 	// Validar con cubo semántico
 	operator := Operator(relOp)
 	resultType, err := ctx.Cube.Result(operator, leftType, rightType)
 	if err != nil {
 		return err
 	}
-	
+
 	// Generar temporal para el resultado booleano (dirección virtual)
 	temp := ctx.TempCounter.NextString()
-	
+
 	// Generar cuádruplo
 	generateQuadruple(ctx, relOp, left, right, temp)
-	
+
 	// Apilar resultado
 	PushOperand(ctx, temp, resultType)
-	
+
 	return nil
 }
 
@@ -325,16 +325,16 @@ func ProcessIf(ctx *Context) (int, error) {
 	if !ok {
 		return -1, fmt.Errorf("error: no hay condición para if")
 	}
-	
+
 	ctx.TypeStack.Pop() // Remover tipo de la condición
-	
+
 	// Generar GOTOF (salto si falso)
 	gotoIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "GOTOF", condition, "", "")
-	
+
 	// Guardar índice para completar después
 	ctx.JumpStack.Push(gotoIndex)
-	
+
 	return gotoIndex, nil
 }
 
@@ -345,14 +345,14 @@ func ProcessIfEnd(ctx *Context) error {
 	if !ok {
 		return fmt.Errorf("error: no hay salto pendiente para if")
 	}
-	
+
 	// Actualizar el cuádruplo con el índice correcto (en Result)
 	quad := ctx.Quadruples.GetAt(jumpIndex)
 	if quad != nil {
 		quad.Result = fmt.Sprintf("%d", ctx.Quadruples.NextIndex())
 		ctx.Quadruples.UpdateAt(jumpIndex, *quad)
 	}
-	
+
 	return nil
 }
 
@@ -363,21 +363,21 @@ func ProcessElse(ctx *Context) (int, error) {
 	if !ok {
 		return -1, fmt.Errorf("error: no hay salto pendiente para else")
 	}
-	
+
 	// Generar GOTO incondicional para saltar el else
 	gotoIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "GOTO", "", "", "")
-	
+
 	// Actualizar el GOTOF (en Result)
 	quad := ctx.Quadruples.GetAt(jumpIndex)
 	if quad != nil {
 		quad.Result = fmt.Sprintf("%d", ctx.Quadruples.NextIndex())
 		ctx.Quadruples.UpdateAt(jumpIndex, *quad)
 	}
-	
+
 	// Guardar el GOTO para completar después del else
 	ctx.JumpStack.Push(gotoIndex)
-	
+
 	return gotoIndex, nil
 }
 
@@ -388,14 +388,14 @@ func ProcessIfElseEnd(ctx *Context) error {
 	if !ok {
 		return fmt.Errorf("error: no hay salto pendiente para else")
 	}
-	
+
 	// Actualizar el cuádruplo con el índice correcto (en Result)
 	quad := ctx.Quadruples.GetAt(jumpIndex)
 	if quad != nil {
 		quad.Result = fmt.Sprintf("%d", ctx.Quadruples.NextIndex())
 		ctx.Quadruples.UpdateAt(jumpIndex, *quad)
 	}
-	
+
 	return nil
 }
 
@@ -416,9 +416,9 @@ func ProcessWhileCondition(ctx *Context) error {
 	if !ok {
 		return fmt.Errorf("error: no hay condición para while")
 	}
-	
+
 	ctx.TypeStack.Pop() // Remover tipo de la condición
-	
+
 	// El índice de inicio del ciclo es donde se evalúa la condición
 	// Como la condición ya fue evaluada, el último cuádruplo generado es el de la condición
 	// (el que produce el resultado booleano). Ese es el índice donde comienza el ciclo.
@@ -428,17 +428,17 @@ func ProcessWhileCondition(ctx *Context) error {
 	if startIndex < 0 {
 		startIndex = 0
 	}
-	
+
 	// Guardar el índice de inicio primero (para que sea el último en la pila)
 	ctx.JumpStack.Push(startIndex)
-	
+
 	// Generar GOTOF (salto si falso, salir del ciclo)
 	gotoIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "GOTOF", condition, "", "")
-	
+
 	// Guardar índice del GOTOF para completar después (será el primero en la pila)
 	ctx.JumpStack.Push(gotoIndex)
-	
+
 	return nil
 }
 
@@ -449,23 +449,116 @@ func ProcessWhileEnd(ctx *Context) error {
 	if !ok {
 		return fmt.Errorf("error: no hay salto pendiente para while")
 	}
-	
+
 	// Obtener el índice de inicio del ciclo (penúltimo que se pusó)
 	startIndex, ok := ctx.JumpStack.Pop()
 	if !ok {
 		return fmt.Errorf("error: no hay índice de inicio para while")
 	}
-	
+
 	// Generar GOTO al inicio del ciclo (donde se evalúa la condición)
 	generateQuadruple(ctx, "GOTO", "", "", fmt.Sprintf("%d", startIndex))
-	
+
 	// Actualizar el GOTOF con el índice después del ciclo (en Result)
 	quad := ctx.Quadruples.GetAt(gotoIndex)
 	if quad != nil {
 		quad.Result = fmt.Sprintf("%d", ctx.Quadruples.NextIndex())
 		ctx.Quadruples.UpdateAt(gotoIndex, *quad)
 	}
-	
+
 	return nil
 }
 
+// ProcessReturn processes a return statement with an expression (non-void functions)
+func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
+	var currentFn *FunctionEntry
+	// Try to get from stack first
+	currentFn = ctx.CurrentFunction()
+
+	// If not in stack, try to look up by name
+	if currentFn == nil && ctx.CurrentFunctionName != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
+		if !ok {
+			return fmt.Errorf("error: función %s no encontrada", ctx.CurrentFunctionName)
+		}
+	}
+
+	// If still not found, try using PendingFunctionName as a workaround
+	if currentFn == nil && ctx.PendingFunctionName != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
+		if !ok {
+			return fmt.Errorf("error: función %s no encontrada", ctx.PendingFunctionName)
+		}
+	}
+
+	if currentFn == nil {
+		return fmt.Errorf("error: return statement fuera de función o función no identificada")
+	}
+
+	// Validate return type matches function return type
+	if currentFn.ReturnType != exprType {
+		return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
+			exprType, currentFn.ReturnType)
+	}
+
+	// Mark that function has at least one return
+	ctx.HasReturn = true
+
+	// Generate RETURN quadruple: (RETURN, expr_result, _, _)
+	generateQuadruple(ctx, "RETURN", exprValue, "", "")
+
+	return nil
+}
+
+// ProcessReturnVoid processes a return statement without expression (void functions)
+func ProcessReturnVoid(ctx *Context) error {
+	var currentFn *FunctionEntry
+	// Try to get from stack first
+	currentFn = ctx.CurrentFunction()
+
+	// If not in stack, try to look up by name
+	if currentFn == nil && ctx.CurrentFunctionName != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
+		if !ok {
+			return fmt.Errorf("error: función %s no encontrada", ctx.CurrentFunctionName)
+		}
+	}
+
+	// If still not found, try using PendingFunctionName or LastAddedFunction as a workaround
+	if currentFn == nil && ctx.PendingFunctionName != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
+		if !ok {
+			return fmt.Errorf("error: función %s no encontrada", ctx.PendingFunctionName)
+		}
+	}
+
+	// If still not found, use LastAddedFunction as a fallback
+	if currentFn == nil && ctx.Directory.LastAddedFunction != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.Directory.LastAddedFunction)
+		if !ok {
+			return fmt.Errorf("error: función %s no encontrada", ctx.Directory.LastAddedFunction)
+		}
+	}
+
+	if currentFn == nil {
+		return fmt.Errorf("error: return statement fuera de función o función no identificada")
+	}
+
+	// Validate function is void
+	if currentFn.ReturnType != TypeVoid {
+		return fmt.Errorf("error: función no-void debe retornar un valor")
+	}
+
+	// Mark that function has at least one return
+	ctx.HasReturn = true
+
+	// Generate RETURN quadruple for void: (RETURN, _, _, _)
+	generateQuadruple(ctx, "RETURN", "", "", "")
+
+	return nil
+}

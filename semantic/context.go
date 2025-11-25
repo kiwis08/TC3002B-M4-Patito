@@ -3,27 +3,62 @@ package semantic
 // Context es el objeto que asignamos a parser.Context para compartir estado
 // entre las acciones semánticas.
 type Context struct {
-	Directory         *FunctionDirectory
-	Cube              *SemanticCube
-	Quadruples        *QuadrupleQueue
-	OpStack           *OperatorStack
-	OperandStack      *OperandStack
-	TypeStack         *TypeStack
-	JumpStack         *JumpStack
-	TempCounter       *TempCounter
-	AddressManager    *VirtualAddressManager
-	ConstantTable     *ConstantTable
+	Directory      *FunctionDirectory
+	Cube           *SemanticCube
+	Quadruples     *QuadrupleQueue
+	OpStack        *OperatorStack
+	OperandStack   *OperandStack
+	TypeStack      *TypeStack
+	JumpStack      *JumpStack
+	TempCounter    *TempCounter
+	AddressManager *VirtualAddressManager
+	ConstantTable  *ConstantTable
 	// VariableTypes almacena tipos de variables mientras se procesan (antes de agregar al directorio)
 	VariableTypes map[string]Type
 	// VariableAddresses almacena direcciones virtuales de variables mientras se procesan
 	VariableAddresses map[string]int
+	// FunctionStack tracks the function currently being processed for return statement validation
+	// We use a stack to handle nested scopes (if needed in the future)
+	FunctionStack []*FunctionEntry
+	// HasReturn tracks if the current function has at least one return statement
+	HasReturn bool
+	// CurrentFunctionName tracks the name of the function currently being processed
+	// This is set when we start processing a function and used by return statements
+	CurrentFunctionName string
+	// PendingFunctionName tracks the function name that will be processed
+	// This is used as a workaround for bottom-up parsing where body is processed before reduceFunction
+	PendingFunctionName string
+}
+
+// CurrentFunction returns the function currently being processed
+func (c *Context) CurrentFunction() *FunctionEntry {
+	if len(c.FunctionStack) == 0 {
+		return nil
+	}
+	return c.FunctionStack[len(c.FunctionStack)-1]
+}
+
+// PushFunction pushes a function onto the function stack
+func (c *Context) PushFunction(fn *FunctionEntry) {
+	c.FunctionStack = append(c.FunctionStack, fn)
+	c.HasReturn = false
+}
+
+// PopFunction pops a function from the function stack
+func (c *Context) PopFunction() *FunctionEntry {
+	if len(c.FunctionStack) == 0 {
+		return nil
+	}
+	fn := c.FunctionStack[len(c.FunctionStack)-1]
+	c.FunctionStack = c.FunctionStack[:len(c.FunctionStack)-1]
+	return fn
 }
 
 func NewContext() *Context {
 	addressManager := NewVirtualAddressManager()
 	tempCounter := NewTempCounter()
 	tempCounter.SetAddressManager(addressManager)
-	
+
 	return &Context{
 		Directory:         NewFunctionDirectory(),
 		Cube:              DefaultSemanticCube,
@@ -35,7 +70,7 @@ func NewContext() *Context {
 		TempCounter:       tempCounter,
 		AddressManager:    addressManager,
 		ConstantTable:     NewConstantTable(),
-		VariableTypes:      make(map[string]Type),
+		VariableTypes:     make(map[string]Type),
 		VariableAddresses: make(map[string]int),
 	}
 }
