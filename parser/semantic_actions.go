@@ -34,36 +34,38 @@ func init() {
 	setReduceFunc(24, returnEmptySpecs)
 	setReduceFunc(25, reduceParam)
 	// Expresiones y estatutos
-	setReduceFunc(37, reduceEPrintExpression)
-	setReduceFunc(38, reduceEPrintString)
-	setReduceFunc(39, reduceRPrint)
-	setReduceFunc(40, returnEmptySpecs)
-	setReduceFunc(41, reduceAssign)
-	setReduceFunc(42, reduceCycle)
-	setReduceFunc(43, reduceCondition)
-	setReduceFunc(44, reduceConditionElse)
-	setReduceFunc(45, reduceExpression)
-	setReduceFunc(46, reduceReturn)
-	setReduceFunc(47, reduceReturnVoid)
-	setReduceFunc(49, reduceRelTail)
-	setReduceFunc(50, returnEmptySpecs)
-	setReduceFunc(48, reduceRelOpGt)
-	setReduceFunc(49, reduceRelOpLt)
-	setReduceFunc(50, reduceRelOpNeq)
-	setReduceFunc(51, reduceRelOpEq)
-	setReduceFunc(52, reduceExp)
-	setReduceFunc(53, reduceExpPAdd)
-	setReduceFunc(54, reduceExpPSub)
-	setReduceFunc(55, returnEmptySpecs)
-	setReduceFunc(56, reduceTermino)
-	setReduceFunc(57, reduceTerminoPMul)
-	setReduceFunc(58, reduceTerminoPDiv)
-	setReduceFunc(59, returnEmptySpecs)
-	setReduceFunc(60, reduceFactor)
-	setReduceFunc(61, reduceFactorCoreParen)
-	setReduceFunc(62, reduceFactorCoreId)
-	setReduceFunc(63, reduceFactorCoreCte)
-	setReduceFunc(65, returnEmptySpecs)
+	setReduceFunc(37, passThrough)            // PRINT_P : E_PRINT R_PRINT
+	setReduceFunc(38, reduceEPrintExpression) // E_PRINT : EXPRESSION
+	setReduceFunc(39, reduceEPrintString)     // E_PRINT : cte_string
+	setReduceFunc(40, reduceRPrint)           // R_PRINT : "," PRINT_P
+	setReduceFunc(41, returnEmptySpecs)       // R_PRINT : empty
+	setReduceFunc(42, reduceAssign)           // ASSIGN : id "=" EXPRESSION ";"
+	setReduceFunc(43, reduceCycle)            // CYCLE : "while" "(" EXPRESSION ")" "do" BODY ";"
+	setReduceFunc(44, reduceCondition)        // CONDITION : "if" "(" EXPRESSION ")" BODY ";"
+	setReduceFunc(45, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+	setReduceFunc(46, reduceReturn)           // RETURN : "return" EXPRESSION ";"
+	setReduceFunc(47, reduceReturnVoid)       // RETURN : "return" ";"
+	setReduceFunc(48, reduceExpression)       // EXPRESSION : EXP REL_TAIL
+	setReduceFunc(49, reduceRelTail)          // REL_TAIL : REL_OP EXP
+	setReduceFunc(50, returnEmptySpecs)       // REL_TAIL : empty
+	setReduceFunc(51, reduceRelOpGt)          // REL_OP : ">"
+	setReduceFunc(52, reduceRelOpLt)          // REL_OP : "<"
+	setReduceFunc(53, reduceRelOpNeq)         // REL_OP : "!="
+	setReduceFunc(54, reduceRelOpEq)          // REL_OP : "=="
+	setReduceFunc(55, reduceExp)              // EXP : TERMINO EXP_P
+	setReduceFunc(56, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
+	setReduceFunc(57, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
+	setReduceFunc(58, returnEmptySpecs)       // EXP_P : empty
+	setReduceFunc(59, reduceTermino)          // TERMINO : FACTOR TERMINO_P
+	setReduceFunc(60, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
+	setReduceFunc(61, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
+	setReduceFunc(62, returnEmptySpecs)       // TERMINO_P : empty
+	setReduceFunc(63, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
+	setReduceFunc(64, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
+	setReduceFunc(65, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
+	setReduceFunc(66, reduceFactorCoreCte)    // FACTOR_CORE : CTE
+	setReduceFunc(67, reduceFactorSuffixCall)
+	setReduceFunc(68, returnEmptySpecs)
 }
 
 func setReduceFunc(index int, fn reduceFunc) {
@@ -200,10 +202,16 @@ func reduceVarDeclaration(X []Attrib, C interface{}) (Attrib, error) {
 		varName := tok.IDValue()
 		// Almacenar tipo en contexto para uso inmediato durante parsing
 		ctx.VariableTypes[varName] = typeVal
+		// Asignar dirección virtual inmediatamente para que esté disponible durante parsing
+		// Esto es necesario porque las variables pueden usarse en el main body antes de que
+		// reduceProgram agregue las variables al directorio
+		addr := ctx.AddressManager.NextGlobal()
+		ctx.VariableAddresses[varName] = addr
 		specs = append(specs, &semantic.VariableSpec{
-			Name: varName,
-			Type: typeVal,
-			Pos:  tok.Pos,
+			Name:    varName,
+			Type:    typeVal,
+			Pos:     tok.Pos,
+			Address: addr,
 		})
 	}
 	return specs, nil
@@ -254,20 +262,30 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 		return nil, err
 	}
 
-	// Store function name in context for return statements
-	// Note: In bottom-up parsing, the body (X[6]) has already been processed when reduceFunction is called.
-	// So when return statements were processed during body reduction, CurrentFunctionName wasn't set yet.
-	// We use PendingFunctionName as a workaround: store it when we add the function, and return statements
-	// can look it up from the directory using PendingFunctionName.
-	//
-	// This works because functions are added to the directory sequentially, and we set PendingFunctionName
-	// when we add each function. Return statements can then use PendingFunctionName to look up the function.
+	// Validate any pending returns for this function
+	fnName := fnID.IDValue()
+	hasReturnForThisFunction := false
+	for i := len(ctx.PendingReturns) - 1; i >= 0; i-- {
+		pendingReturn := ctx.PendingReturns[i]
+		// Check if this return belongs to this function
+		// (If Function is empty or matches this function name)
+		if pendingReturn.Function == "" || pendingReturn.Function == fnName {
+			// Validate return type
 
+			hasReturnForThisFunction = true
+			if pendingReturn.Type != returnType {
+				return nil, fmt.Errorf("%s: tipo de retorno %s no coincide con tipo de función %s",
+					pendingReturn.Pos, pendingReturn.Type, returnType)
+			}
+			// Remove from pending list
+			ctx.PendingReturns = append(ctx.PendingReturns[:i], ctx.PendingReturns[i+1:]...)
+		}
+	}
 	// Store function name for return statements to use
 	previousFunctionName := ctx.CurrentFunctionName
 	previousPendingName := ctx.PendingFunctionName
-	ctx.CurrentFunctionName = fnID.IDValue()
-	ctx.PendingFunctionName = fnID.IDValue() // Set pending name so return statements can find it
+	ctx.CurrentFunctionName = fnName
+	ctx.PendingFunctionName = fnName
 	ctx.PushFunction(fnEntry)
 	ctx.HasReturn = false
 
@@ -279,30 +297,8 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 		ctx.VariableAddresses[spec.Name] = spec.Address
 	}
 
-	// Note: The body has already been processed, so return statements were processed
-	// without CurrentFunctionName being set. They should have looked up the function
-	// from the directory using CurrentFunctionName, but it wasn't set.
-	//
-	// Since we can't set CurrentFunctionName before body processing in reduceFunction,
-	// we need a different approach. Let's use the function stack: when we process
-	// return statements, we'll use the function at the top of the stack, or look it up
-	// from the directory. But the stack is empty during body processing.
-	//
-	// Solution: Store function name when we add it, and in return statements, use
-	// the most recently added function from the directory. But we don't have a way
-	// to get the most recent function.
-	//
-	// Alternative: Use CurrentFunctionName, but we need to set it earlier.
-	// Actually, since we're setting it here and functions are processed sequentially,
-	// let's use a simple workaround: in return statements, if CurrentFunctionName isn't
-	// set, look up functions by iterating or using a different mechanism.
-	//
-	// For now, let's assume return statements will use CurrentFunctionName if set,
-	// or look it up from the directory. Since only one function is processed at a time,
-	// we can use a simple lookup.
-
 	// Validate that function has at least one return statement
-	if !ctx.HasReturn {
+	if !hasReturnForThisFunction {
 		return nil, fmt.Errorf("error: función %s debe tener al menos un return statement", fnID.IDValue())
 	}
 
@@ -314,7 +310,11 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	return nil, nil
 }
 
-func reduceParamSequence(X []Attrib, _ interface{}) (Attrib, error) {
+func reduceParamSequence(X []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
 	first, ok := X[0].(*semantic.VariableSpec)
 	if !ok || first == nil {
 		return nil, fmt.Errorf("esperaba VariableSpec, obtuvo %T", X[0])
@@ -323,6 +323,16 @@ func reduceParamSequence(X []Attrib, _ interface{}) (Attrib, error) {
 	out := make([]*semantic.VariableSpec, 0, 1+len(rest))
 	out = append(out, first)
 	out = append(out, rest...)
+
+	// Add parameters to context so they are available when body is parsed
+	for _, spec := range out {
+		ctx.VariableTypes[spec.Name] = spec.Type
+		// Assign virtual addresses to parameters (this address will be updated in reduceFunction)
+		tempAddr := ctx.AddressManager.NextLocal()
+		ctx.VariableAddresses[spec.Name] = tempAddr
+		spec.Address = tempAddr
+	}
+
 	return out, nil
 }
 
@@ -382,12 +392,81 @@ func reduceFactorCoreId(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Si tiene sufijo, es una llamada a función (por ahora no implementamos)
-	// Si no, es una variable
+
+	// Check if FACTOR_SUFFIX is a function call (not empty)
+	// If X[1] is not nil, it means FACTOR_SUFFIX was "(" S_E ")" (a function call)
+	// If X[1] is nil, it means FACTOR_SUFFIX was empty (a variable)
+
+	if X[1] != nil {
+		if X[1] == "FUNC_CALL" {
+			return processFunctionCall(ctx, idTok, nil)
+		}
+	}
+
 	if err := semantic.PushVariable(ctx, idTok.IDValue(), idTok.Pos); err != nil {
 		return nil, err
 	}
 	return idTok, nil
+}
+
+func processFunctionCall(ctx *semantic.Context, fnID *token.Token, argsAttrib Attrib) (Attrib, error) {
+	fnName := fnID.IDValue()
+
+	//Get the function from the directory
+	fnEntry, ok := ctx.Directory.GetFunction(fnName)
+	if !ok {
+		return nil, fmt.Errorf("%s: función '%s' no declarada", fnID.Pos, fnName)
+	}
+
+	expectedParamCount := len(fnEntry.Params.Entries())
+
+	// Get arguments from operand stack
+	argValues := make([]string, 0, expectedParamCount)
+	argTypes := make([]semantic.Type, 0, expectedParamCount)
+
+	// Pop arguments from stack
+
+	for i := 0; i < expectedParamCount; i++ {
+		if ctx.OperandStack.IsEmpty() {
+			return nil, fmt.Errorf("%s: función '%s' esperaba %d argumentos, pero se proporcionaron menos", fnID.Pos, fnName, expectedParamCount)
+		}
+		argValue, _ := ctx.OperandStack.Pop()
+		argType, _ := ctx.TypeStack.Pop()
+		argValues = append([]string{argValue}, argValues...)     // Prepend to maintain the order
+		argTypes = append([]semantic.Type{argType}, argTypes...) // Prepend to maintain the order
+	}
+
+	// Validate the argument count
+	if len(argValues) != expectedParamCount {
+		return nil, fmt.Errorf("%s: función '%s' esperaba %d argumentos, pero se proporcionaron %d",
+			fnID.Pos, fnName, expectedParamCount, len(argValues))
+	}
+
+	// Validate argument types
+	params := fnEntry.Params.Entries()
+	for i, param := range params {
+		if argTypes[i] != param.Type {
+			return nil, fmt.Errorf("%s: tipo de argumento %d en llama a '%s': esperaba %s, obtuvo %s", fnID.Pos, i+1, fnName, param.Type, argTypes[i])
+		}
+	}
+
+	semantic.GenerateQuadruple(ctx, "ERA", fnName, "", "")
+
+	// Generate PARAM quadruples for each argument
+	for _, argValue := range argValues {
+		semantic.GenerateQuadruple(ctx, "PARAM", argValue, "", "")
+	}
+
+	semantic.GenerateQuadruple(ctx, "GOSUB", fnName, "", "")
+
+	if fnEntry.ReturnType != semantic.TypeVoid {
+		temp := ctx.TempCounter.NextString()
+
+		// Push the return value location onto the operand stack
+		semantic.PushOperand(ctx, temp, fnEntry.ReturnType)
+	}
+
+	return fnID, nil
 }
 
 // reduceFactorCoreParen: FACTOR_CORE -> "(" EXPRESSION ")"
@@ -709,4 +788,8 @@ func reduceReturnVoid(X []Attrib, C interface{}) (Attrib, error) {
 	}
 
 	return nil, nil
+}
+
+func reduceFactorSuffixCall(X []Attrib, C interface{}) (Attrib, error) {
+	return "FUNC_CALL", nil
 }

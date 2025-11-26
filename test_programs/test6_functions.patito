@@ -1,0 +1,16 @@
+program test6;
+var a, b, c: int;
+
+int mult(x: int, y: int) [var result: int;] {
+    result = x * y;
+    return result;
+};
+
+main {
+    a = 5;
+    b = 3;
+    c = mult(a, b);
+    print("a * b = ", c);
+}
+end
+

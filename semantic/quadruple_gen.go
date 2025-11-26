@@ -3,7 +3,13 @@ package semantic
 import (
 	"Patito/token"
 	"fmt"
+	"os"
 )
+
+// GenerateQuadruple es un wrapper de generateQuadruple
+func GenerateQuadruple(ctx *Context, op, op1, op2, result string) {
+	generateQuadruple(ctx, op, op1, op2, result)
+}
 
 // getOperatorPrecedence devuelve la precedencia de un operador
 // Mayor número = mayor precedencia
@@ -31,6 +37,8 @@ func generateQuadruple(ctx *Context, op, op1, op2, result string) {
 		Result:   result,
 	}
 	ctx.Quadruples.Enqueue(quad)
+	index := ctx.Quadruples.Size() - 1
+	fmt.Fprintf(os.Stderr, "[DEBUG] Quad %d: %s\n", index, quad.String())
 }
 
 // ProcessOperator procesa un operador según el algoritmo de traducción
@@ -480,7 +488,14 @@ func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
 		var ok bool
 		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
 		if !ok {
-			return fmt.Errorf("error: función %s no encontrada", ctx.CurrentFunctionName)
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    exprValue,
+				Type:     exprType,
+				Function: ctx.CurrentFunctionName,
+			})
+			generateQuadruple(ctx, "RETURN", exprValue, "", "")
+			ctx.HasReturn = true
+			return nil // Validamos despues
 		}
 	}
 
@@ -489,26 +504,56 @@ func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
 		var ok bool
 		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
 		if !ok {
-			return fmt.Errorf("error: función %s no encontrada", ctx.PendingFunctionName)
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    exprValue,
+				Type:     exprType,
+				Function: ctx.CurrentFunctionName,
+			})
+			generateQuadruple(ctx, "RETURN", exprValue, "", "")
+			ctx.HasReturn = true
+			return nil // Validamos despues
 		}
 	}
 
-	if currentFn == nil {
-		return fmt.Errorf("error: return statement fuera de función o función no identificada")
+	if currentFn == nil && ctx.Directory.LastAddedFunction != "" {
+		var ok bool
+		currentFn, ok = ctx.Directory.GetFunction(ctx.Directory.LastAddedFunction)
+		if !ok {
+			// Function not found yet - store for later validation
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    exprValue,
+				Type:     exprType,
+				Function: ctx.Directory.LastAddedFunction,
+			})
+			generateQuadruple(ctx, "RETURN", exprValue, "", "")
+			ctx.HasReturn = true
+			return nil
+		}
 	}
 
-	// Validate return type matches function return type
-	if currentFn.ReturnType != exprType {
-		return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
-			exprType, currentFn.ReturnType)
+	// If we found the function, validate immediately
+	if currentFn != nil {
+		// Validate return type matches function return type
+		if currentFn.ReturnType != exprType {
+			return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
+				exprType, currentFn.ReturnType)
+		}
+		// Mark that function has at least one return
+		ctx.HasReturn = true
+		// Generate RETURN quadruple
+		generateQuadruple(ctx, "RETURN", exprValue, "", "")
+		return nil
 	}
 
-	// Mark that function has at least one return
-	ctx.HasReturn = true
-
-	// Generate RETURN quadruple: (RETURN, expr_result, _, _)
+	// If we still can't find the function, store for later
+	// (This handles the case where we're in a function but can't identify it yet)
+	ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+		Value:    exprValue,
+		Type:     exprType,
+		Function: "", // Will be set in reduceFunction
+	})
 	generateQuadruple(ctx, "RETURN", exprValue, "", "")
-
+	ctx.HasReturn = true
 	return nil
 }
 
@@ -523,42 +568,75 @@ func ProcessReturnVoid(ctx *Context) error {
 		var ok bool
 		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
 		if !ok {
-			return fmt.Errorf("error: función %s no encontrada", ctx.CurrentFunctionName)
+			// Function not found yet - store for later validation
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    "",
+				Type:     TypeVoid,
+				Function: ctx.CurrentFunctionName,
+			})
+			// Still generate the return quadruple
+			generateQuadruple(ctx, "RETURN", "", "", "")
+			ctx.HasReturn = true // Mark that a return exists
+			return nil           // Don't fail - we'll validate later
 		}
 	}
 
-	// If still not found, try using PendingFunctionName or LastAddedFunction as a workaround
+	// If still not found, try using PendingFunctionName
 	if currentFn == nil && ctx.PendingFunctionName != "" {
 		var ok bool
 		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
 		if !ok {
-			return fmt.Errorf("error: función %s no encontrada", ctx.PendingFunctionName)
+			// Function not found yet - store for later validation
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    "",
+				Type:     TypeVoid,
+				Function: ctx.PendingFunctionName,
+			})
+			generateQuadruple(ctx, "RETURN", "", "", "")
+			ctx.HasReturn = true
+			return nil
 		}
 	}
 
-	// If still not found, use LastAddedFunction as a fallback
+	// If still not found, try LastAddedFunction
 	if currentFn == nil && ctx.Directory.LastAddedFunction != "" {
 		var ok bool
 		currentFn, ok = ctx.Directory.GetFunction(ctx.Directory.LastAddedFunction)
 		if !ok {
-			return fmt.Errorf("error: función %s no encontrada", ctx.Directory.LastAddedFunction)
+			// Function not found yet - store for later validation
+			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+				Value:    "",
+				Type:     TypeVoid,
+				Function: ctx.Directory.LastAddedFunction,
+			})
+			generateQuadruple(ctx, "RETURN", "", "", "")
+			ctx.HasReturn = true
+			return nil
 		}
 	}
 
-	if currentFn == nil {
-		return fmt.Errorf("error: return statement fuera de función o función no identificada")
+	// If we found the function, validate immediately
+	if currentFn != nil {
+		// Validate return type matches function return type
+		if currentFn.ReturnType != TypeVoid {
+			return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
+				TypeVoid, currentFn.ReturnType)
+		}
+		// Mark that function has at least one return
+		ctx.HasReturn = true
+		// Generate RETURN quadruple
+		generateQuadruple(ctx, "RETURN", "", "", "")
+		return nil
 	}
 
-	// Validate function is void
-	if currentFn.ReturnType != TypeVoid {
-		return fmt.Errorf("error: función no-void debe retornar un valor")
-	}
-
-	// Mark that function has at least one return
-	ctx.HasReturn = true
-
-	// Generate RETURN quadruple for void: (RETURN, _, _, _)
+	// If we still can't find the function, store for later
+	// (This handles the case where we're in a function but can't identify it yet)
+	ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
+		Value:    "",
+		Type:     TypeVoid,
+		Function: "", // Will be set in reduceFunction
+	})
 	generateQuadruple(ctx, "RETURN", "", "", "")
-
+	ctx.HasReturn = true
 	return nil
 }

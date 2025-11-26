@@ -1,5 +1,7 @@
 package semantic
 
+import "Patito/token"
+
 // Context es el objeto que asignamos a parser.Context para compartir estado
 // entre las acciones semánticas.
 type Context struct {
@@ -28,6 +30,14 @@ type Context struct {
 	// PendingFunctionName tracks the function name that will be processed
 	// This is used as a workaround for bottom-up parsing where body is processed before reduceFunction
 	PendingFunctionName string
+	PendingReturns      []PendingReturn
+}
+
+type PendingReturn struct {
+	Value    string
+	Type     Type
+	Pos      token.Pos
+	Function string
 }
 
 // CurrentFunction returns the function currently being processed
@@ -72,6 +82,7 @@ func NewContext() *Context {
 		ConstantTable:     NewConstantTable(),
 		VariableTypes:     make(map[string]Type),
 		VariableAddresses: make(map[string]int),
+		PendingReturns:    make([]PendingReturn, 0),
 	}
 }
 
