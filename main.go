@@ -26,9 +26,6 @@ func main() {
 	// Crear contexto semántico
 	ctx := semantic.NewContext()
 
-	ctx.MainGotoIndex = ctx.Quadruples.NextIndex()
-	semantic.GenerateQuadruple(ctx, "GOTO", "", "", "") // Se llena en reduceProgram
-
 	// Crear parser y asignar contexto
 	p := parser.NewParser()
 	p.Context = ctx
