@@ -31,6 +31,7 @@ type Context struct {
 	// This is used as a workaround for bottom-up parsing where body is processed before reduceFunction
 	PendingFunctionName string
 	PendingReturns      []PendingReturn
+	FunctionStartQuads  map[string]int
 }
 
 type PendingReturn struct {
@@ -69,21 +70,24 @@ func NewContext() *Context {
 	tempCounter := NewTempCounter()
 	tempCounter.SetAddressManager(addressManager)
 
-	return &Context{
-		Directory:         NewFunctionDirectory(),
-		Cube:              DefaultSemanticCube,
-		Quadruples:        NewQuadrupleQueue(),
-		OpStack:           NewOperatorStack(),
-		OperandStack:      NewOperandStack(),
-		TypeStack:         NewTypeStack(),
-		JumpStack:         NewJumpStack(),
-		TempCounter:       tempCounter,
-		AddressManager:    addressManager,
-		ConstantTable:     NewConstantTable(),
-		VariableTypes:     make(map[string]Type),
-		VariableAddresses: make(map[string]int),
-		PendingReturns:    make([]PendingReturn, 0),
+	ctx := &Context{
+		Directory:          NewFunctionDirectory(),
+		Cube:               DefaultSemanticCube,
+		Quadruples:         NewQuadrupleQueue(),
+		OpStack:            NewOperatorStack(),
+		OperandStack:       NewOperandStack(),
+		TypeStack:          NewTypeStack(),
+		JumpStack:          NewJumpStack(),
+		TempCounter:        tempCounter,
+		AddressManager:     addressManager,
+		ConstantTable:      NewConstantTable(),
+		VariableTypes:      make(map[string]Type),
+		VariableAddresses:  make(map[string]int),
+		PendingReturns:     make([]PendingReturn, 0),
+		FunctionStartQuads: make(map[string]int),
 	}
+
+	return ctx
 }
 
 // DirectorySnapshot expone el directorio final tras el parseo.
