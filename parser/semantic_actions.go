@@ -86,6 +86,14 @@ func semanticCtx(C interface{}) (*semantic.Context, error) {
 	return ctx, nil
 }
 
+// checkAndProcessMainStart is now handled in generateQuadruple itself
+// This function is kept for backwards compatibility but does nothing
+func checkAndProcessMainStart(ctx *semantic.Context) error {
+	// Main start detection is now handled in generateQuadruple
+	// to ensure it happens at the right time (before generating the first main quadruple)
+	return nil
+}
+
 func tokenFromAttrib(a Attrib) (*token.Token, error) {
 	tok, ok := a.(*token.Token)
 	if !ok || tok == nil {
@@ -125,6 +133,8 @@ func reduceProgram(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Note: GOTO at program start is already generated in main.go before parsing
+
 	programID, err := tokenFromAttrib(X[1])
 	if err != nil {
 		return nil, err
@@ -141,6 +151,55 @@ func reduceProgram(X []Attrib, C interface{}) (Attrib, error) {
 			ctx.VariableAddresses[spec.Name] = spec.Address
 		}
 	}
+
+	// Fill GOTO using the user's suggested logic: first quad after last ENDFUNC, or first quad if no functions
+	// Always do this, even if it was filled during parsing (to fix any incorrect fills)
+	gotoIndex := ctx.ProgramStartGotoIndex
+	if gotoIndex < 0 {
+		// If already filled, find it by looking for the GOTO quad at index 0
+		if ctx.Quadruples.Size() > 0 {
+			quad := ctx.Quadruples.GetAt(0)
+			if quad != nil && quad.Operator == "GOTO" {
+				gotoIndex = 0
+			}
+		}
+	}
+
+	if gotoIndex >= 0 {
+		mainStartIndex := -1
+
+		// Find the first quad after the last ENDFUNC
+		// Search backwards from the end to find the last ENDFUNC
+		lastEndFuncIndex := -1
+		for i := ctx.Quadruples.Size() - 1; i >= 0; i-- {
+			quad := ctx.Quadruples.GetAt(i)
+			if quad != nil && quad.Operator == "ENDFUNC" {
+				lastEndFuncIndex = i
+				break
+			}
+		}
+
+		if lastEndFuncIndex >= 0 {
+			// We have functions, main starts after the last ENDFUNC
+			mainStartIndex = lastEndFuncIndex + 1
+		} else {
+			// No functions, main starts at index 1
+			mainStartIndex = 1
+		}
+
+		if mainStartIndex > 0 {
+			quad := ctx.Quadruples.GetAt(gotoIndex)
+			if quad != nil {
+				quad.Result = fmt.Sprintf("%d", mainStartIndex)
+				ctx.Quadruples.UpdateAt(gotoIndex, *quad)
+			}
+			ctx.ProgramStartGotoIndex = -1
+		}
+	}
+
+	// Generate END at the end of main body
+	semantic.ProcessMainEnd(ctx)
+
 	return ctx.Directory, nil
 }
 
@@ -257,13 +316,20 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	params := specsFromAttrib(X[3])
 	locals := specsFromAttrib(X[5])
 
-	fnEntry, err := ctx.Directory.AddFunction(fnID.IDValue(), returnType, fnID.Pos, params, locals, ctx.AddressManager)
+	fnName := fnID.IDValue()
+
+	// Set PendingFunctionName early so that if body generates quadruples, they're tracked
+	// Note: Body is processed before reduceFunction due to bottom-up parsing, so this might be too late
+	// But we'll handle function start tracking in generateQuadruple when PendingFunctionName is set
+	previousPendingName := ctx.PendingFunctionName
+	ctx.PendingFunctionName = fnName
+
+	fnEntry, err := ctx.Directory.AddFunction(fnName, returnType, fnID.Pos, params, locals, ctx.AddressManager)
 	if err != nil {
 		return nil, err
 	}
 
 	// Validate any pending returns for this function
-	fnName := fnID.IDValue()
 	hasReturnForThisFunction := false
 	for i := len(ctx.PendingReturns) - 1; i >= 0; i-- {
 		pendingReturn := ctx.PendingReturns[i]
@@ -283,9 +349,7 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	}
 	// Store function name for return statements to use
 	previousFunctionName := ctx.CurrentFunctionName
-	previousPendingName := ctx.PendingFunctionName
 	ctx.CurrentFunctionName = fnName
-	ctx.PendingFunctionName = fnName
 	ctx.PushFunction(fnEntry)
 	ctx.HasReturn = false
 
@@ -301,6 +365,30 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 	if !hasReturnForThisFunction {
 		return nil, fmt.Errorf("error: función %s debe tener al menos un return statement", fnID.IDValue())
 	}
+
+	// Store function start index if not already stored
+	// If body was processed before reduceFunction, it should be in PendingFunctionStarts
+	if _, exists := ctx.FunctionStartQuads[fnName]; !exists {
+		// Check if there's a pending function start to match
+		if len(ctx.PendingFunctionStarts) > 0 {
+			// Use the first pending start (functions are processed in order)
+			startIndex := ctx.PendingFunctionStarts[0]
+			ctx.FunctionStartQuads[fnName] = startIndex
+			// Remove from pending list
+			ctx.PendingFunctionStarts = ctx.PendingFunctionStarts[1:]
+		} else {
+			// Function body didn't generate any quadruples, or start was already tracked
+			// This shouldn't happen in normal flow, but handle it gracefully
+		}
+	}
+
+	// Generate ENDFUNC at the end of the function body
+	semantic.ProcessFunctionEnd(ctx)
+
+	// Mark that we've seen functions and clear the flag AFTER generating ENDFUNC
+	// This ensures that when the next quadruple (main) is generated, HasSeenFunctions is true
+	ctx.HasSeenFunctions = true
+	ctx.ProcessingFunctionBody = false
 
 	// Restore previous function name and pop function from stack
 	ctx.CurrentFunctionName = previousFunctionName
@@ -636,6 +724,12 @@ func reduceAssign(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if ctx.CurrentFunctionName == "" && ctx.ProgramStartGotoIndex >= 0 {
+		if err := semantic.ProcessMainStart(ctx); err != nil {
+			return nil, err
+		}
+	}
 	idTok, err := tokenFromAttrib(X[0])
 	if err != nil {
 		return nil, err
@@ -650,6 +744,10 @@ func reduceAssign(X []Attrib, C interface{}) (Attrib, error) {
 func reduceEPrintExpression(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
+		return nil, err
+	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if err := checkAndProcessMainStart(ctx); err != nil {
 		return nil, err
 	}
 	// Procesar expresión si hay operadores pendientes
@@ -673,6 +771,10 @@ func reduceEPrintString(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if err := checkAndProcessMainStart(ctx); err != nil {
+		return nil, err
+	}
 	tok, err := tokenFromAttrib(X[0])
 	if err != nil {
 		return nil, err
@@ -694,6 +796,10 @@ func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if err := checkAndProcessMainStart(ctx); err != nil {
+		return nil, err
+	}
 	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
 	if _, err := semantic.ProcessIf(ctx); err != nil {
 		return nil, err
@@ -709,6 +815,10 @@ func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
 func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
+		return nil, err
+	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if err := checkAndProcessMainStart(ctx); err != nil {
 		return nil, err
 	}
 	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
@@ -730,6 +840,10 @@ func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
 func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
+		return nil, err
+	}
+	// Check if we're in main body and need to fill the program start GOTO
+	if err := checkAndProcessMainStart(ctx); err != nil {
 		return nil, err
 	}
 	// La EXPRESSION (X[2]) ya fue procesada

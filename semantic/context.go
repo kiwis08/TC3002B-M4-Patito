@@ -32,6 +32,21 @@ type Context struct {
 	PendingFunctionName string
 	PendingReturns      []PendingReturn
 	FunctionStartQuads  map[string]int
+	// ProgramStartGotoIndex stores the index of the GOTO quadruple at program start
+	// This will be filled when the main function body starts
+	ProgramStartGotoIndex int
+	// MainStartIndex tracks when main body actually starts (for filling GOTO)
+	MainStartIndex int
+	// InMainBody tracks if we're currently processing the main body
+	InMainBody bool
+	// PendingFunctionStarts tracks function start indices in order (before we know function names)
+	PendingFunctionStarts []int
+	// ProcessingFunctionBody tracks if we're currently processing a function body (before reduceFunction is called)
+	ProcessingFunctionBody bool
+	// HasSeenFunctions tracks if we've ever processed a function (used to distinguish main from first function)
+	HasSeenFunctions bool
+	// LastQuadWasEndFunc tracks if the last quadruple generated was ENDFUNC
+	LastQuadWasEndFunc bool
 }
 
 type PendingReturn struct {
@@ -71,20 +86,26 @@ func NewContext() *Context {
 	tempCounter.SetAddressManager(addressManager)
 
 	ctx := &Context{
-		Directory:          NewFunctionDirectory(),
-		Cube:               DefaultSemanticCube,
-		Quadruples:         NewQuadrupleQueue(),
-		OpStack:            NewOperatorStack(),
-		OperandStack:       NewOperandStack(),
-		TypeStack:          NewTypeStack(),
-		JumpStack:          NewJumpStack(),
-		TempCounter:        tempCounter,
-		AddressManager:     addressManager,
-		ConstantTable:      NewConstantTable(),
-		VariableTypes:      make(map[string]Type),
-		VariableAddresses:  make(map[string]int),
-		PendingReturns:     make([]PendingReturn, 0),
-		FunctionStartQuads: make(map[string]int),
+		Directory:              NewFunctionDirectory(),
+		Cube:                   DefaultSemanticCube,
+		Quadruples:             NewQuadrupleQueue(),
+		OpStack:                NewOperatorStack(),
+		OperandStack:           NewOperandStack(),
+		TypeStack:              NewTypeStack(),
+		JumpStack:              NewJumpStack(),
+		TempCounter:            tempCounter,
+		AddressManager:         addressManager,
+		ConstantTable:          NewConstantTable(),
+		VariableTypes:          make(map[string]Type),
+		VariableAddresses:      make(map[string]int),
+		PendingReturns:         make([]PendingReturn, 0),
+		FunctionStartQuads:     make(map[string]int),
+		ProgramStartGotoIndex:  -1,
+		MainStartIndex:         -1,
+		InMainBody:             false,
+		PendingFunctionStarts:  make([]int, 0),
+		ProcessingFunctionBody: false,
+		HasSeenFunctions:       false,
 	}
 
 	return ctx

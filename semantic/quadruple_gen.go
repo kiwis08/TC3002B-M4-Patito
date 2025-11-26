@@ -30,6 +30,65 @@ func getOperatorPrecedence(op string) int {
 
 // generateQuadruple genera un cuádruplo y lo agrega a la fila
 func generateQuadruple(ctx *Context, op, op1, op2, result string) {
+	currentIndex := ctx.Quadruples.NextIndex()
+
+	// Check for main entry: first quadruple after last ENDFUNC, or first quadruple if no functions
+	if ctx.ProgramStartGotoIndex >= 0 && !ctx.InMainBody {
+		// Not in a function body and not already in main
+		if ctx.CurrentFunctionName == "" && ctx.PendingFunctionName == "" && !ctx.ProcessingFunctionBody {
+			isMainEntry := false
+
+			// Case 1: Last quad was ENDFUNC - we definitely have functions, so this is main
+			if ctx.LastQuadWasEndFunc {
+				isMainEntry = true
+			} else if currentIndex == 1 {
+				// Case 2: First quad - check if we're about to enter a function
+				// If we would enter a function, don't treat as main
+				wouldEnterFunction := false
+				if ctx.PendingFunctionName != "" {
+					if _, exists := ctx.FunctionStartQuads[ctx.PendingFunctionName]; !exists {
+						wouldEnterFunction = true
+					}
+				} else if ctx.ProgramStartGotoIndex >= 0 && !ctx.HasSeenFunctions {
+					// This condition would trigger function tracking
+					wouldEnterFunction = true
+				}
+
+				// Only treat as main if we're NOT entering a function
+				if !wouldEnterFunction && len(ctx.FunctionStartQuads) == 0 && len(ctx.PendingFunctionStarts) == 0 {
+					isMainEntry = true
+				}
+			}
+
+			if isMainEntry {
+				mainStartIndex := currentIndex
+				ctx.MainStartIndex = mainStartIndex
+				ctx.InMainBody = true
+				quad := ctx.Quadruples.GetAt(ctx.ProgramStartGotoIndex)
+				if quad != nil {
+					quad.Result = fmt.Sprintf("%d", mainStartIndex)
+					ctx.Quadruples.UpdateAt(ctx.ProgramStartGotoIndex, *quad)
+				}
+				ctx.ProgramStartGotoIndex = -1
+			}
+		}
+	}
+
+	// Track function body starts (only if we didn't just enter main)
+	if !ctx.InMainBody {
+		if ctx.PendingFunctionName != "" {
+			if _, exists := ctx.FunctionStartQuads[ctx.PendingFunctionName]; !exists {
+				ctx.FunctionStartQuads[ctx.PendingFunctionName] = currentIndex
+				ctx.ProcessingFunctionBody = true
+			}
+		} else if ctx.CurrentFunctionName == "" && ctx.PendingFunctionName == "" && ctx.ProgramStartGotoIndex >= 0 && !ctx.HasSeenFunctions {
+			if !ctx.ProcessingFunctionBody {
+				ctx.PendingFunctionStarts = append(ctx.PendingFunctionStarts, currentIndex)
+				ctx.ProcessingFunctionBody = true
+			}
+		}
+	}
+
 	quad := Quadruple{
 		Operator: op,
 		Operand1: op1,
@@ -39,6 +98,14 @@ func generateQuadruple(ctx *Context, op, op1, op2, result string) {
 	ctx.Quadruples.Enqueue(quad)
 	index := ctx.Quadruples.Size() - 1
 	fmt.Fprintf(os.Stderr, "[DEBUG] Quad %d: %s\n", index, quad.String())
+
+	// Set flag if this quad was ENDFUNC (for detecting main start after functions)
+	if op == "ENDFUNC" {
+		ctx.LastQuadWasEndFunc = true
+	} else {
+		// Reset flag for non-ENDFUNC quads (it only applies to the next quad)
+		ctx.LastQuadWasEndFunc = false
+	}
 }
 
 // ProcessOperator procesa un operador según el algoritmo de traducción
@@ -323,6 +390,58 @@ func ProcessPrint(ctx *Context, value string, isString bool) {
 		// Para expresiones, el valor ya está en la pila de operandos
 		generateQuadruple(ctx, "PRINT", value, "", "")
 	}
+}
+
+// ProcessProgramStart genera un GOTO quadruple al inicio del programa
+// El índice se guarda para completarlo cuando se encuentre la función main
+// Debe ser llamado antes de que se generen otros cuádruplos para que sea el primero
+func ProcessProgramStart(ctx *Context) int {
+	gotoIndex := ctx.Quadruples.NextIndex()
+	generateQuadruple(ctx, "GOTO", "main", "", "")
+
+	ctx.ProgramStartGotoIndex = gotoIndex
+
+	return gotoIndex
+}
+
+// ProcessMainStart completa el GOTO del inicio del programa con el índice del main
+// Debe ser llamado cuando el cuerpo de main está a punto de comenzar (antes de generar el primer cuádruplo de main)
+func ProcessMainStart(ctx *Context) error {
+	if ctx.ProgramStartGotoIndex < 0 {
+		return fmt.Errorf("error: no hay GOTO pendiente para main")
+	}
+
+	mainStartIndex := ctx.Quadruples.NextIndex()
+	ctx.MainStartIndex = mainStartIndex
+	ctx.InMainBody = true
+
+	quad := ctx.Quadruples.GetAt(ctx.ProgramStartGotoIndex)
+	if quad != nil {
+		quad.Result = fmt.Sprintf("%d", mainStartIndex)
+		ctx.Quadruples.UpdateAt(ctx.ProgramStartGotoIndex, *quad)
+	}
+
+	ctx.ProgramStartGotoIndex = -1
+
+	return nil
+}
+
+// ProcessFunctionStart almacena el índice de inicio de una función
+// Debe ser llamado cuando el cuerpo de la función está a punto de comenzar
+func ProcessFunctionStart(ctx *Context, functionName string) {
+	startIndex := ctx.Quadruples.NextIndex()
+	ctx.FunctionStartQuads[functionName] = startIndex
+}
+
+// ProcessFunctionEnd genera el cuádruplo ENDFUNC al final de una función
+func ProcessFunctionEnd(ctx *Context) {
+	generateQuadruple(ctx, "ENDFUNC", "", "", "")
+	// Flag is set inside generateQuadruple when ENDFUNC is generated
+}
+
+// ProcessMainEnd genera el cuádruplo END al final del programa principal
+func ProcessMainEnd(ctx *Context) {
+	generateQuadruple(ctx, "END", "", "", "")
 }
 
 // ProcessIf procesa el inicio de un if

@@ -26,6 +26,9 @@ func main() {
 	// Crear contexto semántico
 	ctx := semantic.NewContext()
 
+	// Generar GOTO al inicio del programa (será completado cuando se encuentre main)
+	semantic.ProcessProgramStart(ctx)
+
 	// Crear parser y asignar contexto
 	p := parser.NewParser()
 	p.Context = ctx
