@@ -86,14 +86,6 @@ func semanticCtx(C interface{}) (*semantic.Context, error) {
 	return ctx, nil
 }
 
-// checkAndProcessMainStart is now handled in generateQuadruple itself
-// This function is kept for backwards compatibility but does nothing
-func checkAndProcessMainStart(ctx *semantic.Context) error {
-	// Main start detection is now handled in generateQuadruple
-	// to ensure it happens at the right time (before generating the first main quadruple)
-	return nil
-}
-
 func tokenFromAttrib(a Attrib) (*token.Token, error) {
 	tok, ok := a.(*token.Token)
 	if !ok || tok == nil {
@@ -348,8 +340,8 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 		}
 	}
 	// Store function name for return statements to use
-	previousFunctionName := ctx.CurrentFunctionName
-	ctx.CurrentFunctionName = fnName
+	// previousFunctionName := ctx.CurrentFunctionName
+	// ctx.CurrentFunctionName = fnName
 	ctx.PushFunction(fnEntry)
 	ctx.HasReturn = false
 
@@ -366,34 +358,25 @@ func reduceFunction(X []Attrib, C interface{}) (Attrib, error) {
 		return nil, fmt.Errorf("error: función %s debe tener al menos un return statement", fnID.IDValue())
 	}
 
-	// Store function start index if not already stored
-	// If body was processed before reduceFunction, it should be in PendingFunctionStarts
+	// Set function start index
 	if _, exists := ctx.FunctionStartQuads[fnName]; !exists {
 		// Check if there's a pending function start to match
-		if len(ctx.PendingFunctionStarts) > 0 {
-			// Use the first pending start (functions are processed in order)
-			startIndex := ctx.PendingFunctionStarts[0]
-			ctx.FunctionStartQuads[fnName] = startIndex
-			// Remove from pending list
-			ctx.PendingFunctionStarts = ctx.PendingFunctionStarts[1:]
+		if ctx.LastFunctionEndIndex >= 0 {
+			ctx.FunctionStartQuads[fnName] = ctx.LastFunctionEndIndex + 1
 		} else {
-			// Function body didn't generate any quadruples, or start was already tracked
-			// This shouldn't happen in normal flow, but handle it gracefully
+			ctx.FunctionStartQuads[fnName] = 1
 		}
 	}
 
 	// Generate ENDFUNC at the end of the function body
 	semantic.ProcessFunctionEnd(ctx)
 
-	// Mark that we've seen functions and clear the flag AFTER generating ENDFUNC
-	// This ensures that when the next quadruple (main) is generated, HasSeenFunctions is true
-	ctx.HasSeenFunctions = true
-	ctx.ProcessingFunctionBody = false
+	// ctx.ProcessingFunctionBody = false
 
 	// Restore previous function name and pop function from stack
-	ctx.CurrentFunctionName = previousFunctionName
+	// ctx.CurrentFunctionName = previousFunctionName
 	ctx.PendingFunctionName = previousPendingName
-	ctx.PopFunction()
+	// ctx.PopFunction()
 
 	return nil, nil
 }
@@ -545,13 +528,19 @@ func processFunctionCall(ctx *semantic.Context, fnID *token.Token, argsAttrib At
 		semantic.GenerateQuadruple(ctx, "PARAM", argValue, "", "")
 	}
 
-	semantic.GenerateQuadruple(ctx, "GOSUB", fnName, "", "")
+	// For non-void functions, create a temp to store the return value
+	// This temp address is passed to GOSUB so RETURN knows where to store the value
+	var resultTemp string
+	if fnEntry.ReturnType != semantic.TypeVoid {
+		resultTemp = ctx.TempCounter.NextString()
+	}
+
+	// Generate GOSUB with result address (empty for void functions)
+	semantic.GenerateQuadruple(ctx, "GOSUB", fnName, "", resultTemp)
 
 	if fnEntry.ReturnType != semantic.TypeVoid {
-		temp := ctx.TempCounter.NextString()
-
 		// Push the return value location onto the operand stack
-		semantic.PushOperand(ctx, temp, fnEntry.ReturnType)
+		semantic.PushOperand(ctx, resultTemp, fnEntry.ReturnType)
 	}
 
 	return fnID, nil
@@ -724,12 +713,8 @@ func reduceAssign(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if ctx.CurrentFunctionName == "" && ctx.ProgramStartGotoIndex >= 0 {
-		if err := semantic.ProcessMainStart(ctx); err != nil {
-			return nil, err
-		}
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	idTok, err := tokenFromAttrib(X[0])
 	if err != nil {
 		return nil, err
@@ -746,10 +731,8 @@ func reduceEPrintExpression(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if err := checkAndProcessMainStart(ctx); err != nil {
-		return nil, err
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	// Procesar expresión si hay operadores pendientes
 	if err := semantic.ProcessExpressionEnd(ctx); err != nil {
 		return nil, err
@@ -771,10 +754,8 @@ func reduceEPrintString(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if err := checkAndProcessMainStart(ctx); err != nil {
-		return nil, err
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	tok, err := tokenFromAttrib(X[0])
 	if err != nil {
 		return nil, err
@@ -796,10 +777,8 @@ func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if err := checkAndProcessMainStart(ctx); err != nil {
-		return nil, err
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
 	if _, err := semantic.ProcessIf(ctx); err != nil {
 		return nil, err
@@ -817,10 +796,8 @@ func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if err := checkAndProcessMainStart(ctx); err != nil {
-		return nil, err
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	// La EXPRESSION (X[2]) ya fue procesada, ahora procesamos el if
 	if _, err := semantic.ProcessIf(ctx); err != nil {
 		return nil, err
@@ -842,10 +819,8 @@ func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
 	if err != nil {
 		return nil, err
 	}
-	// Check if we're in main body and need to fill the program start GOTO
-	if err := checkAndProcessMainStart(ctx); err != nil {
-		return nil, err
-	}
+	// Main entry detection is now handled in generateQuadruple and reduceProgram
+	// No need to check here
 	// La EXPRESSION (X[2]) ya fue procesada
 	// Procesar la condición: esto genera el GOTOF y guarda los índices necesarios
 	if err := semantic.ProcessWhileCondition(ctx); err != nil {

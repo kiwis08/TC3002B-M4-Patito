@@ -2,8 +2,9 @@ program test1;
 var x, y, z: int;
 main {
     x = 5 + 3 * 2;
-    y = (10 - 4) / 2;
+    y = 10 - 4 / 2;
     z = x + y;
+    print(z);
 }
 end
 

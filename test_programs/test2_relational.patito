@@ -4,13 +4,16 @@ main {
     a = 10;
     b = 5;
     if (a > b) {
-        a = 20;
+        a = b;
     };
+    print(a);
     if (a != b) {
         b = 15;
+        print(b);
     } else {
         a = 0;
     };
+    print(a);
 }
 end
 

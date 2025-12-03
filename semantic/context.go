@@ -26,7 +26,7 @@ type Context struct {
 	HasReturn bool
 	// CurrentFunctionName tracks the name of the function currently being processed
 	// This is set when we start processing a function and used by return statements
-	CurrentFunctionName string
+	// CurrentFunctionName string
 	// PendingFunctionName tracks the function name that will be processed
 	// This is used as a workaround for bottom-up parsing where body is processed before reduceFunction
 	PendingFunctionName string
@@ -36,17 +36,8 @@ type Context struct {
 	// This will be filled when the main function body starts
 	ProgramStartGotoIndex int
 	// MainStartIndex tracks when main body actually starts (for filling GOTO)
-	MainStartIndex int
-	// InMainBody tracks if we're currently processing the main body
-	InMainBody bool
-	// PendingFunctionStarts tracks function start indices in order (before we know function names)
-	PendingFunctionStarts []int
-	// ProcessingFunctionBody tracks if we're currently processing a function body (before reduceFunction is called)
-	ProcessingFunctionBody bool
-	// HasSeenFunctions tracks if we've ever processed a function (used to distinguish main from first function)
-	HasSeenFunctions bool
-	// LastQuadWasEndFunc tracks if the last quadruple generated was ENDFUNC
-	LastQuadWasEndFunc bool
+	MainStartIndex       int
+	LastFunctionEndIndex int
 }
 
 type PendingReturn struct {
@@ -56,13 +47,13 @@ type PendingReturn struct {
 	Function string
 }
 
-// CurrentFunction returns the function currently being processed
-func (c *Context) CurrentFunction() *FunctionEntry {
-	if len(c.FunctionStack) == 0 {
-		return nil
-	}
-	return c.FunctionStack[len(c.FunctionStack)-1]
-}
+// // CurrentFunction returns the function currently being processed
+// func (c *Context) CurrentFunction() *FunctionEntry {
+// 	if len(c.FunctionStack) == 0 {
+// 		return nil
+// 	}
+// 	return c.FunctionStack[len(c.FunctionStack)-1]
+// }
 
 // PushFunction pushes a function onto the function stack
 func (c *Context) PushFunction(fn *FunctionEntry) {
@@ -70,15 +61,15 @@ func (c *Context) PushFunction(fn *FunctionEntry) {
 	c.HasReturn = false
 }
 
-// PopFunction pops a function from the function stack
-func (c *Context) PopFunction() *FunctionEntry {
-	if len(c.FunctionStack) == 0 {
-		return nil
-	}
-	fn := c.FunctionStack[len(c.FunctionStack)-1]
-	c.FunctionStack = c.FunctionStack[:len(c.FunctionStack)-1]
-	return fn
-}
+// // PopFunction pops a function from the function stack
+// func (c *Context) PopFunction() *FunctionEntry {
+// 	if len(c.FunctionStack) == 0 {
+// 		return nil
+// 	}
+// 	fn := c.FunctionStack[len(c.FunctionStack)-1]
+// 	c.FunctionStack = c.FunctionStack[:len(c.FunctionStack)-1]
+// 	return fn
+// }
 
 func NewContext() *Context {
 	addressManager := NewVirtualAddressManager()
@@ -86,26 +77,22 @@ func NewContext() *Context {
 	tempCounter.SetAddressManager(addressManager)
 
 	ctx := &Context{
-		Directory:              NewFunctionDirectory(),
-		Cube:                   DefaultSemanticCube,
-		Quadruples:             NewQuadrupleQueue(),
-		OpStack:                NewOperatorStack(),
-		OperandStack:           NewOperandStack(),
-		TypeStack:              NewTypeStack(),
-		JumpStack:              NewJumpStack(),
-		TempCounter:            tempCounter,
-		AddressManager:         addressManager,
-		ConstantTable:          NewConstantTable(),
-		VariableTypes:          make(map[string]Type),
-		VariableAddresses:      make(map[string]int),
-		PendingReturns:         make([]PendingReturn, 0),
-		FunctionStartQuads:     make(map[string]int),
-		ProgramStartGotoIndex:  -1,
-		MainStartIndex:         -1,
-		InMainBody:             false,
-		PendingFunctionStarts:  make([]int, 0),
-		ProcessingFunctionBody: false,
-		HasSeenFunctions:       false,
+		Directory:             NewFunctionDirectory(),
+		Cube:                  DefaultSemanticCube,
+		Quadruples:            NewQuadrupleQueue(),
+		OpStack:               NewOperatorStack(),
+		OperandStack:          NewOperandStack(),
+		TypeStack:             NewTypeStack(),
+		JumpStack:             NewJumpStack(),
+		TempCounter:           tempCounter,
+		AddressManager:        addressManager,
+		ConstantTable:         NewConstantTable(),
+		VariableTypes:         make(map[string]Type),
+		VariableAddresses:     make(map[string]int),
+		PendingReturns:        make([]PendingReturn, 0),
+		FunctionStartQuads:    make(map[string]int),
+		ProgramStartGotoIndex: -1,
+		MainStartIndex:        -1,
 	}
 
 	return ctx

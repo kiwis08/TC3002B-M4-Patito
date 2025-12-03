@@ -30,65 +30,6 @@ func getOperatorPrecedence(op string) int {
 
 // generateQuadruple genera un cuádruplo y lo agrega a la fila
 func generateQuadruple(ctx *Context, op, op1, op2, result string) {
-	currentIndex := ctx.Quadruples.NextIndex()
-
-	// Check for main entry: first quadruple after last ENDFUNC, or first quadruple if no functions
-	if ctx.ProgramStartGotoIndex >= 0 && !ctx.InMainBody {
-		// Not in a function body and not already in main
-		if ctx.CurrentFunctionName == "" && ctx.PendingFunctionName == "" && !ctx.ProcessingFunctionBody {
-			isMainEntry := false
-
-			// Case 1: Last quad was ENDFUNC - we definitely have functions, so this is main
-			if ctx.LastQuadWasEndFunc {
-				isMainEntry = true
-			} else if currentIndex == 1 {
-				// Case 2: First quad - check if we're about to enter a function
-				// If we would enter a function, don't treat as main
-				wouldEnterFunction := false
-				if ctx.PendingFunctionName != "" {
-					if _, exists := ctx.FunctionStartQuads[ctx.PendingFunctionName]; !exists {
-						wouldEnterFunction = true
-					}
-				} else if ctx.ProgramStartGotoIndex >= 0 && !ctx.HasSeenFunctions {
-					// This condition would trigger function tracking
-					wouldEnterFunction = true
-				}
-
-				// Only treat as main if we're NOT entering a function
-				if !wouldEnterFunction && len(ctx.FunctionStartQuads) == 0 && len(ctx.PendingFunctionStarts) == 0 {
-					isMainEntry = true
-				}
-			}
-
-			if isMainEntry {
-				mainStartIndex := currentIndex
-				ctx.MainStartIndex = mainStartIndex
-				ctx.InMainBody = true
-				quad := ctx.Quadruples.GetAt(ctx.ProgramStartGotoIndex)
-				if quad != nil {
-					quad.Result = fmt.Sprintf("%d", mainStartIndex)
-					ctx.Quadruples.UpdateAt(ctx.ProgramStartGotoIndex, *quad)
-				}
-				ctx.ProgramStartGotoIndex = -1
-			}
-		}
-	}
-
-	// Track function body starts (only if we didn't just enter main)
-	if !ctx.InMainBody {
-		if ctx.PendingFunctionName != "" {
-			if _, exists := ctx.FunctionStartQuads[ctx.PendingFunctionName]; !exists {
-				ctx.FunctionStartQuads[ctx.PendingFunctionName] = currentIndex
-				ctx.ProcessingFunctionBody = true
-			}
-		} else if ctx.CurrentFunctionName == "" && ctx.PendingFunctionName == "" && ctx.ProgramStartGotoIndex >= 0 && !ctx.HasSeenFunctions {
-			if !ctx.ProcessingFunctionBody {
-				ctx.PendingFunctionStarts = append(ctx.PendingFunctionStarts, currentIndex)
-				ctx.ProcessingFunctionBody = true
-			}
-		}
-	}
-
 	quad := Quadruple{
 		Operator: op,
 		Operand1: op1,
@@ -98,14 +39,6 @@ func generateQuadruple(ctx *Context, op, op1, op2, result string) {
 	ctx.Quadruples.Enqueue(quad)
 	index := ctx.Quadruples.Size() - 1
 	fmt.Fprintf(os.Stderr, "[DEBUG] Quad %d: %s\n", index, quad.String())
-
-	// Set flag if this quad was ENDFUNC (for detecting main start after functions)
-	if op == "ENDFUNC" {
-		ctx.LastQuadWasEndFunc = true
-	} else {
-		// Reset flag for non-ENDFUNC quads (it only applies to the next quad)
-		ctx.LastQuadWasEndFunc = false
-	}
 }
 
 // ProcessOperator procesa un operador según el algoritmo de traducción
@@ -384,10 +317,19 @@ func ProcessRelationalExpression(ctx *Context) error {
 // ProcessPrint procesa una instrucción print
 func ProcessPrint(ctx *Context, value string, isString bool) {
 	if isString {
-		// Para strings, generar cuádruplo de print directo
-		generateQuadruple(ctx, "PRINT", value, "", "")
+		// Para strings, agregar a la tabla de constantes y usar su dirección virtual
+		// Buscar o crear entrada en tabla de constantes
+		entry, exists := ctx.ConstantTable.Get(value, TypeString)
+		if !exists {
+			// Crear nueva constante con dirección virtual
+			address := ctx.AddressManager.NextConstant()
+			entry = ctx.ConstantTable.Add(value, TypeString, address)
+		}
+		// Usar la dirección virtual como string en el cuádruplo
+		addressStr := AddressToString(entry.Address)
+		generateQuadruple(ctx, "PRINT", addressStr, "", "")
 	} else {
-		// Para expresiones, el valor ya está en la pila de operandos
+		// Para expresiones, el valor ya está en la pila de operandos (es una dirección virtual)
 		generateQuadruple(ctx, "PRINT", value, "", "")
 	}
 }
@@ -399,31 +341,7 @@ func ProcessProgramStart(ctx *Context) int {
 	gotoIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "GOTO", "main", "", "")
 
-	ctx.ProgramStartGotoIndex = gotoIndex
-
 	return gotoIndex
-}
-
-// ProcessMainStart completa el GOTO del inicio del programa con el índice del main
-// Debe ser llamado cuando el cuerpo de main está a punto de comenzar (antes de generar el primer cuádruplo de main)
-func ProcessMainStart(ctx *Context) error {
-	if ctx.ProgramStartGotoIndex < 0 {
-		return fmt.Errorf("error: no hay GOTO pendiente para main")
-	}
-
-	mainStartIndex := ctx.Quadruples.NextIndex()
-	ctx.MainStartIndex = mainStartIndex
-	ctx.InMainBody = true
-
-	quad := ctx.Quadruples.GetAt(ctx.ProgramStartGotoIndex)
-	if quad != nil {
-		quad.Result = fmt.Sprintf("%d", mainStartIndex)
-		ctx.Quadruples.UpdateAt(ctx.ProgramStartGotoIndex, *quad)
-	}
-
-	ctx.ProgramStartGotoIndex = -1
-
-	return nil
 }
 
 // ProcessFunctionStart almacena el índice de inicio de una función
@@ -435,7 +353,9 @@ func ProcessFunctionStart(ctx *Context, functionName string) {
 
 // ProcessFunctionEnd genera el cuádruplo ENDFUNC al final de una función
 func ProcessFunctionEnd(ctx *Context) {
+	startIndex := ctx.Quadruples.NextIndex()
 	generateQuadruple(ctx, "ENDFUNC", "", "", "")
+	ctx.LastFunctionEndIndex = startIndex
 	// Flag is set inside generateQuadruple when ENDFUNC is generated
 }
 
@@ -598,74 +518,6 @@ func ProcessWhileEnd(ctx *Context) error {
 
 // ProcessReturn processes a return statement with an expression (non-void functions)
 func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
-	var currentFn *FunctionEntry
-	// Try to get from stack first
-	currentFn = ctx.CurrentFunction()
-
-	// If not in stack, try to look up by name
-	if currentFn == nil && ctx.CurrentFunctionName != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
-		if !ok {
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    exprValue,
-				Type:     exprType,
-				Function: ctx.CurrentFunctionName,
-			})
-			generateQuadruple(ctx, "RETURN", exprValue, "", "")
-			ctx.HasReturn = true
-			return nil // Validamos despues
-		}
-	}
-
-	// If still not found, try using PendingFunctionName as a workaround
-	if currentFn == nil && ctx.PendingFunctionName != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
-		if !ok {
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    exprValue,
-				Type:     exprType,
-				Function: ctx.CurrentFunctionName,
-			})
-			generateQuadruple(ctx, "RETURN", exprValue, "", "")
-			ctx.HasReturn = true
-			return nil // Validamos despues
-		}
-	}
-
-	if currentFn == nil && ctx.Directory.LastAddedFunction != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.Directory.LastAddedFunction)
-		if !ok {
-			// Function not found yet - store for later validation
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    exprValue,
-				Type:     exprType,
-				Function: ctx.Directory.LastAddedFunction,
-			})
-			generateQuadruple(ctx, "RETURN", exprValue, "", "")
-			ctx.HasReturn = true
-			return nil
-		}
-	}
-
-	// If we found the function, validate immediately
-	if currentFn != nil {
-		// Validate return type matches function return type
-		if currentFn.ReturnType != exprType {
-			return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
-				exprType, currentFn.ReturnType)
-		}
-		// Mark that function has at least one return
-		ctx.HasReturn = true
-		// Generate RETURN quadruple
-		generateQuadruple(ctx, "RETURN", exprValue, "", "")
-		return nil
-	}
-
-	// If we still can't find the function, store for later
-	// (This handles the case where we're in a function but can't identify it yet)
 	ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
 		Value:    exprValue,
 		Type:     exprType,
@@ -678,75 +530,6 @@ func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
 
 // ProcessReturnVoid processes a return statement without expression (void functions)
 func ProcessReturnVoid(ctx *Context) error {
-	var currentFn *FunctionEntry
-	// Try to get from stack first
-	currentFn = ctx.CurrentFunction()
-
-	// If not in stack, try to look up by name
-	if currentFn == nil && ctx.CurrentFunctionName != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.CurrentFunctionName)
-		if !ok {
-			// Function not found yet - store for later validation
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    "",
-				Type:     TypeVoid,
-				Function: ctx.CurrentFunctionName,
-			})
-			// Still generate the return quadruple
-			generateQuadruple(ctx, "RETURN", "", "", "")
-			ctx.HasReturn = true // Mark that a return exists
-			return nil           // Don't fail - we'll validate later
-		}
-	}
-
-	// If still not found, try using PendingFunctionName
-	if currentFn == nil && ctx.PendingFunctionName != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.PendingFunctionName)
-		if !ok {
-			// Function not found yet - store for later validation
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    "",
-				Type:     TypeVoid,
-				Function: ctx.PendingFunctionName,
-			})
-			generateQuadruple(ctx, "RETURN", "", "", "")
-			ctx.HasReturn = true
-			return nil
-		}
-	}
-
-	// If still not found, try LastAddedFunction
-	if currentFn == nil && ctx.Directory.LastAddedFunction != "" {
-		var ok bool
-		currentFn, ok = ctx.Directory.GetFunction(ctx.Directory.LastAddedFunction)
-		if !ok {
-			// Function not found yet - store for later validation
-			ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
-				Value:    "",
-				Type:     TypeVoid,
-				Function: ctx.Directory.LastAddedFunction,
-			})
-			generateQuadruple(ctx, "RETURN", "", "", "")
-			ctx.HasReturn = true
-			return nil
-		}
-	}
-
-	// If we found the function, validate immediately
-	if currentFn != nil {
-		// Validate return type matches function return type
-		if currentFn.ReturnType != TypeVoid {
-			return fmt.Errorf("error: tipo de retorno %s no coincide con tipo de función %s",
-				TypeVoid, currentFn.ReturnType)
-		}
-		// Mark that function has at least one return
-		ctx.HasReturn = true
-		// Generate RETURN quadruple
-		generateQuadruple(ctx, "RETURN", "", "", "")
-		return nil
-	}
 
 	// If we still can't find the function, store for later
 	// (This handles the case where we're in a function but can't identify it yet)
