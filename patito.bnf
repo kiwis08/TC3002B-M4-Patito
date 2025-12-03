@@ -183,9 +183,17 @@ EXP
   ;
 
 EXP_P
-  : "+" TERMINO EXP_P
-  | "-" TERMINO EXP_P
+  : ADD_MARK TERMINO EXP_P
+  | SUB_MARK TERMINO EXP_P
   | empty
+  ;
+
+ADD_MARK
+  : "+"
+  ;
+
+SUB_MARK
+  : "-"
   ;
 
 TERMINO
@@ -193,9 +201,17 @@ TERMINO
   ;
 
 TERMINO_P
-  : "*" FACTOR TERMINO_P
-  | "/" FACTOR TERMINO_P
+  : MUL_MARK FACTOR TERMINO_P
+  | DIV_MARK FACTOR TERMINO_P
   | empty
+  ;
+
+MUL_MARK
+  : "*"
+  ;
+
+DIV_MARK
+  : "/"
   ;
 
 

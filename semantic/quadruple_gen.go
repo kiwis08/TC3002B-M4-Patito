@@ -44,6 +44,8 @@ func generateQuadruple(ctx *Context, op, op1, op2, result string) {
 // ProcessOperator procesa un operador según el algoritmo de traducción
 func ProcessOperator(ctx *Context, op string) error {
 	// Mientras haya operadores en la pila con mayor o igual precedencia
+	fmt.Printf("Tenemos operador %v", op)
+	fmt.Printf("\n")
 	for !ctx.OpStack.IsEmpty() {
 		topOp, _ := ctx.OpStack.Top()
 		if topOp == "(" {
@@ -55,8 +57,12 @@ func ProcessOperator(ctx *Context, op string) error {
 
 			// Obtener operandos y tipos
 			right, ok1 := ctx.OperandStack.Pop()
+			fmt.Printf("Tenemos operando derecho %v", right)
+			fmt.Printf("\n")
 			rightType, _ := ctx.TypeStack.Pop()
 			left, ok2 := ctx.OperandStack.Pop()
+			fmt.Printf("Tenemos operando izquierdo %v", left)
+			fmt.Printf("\n")
 			leftType, _ := ctx.TypeStack.Pop()
 
 			if !ok1 || !ok2 {
@@ -120,6 +126,8 @@ func ProcessUnaryOperator(ctx *Context, op string) error {
 
 // PushOperand apila un operando y su tipo
 func PushOperand(ctx *Context, operand string, operandType Type) {
+	fmt.Printf("Tenemos operando a push %v", operand)
+	fmt.Printf("\n")
 	ctx.OperandStack.Push(operand)
 	ctx.TypeStack.Push(operandType)
 }

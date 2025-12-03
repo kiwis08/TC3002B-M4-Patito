@@ -10,65 +10,69 @@ import (
 type reduceFunc = func([]Attrib, interface{}) (Attrib, error)
 
 func init() {
-	setReduceFunc(1, reduceProgram)
-	setReduceFunc(2, passThrough)
-	setReduceFunc(3, returnEmptySpecs)
-	setReduceFunc(4, takeSecond)
-	setReduceFunc(5, concatSpecSlices)
-	setReduceFunc(6, returnEmptySpecs)
-	setReduceFunc(7, reduceVarDeclaration)
-	setReduceFunc(8, prependIDToken)
-	setReduceFunc(9, returnEmptyIDTokens)
-	setReduceFunc(10, reduceTypeInt)
-	setReduceFunc(11, reduceTypeFloat)
-	setReduceFunc(14, passThrough)
-	setReduceFunc(15, reduceTypeVoid)
-	setReduceFunc(16, reduceFunction)
-	setReduceFunc(17, takeSecond)
-	setReduceFunc(18, returnEmptySpecs)
-	setReduceFunc(19, reduceParamSequence)
-	setReduceFunc(20, returnEmptySpecs)
-	setReduceFunc(21, reduceParamTail)
-	setReduceFunc(22, returnEmptySpecs)
-	setReduceFunc(23, passThrough)
-	setReduceFunc(24, returnEmptySpecs)
-	setReduceFunc(25, reduceParam)
+	setReduceFuncByID("Program", 0, reduceProgram)
+	setReduceFuncByID("P_VAR", 0, passThrough)
+	setReduceFuncByID("P_VAR", 1, returnEmptySpecs)
+	setReduceFuncByID("VARS", 0, takeSecond)
+	setReduceFuncByID("FVAR_LIST", 0, concatSpecSlices)
+	setReduceFuncByID("FVAR_LIST", 1, returnEmptySpecs)
+	setReduceFuncByID("F_VAR", 0, reduceVarDeclaration)
+	setReduceFuncByID("R_ID", 0, prependIDToken)
+	setReduceFuncByID("R_ID", 1, returnEmptyIDTokens)
+	setReduceFuncByID("TYPE", 0, reduceTypeInt)
+	setReduceFuncByID("TYPE", 1, reduceTypeFloat)
+	setReduceFuncByID("F_T", 0, passThrough)
+	setReduceFuncByID("F_T", 1, reduceTypeVoid)
+	setReduceFuncByID("FUNCS", 0, reduceFunction)
+	setReduceFuncByID("FUNC_LOCALS", 0, takeSecond)
+	setReduceFuncByID("FUNC_LOCALS", 1, returnEmptySpecs)
+	setReduceFuncByID("S_T", 0, reduceParamSequence)
+	setReduceFuncByID("S_T", 1, returnEmptySpecs)
+	setReduceFuncByID("R_T", 0, reduceParamTail)
+	setReduceFuncByID("R_T", 1, returnEmptySpecs)
+	setReduceFuncByID("S_V", 0, passThrough)
+	setReduceFuncByID("S_V", 1, returnEmptySpecs)
+	setReduceFuncByID("I_T", 0, reduceParam)
 	// Expresiones y estatutos
-	setReduceFunc(37, passThrough)            // PRINT_P : E_PRINT R_PRINT
-	setReduceFunc(38, reduceEPrintExpression) // E_PRINT : EXPRESSION
-	setReduceFunc(39, reduceEPrintString)     // E_PRINT : cte_string
-	setReduceFunc(40, reduceRPrint)           // R_PRINT : "," PRINT_P
-	setReduceFunc(41, returnEmptySpecs)       // R_PRINT : empty
-	setReduceFunc(42, reduceAssign)           // ASSIGN : id "=" EXPRESSION ";"
-	setReduceFunc(43, reduceCycle)            // CYCLE : "while" "(" EXPRESSION ")" WHILE_MARK "do" BODY ";"
-	setReduceFunc(44, reduceWhileMark)        // WHILE_MARK : empty
-	setReduceFunc(45, reduceCondition)        // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
-	setReduceFunc(46, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
-	setReduceFunc(47, reduceIfMark)           // IF_MARK : empty
-	setReduceFunc(48, reduceElseMark)         // ELSE_MARK : empty
-	setReduceFunc(49, reduceReturn)           // RETURN : "return" EXPRESSION ";"
-	setReduceFunc(50, reduceReturnVoid)       // RETURN : "return" ";"
-	setReduceFunc(51, reduceExpression)       // EXPRESSION : EXP REL_TAIL
-	setReduceFunc(52, reduceRelTail)          // REL_TAIL : REL_OP EXP
-	setReduceFunc(53, returnEmptySpecs)       // REL_TAIL : empty
-	setReduceFunc(54, reduceRelOpGt)          // REL_OP : ">"
-	setReduceFunc(55, reduceRelOpLt)          // REL_OP : "<"
-	setReduceFunc(56, reduceRelOpNeq)         // REL_OP : "!="
-	setReduceFunc(57, reduceRelOpEq)          // REL_OP : "=="
-	setReduceFunc(58, reduceExp)              // EXP : TERMINO EXP_P
-	setReduceFunc(59, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
-	setReduceFunc(60, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
-	setReduceFunc(61, returnEmptySpecs)       // EXP_P : empty
-	setReduceFunc(62, reduceTermino)          // TERMINO : FACTOR TERMINO_P
-	setReduceFunc(63, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
-	setReduceFunc(64, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
-	setReduceFunc(65, returnEmptySpecs)       // TERMINO_P : empty
-	setReduceFunc(66, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
-	setReduceFunc(67, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
-	setReduceFunc(68, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
-	setReduceFunc(69, reduceFactorCoreCte)    // FACTOR_CORE : CTE
-	setReduceFunc(70, reduceFactorSuffixCall)
-	setReduceFunc(71, returnEmptySpecs)
+	setReduceFuncByID("PRINT_P", 0, passThrough)            // PRINT_P : E_PRINT R_PRINT
+	setReduceFuncByID("E_PRINT", 0, reduceEPrintExpression) // E_PRINT : EXPRESSION
+	setReduceFuncByID("E_PRINT", 1, reduceEPrintString)     // E_PRINT : cte_string
+	setReduceFuncByID("R_PRINT", 0, reduceRPrint)           // R_PRINT : "," PRINT_P
+	setReduceFuncByID("R_PRINT", 1, returnEmptySpecs)       // R_PRINT : empty
+	setReduceFuncByID("ASSIGN", 0, reduceAssign)            // ASSIGN : id "=" EXPRESSION ";"
+	setReduceFuncByID("CYCLE", 0, reduceCycle)              // CYCLE : "while" "(" EXPRESSION ")" WHILE_MARK "do" BODY ";"
+	setReduceFuncByID("WHILE_MARK", 0, reduceWhileMark)     // WHILE_MARK : empty
+	setReduceFuncByID("CONDITION", 0, reduceCondition)      // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
+	setReduceFuncByID("CONDITION", 1, reduceConditionElse)  // CONDITION : ...
+	setReduceFuncByID("IF_MARK", 0, reduceIfMark)           // IF_MARK : empty
+	setReduceFuncByID("ELSE_MARK", 0, reduceElseMark)       // ELSE_MARK : empty
+	setReduceFuncByID("RETURN", 0, reduceReturn)            // RETURN : "return" EXPRESSION ";"
+	setReduceFuncByID("RETURN", 1, reduceReturnVoid)        // RETURN : "return" ";"
+	setReduceFuncByID("EXPRESSION", 0, reduceExpression)    // EXPRESSION : EXP REL_TAIL
+	setReduceFuncByID("REL_TAIL", 0, reduceRelTail)         // REL_TAIL : REL_OP EXP
+	setReduceFuncByID("REL_TAIL", 1, returnEmptySpecs)      // REL_TAIL : empty
+	setReduceFuncByID("REL_OP", 0, reduceRelOpGt)           // REL_OP : ">"
+	setReduceFuncByID("REL_OP", 1, reduceRelOpLt)           // REL_OP : "<"
+	setReduceFuncByID("REL_OP", 2, reduceRelOpNeq)          // REL_OP : "!="
+	setReduceFuncByID("REL_OP", 3, reduceRelOpEq)           // REL_OP : "=="
+	setReduceFuncByID("EXP", 0, reduceExp)                  // EXP : TERMINO EXP_P
+	setReduceFuncByID("EXP_P", 0, reduceExpPAdd)            // EXP_P : "+" TERMINO EXP_P
+	setReduceFuncByID("EXP_P", 1, reduceExpPSub)            // EXP_P : "-" TERMINO EXP_P
+	setReduceFuncByID("EXP_P", 2, returnEmptySpecs)         // EXP_P : empty
+	setReduceFuncByID("ADD_MARK", 0, reduceAddMark)
+	setReduceFuncByID("SUB_MARK", 0, reduceSubMark)
+	setReduceFuncByID("TERMINO", 0, reduceTermino)       // TERMINO : FACTOR TERMINO_P
+	setReduceFuncByID("TERMINO_P", 0, reduceTerminoPMul) // TERMINO_P : "*" FACTOR TERMINO_P
+	setReduceFuncByID("TERMINO_P", 1, reduceTerminoPDiv) // TERMINO_P : "/" FACTOR TERMINO_P
+	setReduceFuncByID("TERMINO_P", 2, returnEmptySpecs)  // TERMINO_P : empty
+	setReduceFuncByID("MUL_MARK", 0, reduceMulMark)
+	setReduceFuncByID("DIV_MARK", 0, reduceDivMark)
+	setReduceFuncByID("FACTOR", 0, reduceFactor) // FACTOR : S_OP FACTOR_CORE
+	setReduceFuncByID("FACTOR_CORE", 0, reduceFactorCoreParen)
+	setReduceFuncByID("FACTOR_CORE", 1, reduceFactorCoreId)
+	setReduceFuncByID("FACTOR_CORE", 2, reduceFactorCoreCte)
+	setReduceFuncByID("FACTOR_SUFFIX", 0, reduceFactorSuffixCall)
+	setReduceFuncByID("FACTOR_SUFFIX", 1, returnEmptySpecs)
 }
 
 func setReduceFunc(index int, fn reduceFunc) {
@@ -79,6 +83,20 @@ func setReduceFunc(index int, fn reduceFunc) {
 		}
 	}
 	panic(fmt.Sprintf("no se encontró producción con index %d", index))
+}
+
+func setReduceFuncByID(id string, occurrence int, fn reduceFunc) {
+	count := 0
+	for i := range productionsTable {
+		if productionsTable[i].Id == id {
+			if count == occurrence {
+				productionsTable[i].ReduceFunc = fn
+				return
+			}
+			count++
+		}
+	}
+	panic(fmt.Sprintf("no se encontró producción con id %s (ocurrencia %d)", id, occurrence))
 }
 
 func semanticCtx(C interface{}) (*semantic.Context, error) {
@@ -256,11 +274,15 @@ func reduceVarDeclaration(X []Attrib, C interface{}) (Attrib, error) {
 		varName := tok.IDValue()
 		// Almacenar tipo en contexto para uso inmediato durante parsing
 		ctx.VariableTypes[varName] = typeVal
+		fmt.Printf("Tenemos variable %v", varName)
+		fmt.Printf("\n")
 		// Asignar dirección virtual inmediatamente para que esté disponible durante parsing
 		// Esto es necesario porque las variables pueden usarse en el main body antes de que
 		// reduceProgram agregue las variables al directorio
 		addr := ctx.AddressManager.NextGlobal()
 		ctx.VariableAddresses[varName] = addr
+		fmt.Printf("Tenemos direccion %d", addr)
+		fmt.Printf("\n")
 		specs = append(specs, &semantic.VariableSpec{
 			Name:    varName,
 			Type:    typeVal,
@@ -589,6 +611,16 @@ func reduceTermino(X []Attrib, C interface{}) (Attrib, error) {
 
 // reduceTerminoPMul: TERMINO_P -> "*" FACTOR TERMINO_P
 func reduceTerminoPMul(X []Attrib, C interface{}) (Attrib, error) {
+	return X[2], nil
+}
+
+// reduceTerminoPDiv: TERMINO_P -> "/" FACTOR TERMINO_P
+func reduceTerminoPDiv(X []Attrib, C interface{}) (Attrib, error) {
+	return X[2], nil
+}
+
+// reduceMulMark: MUL_MARK -> "*"
+func reduceMulMark(_ []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
@@ -596,11 +628,11 @@ func reduceTerminoPMul(X []Attrib, C interface{}) (Attrib, error) {
 	if err := semantic.ProcessOperator(ctx, "*"); err != nil {
 		return nil, err
 	}
-	return X[2], nil
+	return nil, nil
 }
 
-// reduceTerminoPDiv: TERMINO_P -> "/" FACTOR TERMINO_P
-func reduceTerminoPDiv(X []Attrib, C interface{}) (Attrib, error) {
+// reduceDivMark: DIV_MARK -> "/"
+func reduceDivMark(_ []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
@@ -608,7 +640,7 @@ func reduceTerminoPDiv(X []Attrib, C interface{}) (Attrib, error) {
 	if err := semantic.ProcessOperator(ctx, "/"); err != nil {
 		return nil, err
 	}
-	return X[2], nil
+	return nil, nil
 }
 
 // reduceExp: EXP -> TERMINO EXP_P
@@ -619,6 +651,16 @@ func reduceExp(X []Attrib, C interface{}) (Attrib, error) {
 
 // reduceExpPAdd: EXP_P -> "+" TERMINO EXP_P
 func reduceExpPAdd(X []Attrib, C interface{}) (Attrib, error) {
+	return X[2], nil
+}
+
+// reduceExpPSub: EXP_P -> "-" TERMINO EXP_P
+func reduceExpPSub(X []Attrib, C interface{}) (Attrib, error) {
+	return X[2], nil
+}
+
+// reduceAddMark: ADD_MARK -> "+"
+func reduceAddMark(_ []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
@@ -626,11 +668,11 @@ func reduceExpPAdd(X []Attrib, C interface{}) (Attrib, error) {
 	if err := semantic.ProcessOperator(ctx, "+"); err != nil {
 		return nil, err
 	}
-	return X[2], nil
+	return nil, nil
 }
 
-// reduceExpPSub: EXP_P -> "-" TERMINO EXP_P
-func reduceExpPSub(X []Attrib, C interface{}) (Attrib, error) {
+// reduceSubMark: SUB_MARK -> "-"
+func reduceSubMark(_ []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
@@ -638,7 +680,7 @@ func reduceExpPSub(X []Attrib, C interface{}) (Attrib, error) {
 	if err := semantic.ProcessOperator(ctx, "-"); err != nil {
 		return nil, err
 	}
-	return X[2], nil
+	return nil, nil
 }
 
 // reduceRelOpGt: REL_OP -> ">"

@@ -2,7 +2,7 @@
 
 package parser
 
-const numNTSymbols = 45
+const numNTSymbols = 49
 
 type (
 	gotoTable [numStates]gotoRow
@@ -46,8 +46,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -93,8 +97,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -140,8 +148,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -187,8 +199,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -234,8 +250,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -281,8 +301,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -328,8 +352,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -375,8 +403,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -422,8 +454,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -469,8 +505,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -516,8 +556,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -563,8 +607,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -610,8 +658,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -657,8 +709,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -704,8 +760,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -751,8 +811,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -798,8 +862,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -845,8 +913,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -892,8 +964,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -939,8 +1015,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -986,8 +1066,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1033,8 +1117,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1080,8 +1168,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1127,8 +1219,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1174,8 +1270,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1221,8 +1321,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1268,8 +1372,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1315,8 +1423,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1362,8 +1474,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1409,8 +1525,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1456,8 +1576,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1503,8 +1627,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1550,8 +1678,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1597,8 +1729,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1644,8 +1780,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1691,8 +1831,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1738,8 +1882,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1785,8 +1933,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1832,8 +1984,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1879,8 +2035,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1926,8 +2086,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -1973,8 +2137,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2020,8 +2188,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2067,8 +2239,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		75, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		76, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		79, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2114,8 +2290,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2161,8 +2341,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2208,8 +2392,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2255,8 +2443,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2302,8 +2494,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2349,8 +2545,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2396,8 +2596,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2443,8 +2647,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		87, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		88, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		89, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2490,8 +2698,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		75, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		76, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		79, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2537,8 +2749,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2584,8 +2800,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2631,8 +2851,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2678,8 +2902,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2725,8 +2953,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2772,8 +3004,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2819,8 +3055,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2866,8 +3106,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2913,8 +3157,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -2960,8 +3208,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3007,8 +3259,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3054,8 +3310,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3101,8 +3361,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3148,8 +3412,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		75,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		76,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		79,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3195,8 +3463,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3242,8 +3514,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3289,8 +3565,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3336,8 +3616,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		87,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		88,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3383,8 +3667,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3430,8 +3718,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3477,8 +3769,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3524,8 +3820,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3571,8 +3871,12 @@ var gotoTab = gotoTable{
 		115, // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3618,8 +3922,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		120, // EXP_P
+		121, // ADD_MARK
+		122, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3665,8 +3973,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3712,8 +4024,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -3759,8 +4075,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		123, // TERMINO_P
+		125, // TERMINO_P
+		126, // MUL_MARK
+		127, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3806,13 +4126,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		128, // FACTOR_CORE
+		132, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		129, // CTE
+		133, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -3825,7 +4149,7 @@ var gotoTab = gotoTable{
 		-1,  // FVAR_LIST
 		-1,  // F_VAR
 		-1,  // R_ID
-		132, // TYPE
+		136, // TYPE
 		-1,  // P_FUNCS
 		-1,  // F_T
 		-1,  // FUNCS
@@ -3853,8 +4177,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3876,7 +4204,7 @@ var gotoTab = gotoTable{
 		-1,  // P_FUNCS
 		-1,  // F_T
 		-1,  // FUNCS
-		135, // FUNC_LOCALS
+		139, // FUNC_LOCALS
 		-1,  // S_T
 		-1,  // R_T
 		-1,  // S_V
@@ -3900,8 +4228,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3927,7 +4259,7 @@ var gotoTab = gotoTable{
 		-1,  // S_T
 		-1,  // R_T
 		-1,  // S_V
-		137, // I_T
+		141, // I_T
 		-1,  // BODY
 		-1,  // P_STAT
 		-1,  // STATEMENT
@@ -3947,8 +4279,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -3994,8 +4330,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4041,8 +4381,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4088,8 +4432,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4097,7 +4445,7 @@ var gotoTab = gotoTable{
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
-		139, // R_E
+		143, // R_E
 	},
 	gotoRow{ // S87
 		-1,  // S'
@@ -4131,12 +4479,16 @@ var gotoTab = gotoTable{
 		-1,  // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
-		140, // REL_TAIL
-		141, // REL_OP
+		144, // REL_TAIL
+		145, // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4181,9 +4533,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		142, // EXP_P
+		146, // EXP_P
+		147, // ADD_MARK
+		148, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4229,8 +4585,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		145, // TERMINO_P
+		149, // TERMINO_P
+		150, // MUL_MARK
+		151, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4276,13 +4636,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		150, // FACTOR_CORE
+		154, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		151, // CTE
+		155, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -4323,8 +4687,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4370,8 +4738,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4412,13 +4784,17 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		156, // EXPRESSION
+		160, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		75,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		76,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		79,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4464,8 +4840,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4511,8 +4891,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4558,8 +4942,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4605,8 +4993,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4637,7 +5029,7 @@ var gotoTab = gotoTable{
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
-		158, // PRINT_P
+		162, // PRINT_P
 		104, // E_PRINT
 		-1,  // R_PRINT
 		-1,  // ASSIGN
@@ -4652,8 +5044,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		87,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		88,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4694,13 +5090,17 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		159, // EXPRESSION
+		163, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4741,13 +5141,17 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		160, // EXPRESSION
+		164, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4793,8 +5197,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4840,8 +5248,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4887,8 +5299,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -4921,7 +5337,7 @@ var gotoTab = gotoTable{
 		-1,  // PRINT
 		-1,  // PRINT_P
 		-1,  // E_PRINT
-		164, // R_PRINT
+		168, // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
 		-1,  // WHILE_MARK
@@ -4934,8 +5350,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -4981,8 +5401,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5028,8 +5452,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5075,8 +5503,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5118,12 +5550,16 @@ var gotoTab = gotoTable{
 		-1,  // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
-		166, // REL_TAIL
-		167, // REL_OP
+		170, // REL_TAIL
+		171, // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -5168,9 +5604,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		168, // EXP_P
+		172, // EXP_P
+		173, // ADD_MARK
+		174, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -5216,8 +5656,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		171, // TERMINO_P
+		175, // TERMINO_P
+		176, // MUL_MARK
+		177, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -5263,13 +5707,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		176, // FACTOR_CORE
+		180, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		177, // CTE
+		181, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -5310,8 +5758,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5357,8 +5809,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5404,8 +5860,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5449,14 +5909,18 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		181, // EXP
+		185, // EXP
 		-1,  // EXP_P
-		182, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		186, // TERMINO
 		-1,  // TERMINO_P
-		183, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		187, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		184, // S_OP
+		188, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -5498,8 +5962,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5545,8 +6013,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5592,8 +6064,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5639,8 +6115,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5686,8 +6166,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5733,8 +6217,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		185, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		189, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		79,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -5780,8 +6268,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		186, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		190, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		79,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -5827,8 +6319,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -5839,98 +6335,106 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S124
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		187, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		80,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S125
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		188, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		80,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S126
 		-1,  // S'
@@ -5968,12 +6472,16 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		191, // FACTOR
 		-1,  // FACTOR_CORE
-		190, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		80,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -6010,17 +6518,21 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		191, // EXPRESSION
+		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		108, // EXP
+		-1,  // EXP
 		-1,  // EXP_P
-		109, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		110, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		192, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		111, // S_OP
+		80,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -6062,8 +6574,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6109,8 +6625,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6121,98 +6641,106 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S130
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		194, // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S131
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		195, // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		108, // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		109, // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		110, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		111, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S132
 		-1, // S'
@@ -6250,8 +6778,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6297,8 +6829,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6344,8 +6880,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6356,100 +6896,210 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S135
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		192, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S136
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		194, // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		196, // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S137
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S138
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S139
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -6463,8 +7113,59 @@ var gotoTab = gotoTable{
 		-1,  // FUNCS
 		-1,  // FUNC_LOCALS
 		-1,  // S_T
-		197, // R_T
+		-1,  // R_T
 		-1,  // S_V
+		-1,  // I_T
+		196, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S140
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		198, // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		200, // S_V
 		-1,  // I_T
 		-1,  // BODY
 		-1,  // P_STAT
@@ -6485,8 +7186,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -6495,147 +7200,6 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S138
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		198, // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		87,  // EXP
-		-1,  // EXP_P
-		88,  // TERMINO
-		-1,  // TERMINO_P
-		89,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S139
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S140
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S141
 		-1,  // S'
@@ -6651,7 +7215,7 @@ var gotoTab = gotoTable{
 		-1,  // FUNCS
 		-1,  // FUNC_LOCALS
 		-1,  // S_T
-		-1,  // R_T
+		201, // R_T
 		-1,  // S_V
 		-1,  // I_T
 		-1,  // BODY
@@ -6671,161 +7235,75 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		199, // EXP
+		-1,  // EXP
 		-1,  // EXP_P
-		200, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		201, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		202, // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S142
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		202, // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		87,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		88,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S143
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		203, // TERMINO
-		-1,  // TERMINO_P
-		89,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S144
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		204, // TERMINO
-		-1,  // TERMINO_P
-		89,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S145
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -6861,8 +7339,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -6872,7 +7354,58 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S146
+	gotoRow{ // S144
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S145
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -6906,18 +7439,73 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		-1,  // EXP
+		203, // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		204, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		205, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
+		206, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S146
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S147
 		-1,  // S'
@@ -6955,9 +7543,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		207, // TERMINO
 		-1,  // TERMINO_P
-		206, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		90,  // S_OP
@@ -7002,18 +7594,73 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		208, // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
 		-1,  // FACTOR_CORE
-		208, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S149
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S150
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -7044,13 +7691,170 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		209, // EXPRESSION
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		209, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S151
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		210, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S152
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		212, // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S153
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		213, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -7059,194 +7863,6 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S150
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S151
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S152
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S153
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S154
 		-1, // S'
@@ -7284,8 +7900,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7331,8 +7951,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7378,8 +8002,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7425,8 +8053,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7472,8 +8104,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7519,8 +8155,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7566,8 +8206,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7613,8 +8257,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7660,8 +8308,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7672,51 +8324,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S163
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		215, // PRINT_P
-		104, // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		105, // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		87,  // EXP
-		-1,  // EXP_P
-		88,  // TERMINO
-		-1,  // TERMINO_P
-		89,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S164
 		-1, // S'
@@ -7754,8 +8410,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7766,51 +8426,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S165
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		216, // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S166
 		-1, // S'
@@ -7848,8 +8512,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7880,8 +8548,8 @@ var gotoTab = gotoTable{
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
+		219, // PRINT_P
+		104, // E_PRINT
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
@@ -7890,17 +8558,21 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		-1,  // EXPRESSION
+		105, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		217, // EXP
+		87,  // EXP
 		-1,  // EXP_P
-		218, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		88,  // TERMINO
 		-1,  // TERMINO_P
-		219, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		220, // S_OP
+		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -7942,8 +8614,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -7979,7 +8655,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
-		-1,  // WHILE_MARK
+		220, // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7989,65 +8665,22 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		221, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		110, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		111, // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S170
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		222, // TERMINO
-		-1,  // TERMINO_P
-		110, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		111, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S171
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -8083,8 +8716,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -8094,7 +8731,7 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S172
+	gotoRow{ // S171
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -8128,18 +8765,73 @@ var gotoTab = gotoTable{
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		-1,  // EXP
+		221, // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		222, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		223, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		111, // S_OP
+		224, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S172
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S173
 		-1,  // S'
@@ -8177,9 +8869,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		225, // TERMINO
 		-1,  // TERMINO_P
-		224, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		111, // S_OP
@@ -8224,18 +8920,73 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		226, // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		110, // FACTOR
 		-1,  // FACTOR_CORE
-		226, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		111, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S175
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S176
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -8266,14 +9017,18 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		227, // EXPRESSION
+		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		108, // EXP
+		-1,  // EXP
 		-1,  // EXP_P
-		109, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		110, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		227, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		111, // S_OP
@@ -8282,195 +9037,7 @@ var gotoTab = gotoTable{
 		-1,  // S_E
 		-1,  // R_E
 	},
-	gotoRow{ // S176
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
 	gotoRow{ // S177
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S178
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S179
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S180
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -8498,7 +9065,7 @@ var gotoTab = gotoTable{
 		-1,  // CYCLE
 		-1,  // WHILE_MARK
 		-1,  // CONDITION
-		228, // IF_MARK
+		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
@@ -8506,16 +9073,173 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		228, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
+		111, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S178
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		230, // FACTOR_SUFFIX
 		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S179
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		231, // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		108, // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		109, // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		110, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		111, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S180
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S181
 		-1, // S'
@@ -8553,8 +9277,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -8565,98 +9293,106 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S182
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		229, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S183
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		232, // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S184
 		-1,  // S'
@@ -8686,7 +9422,7 @@ var gotoTab = gotoTable{
 		-1,  // CYCLE
 		-1,  // WHILE_MARK
 		-1,  // CONDITION
-		-1,  // IF_MARK
+		232, // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
@@ -8694,55 +9430,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
-		237, // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		238, // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S185
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		241, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -8751,6 +9444,57 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S185
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S186
 		-1,  // S'
@@ -8787,9 +9531,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		242, // EXP_P
+		233, // EXP_P
+		234, // ADD_MARK
+		235, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -8835,8 +9583,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		243, // TERMINO_P
+		236, // TERMINO_P
+		237, // MUL_MARK
+		238, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -8882,13 +9634,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		244, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		-1,  // FACTOR_CORE
+		241, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		-1,  // CTE
+		242, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -8924,162 +9680,178 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		86,  // EXPRESSION
+		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		87,  // EXP
-		-1,  // EXP_P
-		88,  // TERMINO
+		-1,  // EXP
+		245, // EXP_P
+		121, // ADD_MARK
+		122, // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		89,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		245, // S_E
+		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S190
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		246, // EXP_P
+		121, // ADD_MARK
+		122, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S191
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		247, // TERMINO_P
+		126, // MUL_MARK
+		127, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S192
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		248, // TERMINO_P
+		126, // MUL_MARK
+		127, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S193
 		-1,  // S'
@@ -9099,33 +9871,37 @@ var gotoTab = gotoTable{
 		-1,  // S_V
 		-1,  // I_T
 		-1,  // BODY
-		248, // P_STAT
-		33,  // STATEMENT
-		38,  // PRINT
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
 		-1,  // PRINT_P
 		-1,  // E_PRINT
 		-1,  // R_PRINT
-		34,  // ASSIGN
-		36,  // CYCLE
+		-1,  // ASSIGN
+		-1,  // CYCLE
 		-1,  // WHILE_MARK
-		35,  // CONDITION
+		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
-		39,  // RETURN
-		-1,  // EXPRESSION
+		-1,  // RETURN
+		86,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		-1,  // EXP
+		87,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		88,  // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
+		90,  // S_OP
 		-1,  // CTE
-		37,  // F_CALL
-		-1,  // S_E
+		-1,  // F_CALL
+		249, // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S194
@@ -9164,8 +9940,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -9176,51 +9956,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S195
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		250, // FVAR_LIST
-		251, // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S196
 		-1, // S'
@@ -9258,8 +10042,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -9270,100 +10058,57 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S197
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		252, // P_STAT
+		33,  // STATEMENT
+		38,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		34,  // ASSIGN
+		36,  // CYCLE
+		-1,  // WHILE_MARK
+		35,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		39,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		37,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S198
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		253, // R_E
-	},
-	gotoRow{ // S199
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -9399,8 +10144,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -9410,60 +10159,13 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S200
+	gotoRow{ // S199
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
 		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		254, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S201
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
+		254, // FVAR_LIST
+		255, // F_VAR
 		-1,  // R_ID
 		-1,  // TYPE
 		-1,  // P_FUNCS
@@ -9493,8 +10195,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		257, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -9503,6 +10209,108 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S200
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S201
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S202
 		-1,  // S'
@@ -9540,55 +10348,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
-		262, // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		263, // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S203
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		266, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -9596,7 +10361,58 @@ var gotoTab = gotoTable{
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
-		-1,  // R_E
+		257, // R_E
+	},
+	gotoRow{ // S203
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S204
 		-1,  // S'
@@ -9633,9 +10449,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		267, // EXP_P
+		258, // EXP_P
+		259, // ADD_MARK
+		260, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -9681,8 +10501,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		268, // TERMINO_P
+		261, // TERMINO_P
+		262, // MUL_MARK
+		263, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -9728,13 +10552,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		269, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		-1,  // FACTOR_CORE
+		266, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		-1,  // CTE
+		267, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -9770,248 +10598,17 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		86,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		87,  // EXP
-		-1,  // EXP_P
-		88,  // TERMINO
-		-1,  // TERMINO_P
-		89,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		270, // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S208
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S209
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S210
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S211
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S212
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		273, // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		-1,  // EXP_P
+		270, // EXP_P
+		147, // ADD_MARK
+		148, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -10021,7 +10618,7 @@ var gotoTab = gotoTable{
 		-1,  // S_E
 		-1,  // R_E
 	},
-	gotoRow{ // S213
+	gotoRow{ // S208
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -10049,16 +10646,20 @@ var gotoTab = gotoTable{
 		-1,  // CYCLE
 		-1,  // WHILE_MARK
 		-1,  // CONDITION
-		274, // IF_MARK
+		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		-1,  // EXP_P
+		271, // EXP_P
+		147, // ADD_MARK
+		148, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -10067,6 +10668,261 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S209
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		272, // TERMINO_P
+		150, // MUL_MARK
+		151, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S210
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		273, // TERMINO_P
+		150, // MUL_MARK
+		151, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S211
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		86,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		87,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		88,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		274, // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S212
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S213
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S214
 		-1, // S'
@@ -10104,8 +10960,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -10151,8 +11011,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -10163,53 +11027,108 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S216
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		277, // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S217
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		278, // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S218
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -10245,8 +11164,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -10256,193 +11179,158 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S218
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		276, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
 	gotoRow{ // S219
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		279, // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S220
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		284, // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		285, // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S221
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		288, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S222
 		-1,  // S'
@@ -10479,9 +11367,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		289, // EXP_P
+		280, // EXP_P
+		281, // ADD_MARK
+		282, // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -10527,8 +11419,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		290, // TERMINO_P
+		283, // TERMINO_P
+		284, // MUL_MARK
+		285, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -10574,13 +11470,17 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		291, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
-		-1,  // FACTOR_CORE
+		288, // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		-1,  // S_OP
-		-1,  // CTE
+		289, // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
@@ -10616,115 +11516,127 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		86,  // EXPRESSION
+		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
-		87,  // EXP
-		-1,  // EXP_P
-		88,  // TERMINO
+		-1,  // EXP
+		292, // EXP_P
+		173, // ADD_MARK
+		174, // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		89,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		90,  // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		292, // S_E
+		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S226
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		293, // EXP_P
+		173, // ADD_MARK
+		174, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S227
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		294, // TERMINO_P
+		176, // MUL_MARK
+		177, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S228
 		-1,  // S'
@@ -10743,7 +11655,7 @@ var gotoTab = gotoTable{
 		-1,  // R_T
 		-1,  // S_V
 		-1,  // I_T
-		294, // BODY
+		-1,  // BODY
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
@@ -10762,8 +11674,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		-1,  // TERMINO_P
+		295, // TERMINO_P
+		176, // MUL_MARK
+		177, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -10774,147 +11690,57 @@ var gotoTab = gotoTable{
 		-1,  // R_E
 	},
 	gotoRow{ // S229
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		86,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		87,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		88,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		89,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		90,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		296, // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S230
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		296, // TERMINO
-		-1,  // TERMINO_P
-		183, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		184, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S231
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		297, // TERMINO
-		-1,  // TERMINO_P
-		183, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		184, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S232
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -10950,8 +11776,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -10961,7 +11791,58 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S233
+	gotoRow{ // S231
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S232
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -10978,7 +11859,7 @@ var gotoTab = gotoTable{
 		-1,  // R_T
 		-1,  // S_V
 		-1,  // I_T
-		-1,  // BODY
+		298, // BODY
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
@@ -10997,16 +11878,71 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		298, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		184, // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S233
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S234
 		-1,  // S'
@@ -11044,12 +11980,16 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		300, // TERMINO
 		-1,  // TERMINO_P
-		299, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		187, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		184, // S_OP
+		188, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -11091,18 +12031,73 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		301, // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		187, // FACTOR
 		-1,  // FACTOR_CORE
-		301, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		188, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S236
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S237
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -11133,13 +12128,170 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		302, // EXPRESSION
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		302, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		188, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S238
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		303, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		188, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S239
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		305, // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S240
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		306, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -11148,194 +12300,6 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S237
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S238
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S239
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S240
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S241
 		-1, // S'
@@ -11373,8 +12337,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11420,8 +12388,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11467,8 +12439,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11514,8 +12490,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11561,8 +12541,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11608,8 +12592,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11655,8 +12643,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11702,8 +12694,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11714,51 +12710,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S249
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		305, // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S250
 		-1, // S'
@@ -11796,8 +12796,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11808,51 +12812,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S251
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		306, // FVAR_LIST
-		251, // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S252
 		-1, // S'
@@ -11890,8 +12898,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -11902,51 +12914,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S253
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		309, // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S254
 		-1, // S'
@@ -11984,8 +13000,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12000,8 +13020,8 @@ var gotoTab = gotoTable{
 		-1,  // Program
 		-1,  // P_VAR
 		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
+		310, // FVAR_LIST
+		255, // F_VAR
 		-1,  // R_ID
 		-1,  // TYPE
 		-1,  // P_FUNCS
@@ -12031,63 +13051,71 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		307, // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
 		-1,  // TERMINO_P
-		201, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		202, // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S256
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		308, // TERMINO
-		-1,  // TERMINO_P
-		201, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		202, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S257
 		-1, // S'
@@ -12125,8 +13153,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12137,51 +13169,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S258
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		309, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		202, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S259
 		-1,  // S'
@@ -12219,12 +13255,16 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		311, // TERMINO
 		-1,  // TERMINO_P
-		310, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		205, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		202, // S_OP
+		206, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -12266,18 +13306,73 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		312, // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		205, // FACTOR
 		-1,  // FACTOR_CORE
-		312, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		206, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S261
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S262
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -12308,13 +13403,170 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		313, // EXPRESSION
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		313, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		206, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S263
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		314, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		206, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S264
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		316, // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S265
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		317, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -12323,194 +13575,6 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S262
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S263
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S264
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S265
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S266
 		-1, // S'
@@ -12548,8 +13612,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12595,8 +13663,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12642,8 +13714,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12689,8 +13765,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12736,8 +13816,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12783,8 +13867,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12830,8 +13918,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12877,8 +13969,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -12889,98 +13985,106 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S274
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		316, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S275
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		317, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S276
 		-1, // S'
@@ -13018,8 +14122,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13030,100 +14138,6 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S277
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		318, // TERMINO
-		-1,  // TERMINO_P
-		219, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		220, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S278
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		319, // TERMINO
-		-1,  // TERMINO_P
-		219, // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		220, // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S279
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -13159,8 +14173,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13170,7 +14188,7 @@ var gotoTab = gotoTable{
 		-1, // S_E
 		-1, // R_E
 	},
-	gotoRow{ // S280
+	gotoRow{ // S278
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -13187,7 +14205,7 @@ var gotoTab = gotoTable{
 		-1,  // R_T
 		-1,  // S_V
 		-1,  // I_T
-		-1,  // BODY
+		320, // BODY
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
@@ -13206,16 +14224,122 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
-		320, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		220, // S_OP
+		-1,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
+	},
+	gotoRow{ // S279
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		321, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S280
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S281
 		-1,  // S'
@@ -13253,12 +14377,16 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		322, // TERMINO
 		-1,  // TERMINO_P
-		321, // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		223, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
-		220, // S_OP
+		224, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
@@ -13300,18 +14428,73 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
-		-1,  // TERMINO
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		323, // TERMINO
 		-1,  // TERMINO_P
-		-1,  // FACTOR
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		223, // FACTOR
 		-1,  // FACTOR_CORE
-		323, // FACTOR_SUFFIX
-		-1,  // S_OP
+		-1,  // FACTOR_SUFFIX
+		224, // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S283
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S284
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -13342,13 +14525,170 @@ var gotoTab = gotoTable{
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
 		-1,  // RETURN
-		324, // EXPRESSION
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		324, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		224, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S285
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		325, // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		224, // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S286
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		327, // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S287
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		328, // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		108, // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		109, // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		110, // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -13357,194 +14697,6 @@ var gotoTab = gotoTable{
 		-1,  // F_CALL
 		-1,  // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S284
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S285
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S286
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S287
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S288
 		-1, // S'
@@ -13582,8 +14734,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13629,8 +14785,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13676,8 +14836,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13723,8 +14887,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13770,8 +14938,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13817,8 +14989,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -13829,192 +15005,208 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S294
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		327, // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S295
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		328, // P_STAT
-		33,  // STATEMENT
-		38,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		34,  // ASSIGN
-		36,  // CYCLE
-		-1,  // WHILE_MARK
-		35,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		39,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		37,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S296
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		329, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S297
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		330, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S298
 		-1,  // S'
@@ -14045,15 +15237,19 @@ var gotoTab = gotoTable{
 		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
-		-1,  // ELSE_MARK
+		331, // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		331, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -14064,6 +15260,159 @@ var gotoTab = gotoTable{
 		-1,  // R_E
 	},
 	gotoRow{ // S299
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		332, // P_STAT
+		33,  // STATEMENT
+		38,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		34,  // ASSIGN
+		36,  // CYCLE
+		-1,  // WHILE_MARK
+		35,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		39,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		37,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S300
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		333, // EXP_P
+		234, // ADD_MARK
+		235, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S301
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		334, // EXP_P
+		234, // ADD_MARK
+		235, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S302
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -14099,8 +15448,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		332, // TERMINO_P
+		335, // TERMINO_P
+		237, // MUL_MARK
+		238, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -14110,7 +15463,58 @@ var gotoTab = gotoTable{
 		-1,  // S_E
 		-1,  // R_E
 	},
-	gotoRow{ // S300
+	gotoRow{ // S303
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		336, // TERMINO_P
+		237, // MUL_MARK
+		238, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S304
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -14146,204 +15550,20 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		87,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		88,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		333, // S_E
+		337, // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S301
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S302
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S303
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S304
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S305
 		-1, // S'
@@ -14381,8 +15601,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -14428,8 +15652,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -14440,147 +15668,312 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S307
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		336, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S308
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		337, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S309
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		338, // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S310
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S311
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		340, // EXP_P
+		259, // ADD_MARK
+		260, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S312
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		341, // EXP_P
+		259, // ADD_MARK
+		260, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S313
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -14616,8 +16009,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		339, // TERMINO_P
+		342, // TERMINO_P
+		262, // MUL_MARK
+		263, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -14627,7 +16024,58 @@ var gotoTab = gotoTable{
 		-1,  // S_E
 		-1,  // R_E
 	},
-	gotoRow{ // S311
+	gotoRow{ // S314
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		343, // TERMINO_P
+		262, // MUL_MARK
+		263, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S315
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -14663,251 +16111,71 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		87,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		88,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		340, // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S312
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S313
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S314
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S315
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		342, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
+		344, // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S316
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		344, // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S317
 		-1, // S'
@@ -14945,8 +16213,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -14957,51 +16229,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S318
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		346, // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S319
 		-1,  // S'
@@ -15020,7 +16296,7 @@ var gotoTab = gotoTable{
 		-1,  // R_T
 		-1,  // S_V
 		-1,  // I_T
-		-1,  // BODY
+		346, // BODY
 		-1,  // P_STAT
 		-1,  // STATEMENT
 		-1,  // PRINT
@@ -15038,9 +16314,13 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		347, // EXP_P
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -15079,15 +16359,19 @@ var gotoTab = gotoTable{
 		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
-		-1,  // ELSE_MARK
+		348, // ELSE_MARK
 		-1,  // RETURN
 		-1,  // EXPRESSION
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		348, // TERMINO_P
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -15098,6 +16382,159 @@ var gotoTab = gotoTable{
 		-1,  // R_E
 	},
 	gotoRow{ // S321
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S322
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		350, // EXP_P
+		281, // ADD_MARK
+		282, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S323
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		351, // EXP_P
+		281, // ADD_MARK
+		282, // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S324
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -15133,8 +16570,12 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		-1,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		-1,  // TERMINO
-		349, // TERMINO_P
+		352, // TERMINO_P
+		284, // MUL_MARK
+		285, // DIV_MARK
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -15144,7 +16585,58 @@ var gotoTab = gotoTable{
 		-1,  // S_E
 		-1,  // R_E
 	},
-	gotoRow{ // S322
+	gotoRow{ // S325
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		353, // TERMINO_P
+		284, // MUL_MARK
+		285, // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
+	},
+	gotoRow{ // S326
 		-1,  // S'
 		-1,  // Program
 		-1,  // P_VAR
@@ -15180,204 +16672,20 @@ var gotoTab = gotoTable{
 		-1,  // REL_OP
 		87,  // EXP
 		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
 		88,  // TERMINO
 		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
 		89,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
 		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		350, // S_E
+		354, // S_E
 		-1,  // R_E
-	},
-	gotoRow{ // S323
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S324
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S325
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
-	},
-	gotoRow{ // S326
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
 	},
 	gotoRow{ // S327
 		-1, // S'
@@ -15415,8 +16723,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15462,8 +16774,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15509,8 +16825,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15556,8 +16876,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15603,8 +16927,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15650,8 +16978,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15697,8 +17029,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15744,8 +17080,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15756,51 +17096,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S335
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		355, // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		-1,  // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S336
 		-1, // S'
@@ -15838,8 +17182,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15885,8 +17233,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15932,8 +17284,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -15944,51 +17300,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S339
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		359, // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S340
 		-1, // S'
@@ -16026,8 +17386,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16073,8 +17437,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16120,8 +17488,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16167,8 +17539,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16214,8 +17590,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16261,8 +17641,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16308,8 +17692,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16355,8 +17743,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16402,8 +17794,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16449,8 +17845,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16496,8 +17896,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16543,8 +17947,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16555,51 +17963,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S352
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		360, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S353
 		-1, // S'
@@ -16637,8 +18049,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16684,8 +18100,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16731,8 +18151,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16743,51 +18167,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S356
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		364, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S357
 		-1, // S'
@@ -16825,8 +18253,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16837,51 +18269,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S358
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		362, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // WHILE_MARK
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S359
 		-1, // S'
@@ -16919,8 +18355,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -16966,8 +18406,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -17013,8 +18457,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -17025,51 +18473,55 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S362
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // WHILE_MARK
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		366, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // ADD_MARK
+		-1,  // SUB_MARK
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // MUL_MARK
+		-1,  // DIV_MARK
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S363
 		-1, // S'
@@ -17107,8 +18559,12 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
@@ -17154,8 +18610,216 @@ var gotoTab = gotoTable{
 		-1, // REL_OP
 		-1, // EXP
 		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
 		-1, // TERMINO
 		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S365
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S366
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S367
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S368
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // ADD_MARK
+		-1, // SUB_MARK
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // MUL_MARK
+		-1, // DIV_MARK
 		-1, // FACTOR
 		-1, // FACTOR_CORE
 		-1, // FACTOR_SUFFIX
