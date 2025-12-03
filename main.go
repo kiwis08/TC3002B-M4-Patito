@@ -40,6 +40,7 @@ func main() {
 	}
 
 	compile := false
+	verbose := false
 	outputFile := ""
 
 	for i := 2; i < len(os.Args); i++ {
@@ -48,6 +49,9 @@ func main() {
 			compile = true
 		} else if !strings.HasPrefix(arg, "-") {
 			outputFile = arg
+		}
+		if arg == "--verbose" || arg == "-v" {
+			verbose = true
 		}
 	}
 
@@ -58,7 +62,9 @@ func main() {
 			// Generar nombre de salida basado en el archivo de entrada
 			baseName := strings.TrimSuffix(filename, filepath.Ext(filename))
 			outputFile = baseName + ".patitoc"
-			fmt.Printf("Filename will be: %s", outputFile)
+			if verbose {
+				fmt.Printf("Filename will be: %s", outputFile)
+			}
 		}
 
 		if err := vm.SavePatitoc(ctx, outputFile); err != nil {
@@ -66,7 +72,11 @@ func main() {
 			os.Exit(1)
 		}
 
-		fmt.Printf("✓ Compiled successfully: %s -> %s\n", filename, outputFile)
+		if verbose {
+			fmt.Printf("✓ Compiled successfully: %s -> %s\n", filename, outputFile)
+		} else {
+			fmt.Printf("✓ Compiled successfully\n")
+		}
 		fmt.Printf("  Quadruples: %d\n", ctx.Quadruples.Size())
 		fmt.Printf("  Constants: %d\n", len(ctx.ConstantTable.Entries()))
 		fmt.Printf("  Functions: %d\n", len(ctx.Directory.Functions))

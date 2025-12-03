@@ -274,15 +274,15 @@ func reduceVarDeclaration(X []Attrib, C interface{}) (Attrib, error) {
 		varName := tok.IDValue()
 		// Almacenar tipo en contexto para uso inmediato durante parsing
 		ctx.VariableTypes[varName] = typeVal
-		fmt.Printf("Tenemos variable %v", varName)
-		fmt.Printf("\n")
+		// fmt.Printf("Tenemos variable %v", varName)
+		// fmt.Printf("\n")
 		// Asignar dirección virtual inmediatamente para que esté disponible durante parsing
 		// Esto es necesario porque las variables pueden usarse en el main body antes de que
 		// reduceProgram agregue las variables al directorio
 		addr := ctx.AddressManager.NextGlobal()
 		ctx.VariableAddresses[varName] = addr
-		fmt.Printf("Tenemos direccion %d", addr)
-		fmt.Printf("\n")
+		// fmt.Printf("Tenemos direccion %d", addr)
+		// fmt.Printf("\n")
 		specs = append(specs, &semantic.VariableSpec{
 			Name:    varName,
 			Type:    typeVal,
