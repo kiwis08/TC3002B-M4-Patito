@@ -122,9 +122,6 @@ type FunctionDirectory struct {
 
 	Globals   *VariableTable
 	Functions map[string]*FunctionEntry
-	// LastAddedFunction tracks the most recently added function name
-	// This is used as a workaround for bottom-up parsing where body is processed before reduceFunction
-	LastAddedFunction string
 }
 
 func NewFunctionDirectory() *FunctionDirectory {
@@ -213,8 +210,6 @@ func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token
 	}
 
 	fd.Functions[name] = fn
-	// Track the most recently added function name for return statements
-	fd.LastAddedFunction = name
 	return fn, nil
 }
 

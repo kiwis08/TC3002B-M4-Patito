@@ -1,0 +1,30 @@
+program test8_fibonacci;
+var n, fib: int;
+
+int fibonacci(k: int)[ var a, b, temp, idx, stop: int; ] {
+    if (k == 0) { return 0; };
+    if (k == 1) { return 1; };
+
+    a = 0;
+    b = 1;
+    idx = 2;
+    stop = k + 1;
+
+    while (idx < stop) do {
+        temp = a + b;
+        a = b;
+        b = temp;
+        idx = idx + 1;
+    };
+
+    return b;
+};
+
+main {
+    n = 7;
+    fib = fibonacci(n);
+    print("fibonacci(7) = ", fib);
+}
+end
+
+
