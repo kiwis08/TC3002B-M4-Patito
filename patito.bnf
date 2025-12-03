@@ -134,7 +134,11 @@ ASSIGN
 
 /// while
 CYCLE
-  : "while" "(" EXPRESSION ")" "do" BODY ";"
+  : "while" "(" EXPRESSION ")" WHILE_MARK "do" BODY ";"
+  ;
+
+WHILE_MARK
+  : empty
   ;
 
 /// condition

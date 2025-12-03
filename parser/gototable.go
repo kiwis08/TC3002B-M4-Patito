@@ -2,7 +2,7 @@
 
 package parser
 
-const numNTSymbols = 44
+const numNTSymbols = 45
 
 type (
 	gotoTable [numStates]gotoRow
@@ -36,6 +36,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -82,6 +83,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -128,6 +130,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -174,6 +177,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -220,6 +224,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -266,6 +271,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -312,6 +318,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -358,6 +365,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -404,6 +412,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -450,6 +459,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -496,6 +506,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -542,6 +553,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -588,6 +600,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -634,6 +647,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -680,6 +694,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -726,6 +741,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -772,6 +788,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -818,6 +835,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -864,6 +882,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -910,6 +929,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -956,6 +976,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1002,6 +1023,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1048,6 +1070,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1094,6 +1117,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1140,6 +1164,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1186,6 +1211,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		34, // ASSIGN
 		36, // CYCLE
+		-1, // WHILE_MARK
 		35, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1232,6 +1258,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1278,6 +1305,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1324,6 +1352,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1370,6 +1399,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1416,6 +1446,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1462,6 +1493,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		57, // ASSIGN
 		59, // CYCLE
+		-1, // WHILE_MARK
 		58, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1508,6 +1540,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1554,6 +1587,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		34, // ASSIGN
 		36, // CYCLE
+		-1, // WHILE_MARK
 		35, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1600,6 +1634,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1646,6 +1681,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1692,6 +1728,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1738,6 +1775,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1784,6 +1822,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1830,6 +1869,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1876,6 +1916,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1922,6 +1963,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -1968,6 +2010,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2014,6 +2057,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2060,6 +2104,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2106,6 +2151,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2152,6 +2198,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2198,6 +2245,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2244,6 +2292,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2290,6 +2339,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2336,6 +2386,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2382,6 +2433,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2428,6 +2480,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2474,6 +2527,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2520,6 +2574,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		57, // ASSIGN
 		59, // CYCLE
+		-1, // WHILE_MARK
 		58, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2566,6 +2621,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2612,6 +2668,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		57, // ASSIGN
 		59, // CYCLE
+		-1, // WHILE_MARK
 		58, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2658,6 +2715,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2704,6 +2762,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2750,6 +2809,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2796,6 +2856,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2842,6 +2903,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2888,6 +2950,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2934,6 +2997,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -2980,6 +3044,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3026,6 +3091,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3072,6 +3138,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3118,6 +3185,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3164,6 +3232,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3210,6 +3279,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3256,6 +3326,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3302,6 +3373,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3348,6 +3420,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3394,6 +3467,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3440,6 +3514,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3486,6 +3561,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3532,6 +3608,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3578,6 +3655,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3624,6 +3702,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3670,6 +3749,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3716,6 +3796,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3762,6 +3843,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3808,6 +3890,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3854,6 +3937,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -3900,6 +3984,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3946,6 +4031,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -3992,6 +4078,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4038,6 +4125,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4084,6 +4172,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4130,6 +4219,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4176,6 +4266,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4222,6 +4313,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4268,6 +4360,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4314,6 +4407,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4360,6 +4454,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4406,6 +4501,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4452,6 +4548,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4498,6 +4595,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4544,6 +4642,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4590,6 +4689,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4636,6 +4736,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4682,6 +4783,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4728,6 +4830,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4774,6 +4877,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4820,6 +4924,7 @@ var gotoTab = gotoTable{
 		164, // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -4866,6 +4971,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4912,6 +5018,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -4958,6 +5065,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5004,6 +5112,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5050,6 +5159,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5096,6 +5206,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5142,6 +5253,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5188,6 +5300,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5234,6 +5347,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5280,6 +5394,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5326,6 +5441,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5372,6 +5488,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5418,6 +5535,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5464,6 +5582,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5510,6 +5629,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5556,6 +5676,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5602,6 +5723,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5648,6 +5770,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5694,6 +5817,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5740,6 +5864,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5786,6 +5911,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5832,6 +5958,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5878,6 +6005,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -5924,6 +6052,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -5970,6 +6099,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6016,6 +6146,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6062,6 +6193,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6108,6 +6240,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6154,6 +6287,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6200,6 +6334,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6246,6 +6381,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6292,6 +6428,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6338,6 +6475,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6384,6 +6522,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6430,6 +6569,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6476,6 +6616,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6522,6 +6663,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6568,6 +6710,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6614,6 +6757,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6660,6 +6804,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6706,6 +6851,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6752,6 +6898,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6798,6 +6945,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6844,6 +6992,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6890,6 +7039,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -6936,6 +7086,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -6982,6 +7133,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7028,6 +7180,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7074,6 +7227,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7120,6 +7274,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7166,6 +7321,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7212,6 +7368,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7258,6 +7415,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7304,6 +7462,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7350,6 +7509,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7396,6 +7556,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7442,6 +7603,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7488,6 +7650,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7534,6 +7697,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7580,6 +7744,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7601,50 +7766,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S165
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		216, // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S166
 		-1, // S'
@@ -7672,6 +7838,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7718,6 +7885,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7764,6 +7932,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7810,6 +7979,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7856,6 +8026,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7902,6 +8073,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -7948,6 +8120,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -7994,6 +8167,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8040,6 +8214,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8086,6 +8261,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8132,6 +8308,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8178,6 +8355,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8224,6 +8402,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8270,6 +8449,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8316,6 +8496,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		228, // IF_MARK
 		-1,  // ELSE_MARK
@@ -8362,6 +8543,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8408,6 +8590,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8454,6 +8637,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8500,6 +8684,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8546,6 +8731,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8592,6 +8778,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8638,6 +8825,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8684,6 +8872,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8730,6 +8919,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8776,6 +8966,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8822,6 +9013,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8868,6 +9060,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -8914,6 +9107,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		34,  // ASSIGN
 		36,  // CYCLE
+		-1,  // WHILE_MARK
 		35,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -8960,6 +9154,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9006,6 +9201,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9052,6 +9248,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9098,6 +9295,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9144,6 +9342,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9190,6 +9389,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9236,6 +9436,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9282,6 +9483,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9328,6 +9530,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9374,6 +9577,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9420,6 +9624,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9466,6 +9671,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9512,6 +9718,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9558,6 +9765,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -9604,6 +9812,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9650,6 +9859,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9696,6 +9906,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9742,6 +9953,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9763,50 +9975,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S212
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		-1,  // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		273, // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S213
 		-1,  // S'
@@ -9834,6 +10047,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		274, // IF_MARK
 		-1,  // ELSE_MARK
@@ -9880,6 +10094,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9926,6 +10141,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -9947,50 +10163,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S216
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		275, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S217
 		-1, // S'
@@ -10018,6 +10235,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10064,6 +10282,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10110,6 +10329,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10156,6 +10376,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10202,6 +10423,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10248,6 +10470,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10294,6 +10517,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10340,6 +10564,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10386,6 +10611,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10432,6 +10658,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10478,6 +10705,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10524,6 +10752,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10570,6 +10799,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10616,6 +10846,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10662,6 +10893,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10708,6 +10940,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10754,6 +10987,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10800,6 +11034,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10846,6 +11081,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10892,6 +11128,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -10938,6 +11175,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -10984,6 +11222,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11030,6 +11269,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11076,6 +11316,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11122,6 +11363,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11168,6 +11410,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11214,6 +11457,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11260,6 +11504,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11306,6 +11551,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11352,6 +11598,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11398,6 +11645,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11444,6 +11692,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11490,6 +11739,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11536,6 +11786,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11582,6 +11833,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11628,6 +11880,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11674,6 +11927,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11720,6 +11974,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11766,6 +12021,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11812,6 +12068,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11858,6 +12115,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -11904,6 +12162,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11950,6 +12209,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -11996,6 +12256,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12042,6 +12303,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12088,6 +12350,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12134,6 +12397,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12180,6 +12444,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12226,6 +12491,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12272,6 +12538,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12318,6 +12585,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12364,6 +12632,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12410,6 +12679,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12456,6 +12726,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12502,6 +12773,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12548,6 +12820,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12569,50 +12842,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S273
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		315, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S274
 		-1,  // S'
@@ -12640,6 +12914,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12661,50 +12936,51 @@ var gotoTab = gotoTable{
 		-1,  // R_E
 	},
 	gotoRow{ // S275
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		317, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S276
 		-1, // S'
@@ -12732,6 +13008,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12778,6 +13055,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12824,6 +13102,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12870,6 +13149,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -12916,6 +13196,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -12962,6 +13243,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13008,6 +13290,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13054,6 +13337,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13100,6 +13384,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13146,6 +13431,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13192,6 +13478,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13238,6 +13525,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13284,6 +13572,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13330,6 +13619,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13376,6 +13666,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13422,6 +13713,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13468,6 +13760,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13514,6 +13807,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13560,6 +13854,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		327, // ELSE_MARK
@@ -13606,6 +13901,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		34,  // ASSIGN
 		36,  // CYCLE
+		-1,  // WHILE_MARK
 		35,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13652,6 +13948,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13698,6 +13995,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13744,6 +14042,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13790,6 +14089,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13836,6 +14136,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -13882,6 +14183,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13928,6 +14230,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -13974,6 +14277,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14020,6 +14324,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14066,6 +14371,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14112,6 +14418,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14158,6 +14465,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14204,6 +14512,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14250,6 +14559,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14296,6 +14606,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14342,6 +14653,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14388,6 +14700,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14434,6 +14747,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14480,6 +14794,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14501,50 +14816,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S315
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		342, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S316
 		-1,  // S'
@@ -14572,6 +14888,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		344, // ELSE_MARK
@@ -14618,6 +14935,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14664,6 +14982,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14672,7 +14991,7 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		345, // EXP_P
+		346, // EXP_P
 		-1,  // TERMINO
 		-1,  // TERMINO_P
 		-1,  // FACTOR
@@ -14710,6 +15029,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14718,7 +15038,7 @@ var gotoTab = gotoTable{
 		-1,  // REL_TAIL
 		-1,  // REL_OP
 		-1,  // EXP
-		346, // EXP_P
+		347, // EXP_P
 		-1,  // TERMINO
 		-1,  // TERMINO_P
 		-1,  // FACTOR
@@ -14756,6 +15076,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14766,7 +15087,7 @@ var gotoTab = gotoTable{
 		-1,  // EXP
 		-1,  // EXP_P
 		-1,  // TERMINO
-		347, // TERMINO_P
+		348, // TERMINO_P
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -14802,6 +15123,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14812,7 +15134,7 @@ var gotoTab = gotoTable{
 		-1,  // EXP
 		-1,  // EXP_P
 		-1,  // TERMINO
-		348, // TERMINO_P
+		349, // TERMINO_P
 		-1,  // FACTOR
 		-1,  // FACTOR_CORE
 		-1,  // FACTOR_SUFFIX
@@ -14848,6 +15170,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -14865,7 +15188,7 @@ var gotoTab = gotoTable{
 		90,  // S_OP
 		-1,  // CTE
 		-1,  // F_CALL
-		349, // S_E
+		350, // S_E
 		-1,  // R_E
 	},
 	gotoRow{ // S323
@@ -14894,6 +15217,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14940,6 +15264,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -14986,6 +15311,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15032,6 +15358,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15078,6 +15405,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15124,6 +15452,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15170,6 +15499,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15216,6 +15546,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15262,6 +15593,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15308,6 +15640,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15354,6 +15687,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15400,6 +15734,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15428,7 +15763,7 @@ var gotoTab = gotoTable{
 		-1,  // FVAR_LIST
 		-1,  // F_VAR
 		-1,  // R_ID
-		354, // TYPE
+		355, // TYPE
 		-1,  // P_FUNCS
 		-1,  // F_T
 		-1,  // FUNCS
@@ -15446,6 +15781,7 @@ var gotoTab = gotoTable{
 		-1,  // R_PRINT
 		-1,  // ASSIGN
 		-1,  // CYCLE
+		-1,  // WHILE_MARK
 		-1,  // CONDITION
 		-1,  // IF_MARK
 		-1,  // ELSE_MARK
@@ -15492,6 +15828,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15538,6 +15875,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15584,6 +15922,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15630,6 +15969,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15676,6 +16016,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15722,6 +16063,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15768,6 +16110,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15814,6 +16157,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15860,6 +16204,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15906,6 +16251,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15952,6 +16298,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -15998,6 +16345,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16044,6 +16392,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16090,6 +16439,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16136,6 +16486,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16157,52 +16508,6 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S351
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		358, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
-	},
-	gotoRow{ // S352
 		-1, // S'
 		-1, // Program
 		-1, // P_VAR
@@ -16228,6 +16533,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16247,6 +16553,53 @@ var gotoTab = gotoTable{
 		-1, // F_CALL
 		-1, // S_E
 		-1, // R_E
+	},
+	gotoRow{ // S352
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		360, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S353
 		-1, // S'
@@ -16274,6 +16627,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16320,6 +16674,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16366,6 +16721,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16387,50 +16743,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S356
-		-1,  // S'
-		-1,  // Program
-		-1,  // P_VAR
-		-1,  // VARS
-		-1,  // FVAR_LIST
-		-1,  // F_VAR
-		-1,  // R_ID
-		-1,  // TYPE
-		-1,  // P_FUNCS
-		-1,  // F_T
-		-1,  // FUNCS
-		-1,  // FUNC_LOCALS
-		-1,  // S_T
-		-1,  // R_T
-		-1,  // S_V
-		-1,  // I_T
-		360, // BODY
-		-1,  // P_STAT
-		-1,  // STATEMENT
-		-1,  // PRINT
-		-1,  // PRINT_P
-		-1,  // E_PRINT
-		-1,  // R_PRINT
-		-1,  // ASSIGN
-		-1,  // CYCLE
-		-1,  // CONDITION
-		-1,  // IF_MARK
-		-1,  // ELSE_MARK
-		-1,  // RETURN
-		-1,  // EXPRESSION
-		-1,  // REL_TAIL
-		-1,  // REL_OP
-		-1,  // EXP
-		-1,  // EXP_P
-		-1,  // TERMINO
-		-1,  // TERMINO_P
-		-1,  // FACTOR
-		-1,  // FACTOR_CORE
-		-1,  // FACTOR_SUFFIX
-		-1,  // S_OP
-		-1,  // CTE
-		-1,  // F_CALL
-		-1,  // S_E
-		-1,  // R_E
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
 	},
 	gotoRow{ // S357
 		-1, // S'
@@ -16458,6 +16815,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16479,50 +16837,51 @@ var gotoTab = gotoTable{
 		-1, // R_E
 	},
 	gotoRow{ // S358
-		-1, // S'
-		-1, // Program
-		-1, // P_VAR
-		-1, // VARS
-		-1, // FVAR_LIST
-		-1, // F_VAR
-		-1, // R_ID
-		-1, // TYPE
-		-1, // P_FUNCS
-		-1, // F_T
-		-1, // FUNCS
-		-1, // FUNC_LOCALS
-		-1, // S_T
-		-1, // R_T
-		-1, // S_V
-		-1, // I_T
-		-1, // BODY
-		-1, // P_STAT
-		-1, // STATEMENT
-		-1, // PRINT
-		-1, // PRINT_P
-		-1, // E_PRINT
-		-1, // R_PRINT
-		-1, // ASSIGN
-		-1, // CYCLE
-		-1, // CONDITION
-		-1, // IF_MARK
-		-1, // ELSE_MARK
-		-1, // RETURN
-		-1, // EXPRESSION
-		-1, // REL_TAIL
-		-1, // REL_OP
-		-1, // EXP
-		-1, // EXP_P
-		-1, // TERMINO
-		-1, // TERMINO_P
-		-1, // FACTOR
-		-1, // FACTOR_CORE
-		-1, // FACTOR_SUFFIX
-		-1, // S_OP
-		-1, // CTE
-		-1, // F_CALL
-		-1, // S_E
-		-1, // R_E
+		-1,  // S'
+		-1,  // Program
+		-1,  // P_VAR
+		-1,  // VARS
+		-1,  // FVAR_LIST
+		-1,  // F_VAR
+		-1,  // R_ID
+		-1,  // TYPE
+		-1,  // P_FUNCS
+		-1,  // F_T
+		-1,  // FUNCS
+		-1,  // FUNC_LOCALS
+		-1,  // S_T
+		-1,  // R_T
+		-1,  // S_V
+		-1,  // I_T
+		362, // BODY
+		-1,  // P_STAT
+		-1,  // STATEMENT
+		-1,  // PRINT
+		-1,  // PRINT_P
+		-1,  // E_PRINT
+		-1,  // R_PRINT
+		-1,  // ASSIGN
+		-1,  // CYCLE
+		-1,  // WHILE_MARK
+		-1,  // CONDITION
+		-1,  // IF_MARK
+		-1,  // ELSE_MARK
+		-1,  // RETURN
+		-1,  // EXPRESSION
+		-1,  // REL_TAIL
+		-1,  // REL_OP
+		-1,  // EXP
+		-1,  // EXP_P
+		-1,  // TERMINO
+		-1,  // TERMINO_P
+		-1,  // FACTOR
+		-1,  // FACTOR_CORE
+		-1,  // FACTOR_SUFFIX
+		-1,  // S_OP
+		-1,  // CTE
+		-1,  // F_CALL
+		-1,  // S_E
+		-1,  // R_E
 	},
 	gotoRow{ // S359
 		-1, // S'
@@ -16550,6 +16909,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16596,6 +16956,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16642,6 +17003,7 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK
@@ -16688,6 +17050,101 @@ var gotoTab = gotoTable{
 		-1, // R_PRINT
 		-1, // ASSIGN
 		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S363
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
+		-1, // CONDITION
+		-1, // IF_MARK
+		-1, // ELSE_MARK
+		-1, // RETURN
+		-1, // EXPRESSION
+		-1, // REL_TAIL
+		-1, // REL_OP
+		-1, // EXP
+		-1, // EXP_P
+		-1, // TERMINO
+		-1, // TERMINO_P
+		-1, // FACTOR
+		-1, // FACTOR_CORE
+		-1, // FACTOR_SUFFIX
+		-1, // S_OP
+		-1, // CTE
+		-1, // F_CALL
+		-1, // S_E
+		-1, // R_E
+	},
+	gotoRow{ // S364
+		-1, // S'
+		-1, // Program
+		-1, // P_VAR
+		-1, // VARS
+		-1, // FVAR_LIST
+		-1, // F_VAR
+		-1, // R_ID
+		-1, // TYPE
+		-1, // P_FUNCS
+		-1, // F_T
+		-1, // FUNCS
+		-1, // FUNC_LOCALS
+		-1, // S_T
+		-1, // R_T
+		-1, // S_V
+		-1, // I_T
+		-1, // BODY
+		-1, // P_STAT
+		-1, // STATEMENT
+		-1, // PRINT
+		-1, // PRINT_P
+		-1, // E_PRINT
+		-1, // R_PRINT
+		-1, // ASSIGN
+		-1, // CYCLE
+		-1, // WHILE_MARK
 		-1, // CONDITION
 		-1, // IF_MARK
 		-1, // ELSE_MARK

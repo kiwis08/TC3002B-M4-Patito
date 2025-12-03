@@ -40,34 +40,35 @@ func init() {
 	setReduceFunc(40, reduceRPrint)           // R_PRINT : "," PRINT_P
 	setReduceFunc(41, returnEmptySpecs)       // R_PRINT : empty
 	setReduceFunc(42, reduceAssign)           // ASSIGN : id "=" EXPRESSION ";"
-	setReduceFunc(43, reduceCycle)            // CYCLE : "while" "(" EXPRESSION ")" "do" BODY ";"
-	setReduceFunc(44, reduceCondition)        // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
-	setReduceFunc(45, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
-	setReduceFunc(46, reduceIfMark)           // IF_MARK : empty
-	setReduceFunc(47, reduceElseMark)         // ELSE_MARK : empty
-	setReduceFunc(48, reduceReturn)           // RETURN : "return" EXPRESSION ";"
-	setReduceFunc(49, reduceReturnVoid)       // RETURN : "return" ";"
-	setReduceFunc(50, reduceExpression)       // EXPRESSION : EXP REL_TAIL
-	setReduceFunc(51, reduceRelTail)          // REL_TAIL : REL_OP EXP
-	setReduceFunc(52, returnEmptySpecs)       // REL_TAIL : empty
-	setReduceFunc(53, reduceRelOpGt)          // REL_OP : ">"
-	setReduceFunc(54, reduceRelOpLt)          // REL_OP : "<"
-	setReduceFunc(55, reduceRelOpNeq)         // REL_OP : "!="
-	setReduceFunc(56, reduceRelOpEq)          // REL_OP : "=="
-	setReduceFunc(57, reduceExp)              // EXP : TERMINO EXP_P
-	setReduceFunc(58, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
-	setReduceFunc(59, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
-	setReduceFunc(60, returnEmptySpecs)       // EXP_P : empty
-	setReduceFunc(61, reduceTermino)          // TERMINO : FACTOR TERMINO_P
-	setReduceFunc(62, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
-	setReduceFunc(63, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
-	setReduceFunc(64, returnEmptySpecs)       // TERMINO_P : empty
-	setReduceFunc(65, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
-	setReduceFunc(66, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
-	setReduceFunc(67, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
-	setReduceFunc(68, reduceFactorCoreCte)    // FACTOR_CORE : CTE
-	setReduceFunc(69, reduceFactorSuffixCall)
-	setReduceFunc(70, returnEmptySpecs)
+	setReduceFunc(43, reduceCycle)            // CYCLE : "while" "(" EXPRESSION ")" WHILE_MARK "do" BODY ";"
+	setReduceFunc(44, reduceWhileMark)        // WHILE_MARK : empty
+	setReduceFunc(45, reduceCondition)        // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
+	setReduceFunc(46, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
+	setReduceFunc(47, reduceIfMark)           // IF_MARK : empty
+	setReduceFunc(48, reduceElseMark)         // ELSE_MARK : empty
+	setReduceFunc(49, reduceReturn)           // RETURN : "return" EXPRESSION ";"
+	setReduceFunc(50, reduceReturnVoid)       // RETURN : "return" ";"
+	setReduceFunc(51, reduceExpression)       // EXPRESSION : EXP REL_TAIL
+	setReduceFunc(52, reduceRelTail)          // REL_TAIL : REL_OP EXP
+	setReduceFunc(53, returnEmptySpecs)       // REL_TAIL : empty
+	setReduceFunc(54, reduceRelOpGt)          // REL_OP : ">"
+	setReduceFunc(55, reduceRelOpLt)          // REL_OP : "<"
+	setReduceFunc(56, reduceRelOpNeq)         // REL_OP : "!="
+	setReduceFunc(57, reduceRelOpEq)          // REL_OP : "=="
+	setReduceFunc(58, reduceExp)              // EXP : TERMINO EXP_P
+	setReduceFunc(59, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
+	setReduceFunc(60, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
+	setReduceFunc(61, returnEmptySpecs)       // EXP_P : empty
+	setReduceFunc(62, reduceTermino)          // TERMINO : FACTOR TERMINO_P
+	setReduceFunc(63, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
+	setReduceFunc(64, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
+	setReduceFunc(65, returnEmptySpecs)       // TERMINO_P : empty
+	setReduceFunc(66, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
+	setReduceFunc(67, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
+	setReduceFunc(68, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
+	setReduceFunc(69, reduceFactorCoreCte)    // FACTOR_CORE : CTE
+	setReduceFunc(70, reduceFactorSuffixCall)
+	setReduceFunc(71, returnEmptySpecs)
 }
 
 func setReduceFunc(index int, fn reduceFunc) {
@@ -824,20 +825,25 @@ func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
 	return nil, nil
 }
 
-// reduceCycle: CYCLE -> "while" "(" EXPRESSION ")" "do" BODY ";"
+// reduceWhileMark: WHILE_MARK -> empty
+func reduceWhileMark(_ []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if err := semantic.ProcessWhileCondition(ctx); err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// reduceCycle: CYCLE -> "while" "(" EXPRESSION ")" WHILE_MARK "do" BODY ";"
 func reduceCycle(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
 	}
-	// Main entry detection is now handled in generateQuadruple and reduceProgram
-	// No need to check here
-	// La EXPRESSION (X[2]) ya fue procesada
-	// Procesar la condición: esto genera el GOTOF y guarda los índices necesarios
-	if err := semantic.ProcessWhileCondition(ctx); err != nil {
-		return nil, err
-	}
-	// Al final del BODY, completar el while
+	// WHILE_MARK ya evaluó la condición y generó el GOTOF; aquí sólo cerramos el ciclo
 	if err := semantic.ProcessWhileEnd(ctx); err != nil {
 		return nil, err
 	}
