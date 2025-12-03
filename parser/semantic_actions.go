@@ -42,31 +42,32 @@ func init() {
 	setReduceFunc(42, reduceAssign)           // ASSIGN : id "=" EXPRESSION ";"
 	setReduceFunc(43, reduceCycle)            // CYCLE : "while" "(" EXPRESSION ")" "do" BODY ";"
 	setReduceFunc(44, reduceCondition)        // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
-	setReduceFunc(45, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY "else" BODY ";"
+	setReduceFunc(45, reduceConditionElse)    // CONDITION : "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
 	setReduceFunc(46, reduceIfMark)           // IF_MARK : empty
-	setReduceFunc(47, reduceReturn)           // RETURN : "return" EXPRESSION ";"
-	setReduceFunc(48, reduceReturnVoid)       // RETURN : "return" ";"
-	setReduceFunc(49, reduceExpression)       // EXPRESSION : EXP REL_TAIL
-	setReduceFunc(50, reduceRelTail)          // REL_TAIL : REL_OP EXP
-	setReduceFunc(51, returnEmptySpecs)       // REL_TAIL : empty
-	setReduceFunc(52, reduceRelOpGt)          // REL_OP : ">"
-	setReduceFunc(53, reduceRelOpLt)          // REL_OP : "<"
-	setReduceFunc(54, reduceRelOpNeq)         // REL_OP : "!="
-	setReduceFunc(55, reduceRelOpEq)          // REL_OP : "=="
-	setReduceFunc(56, reduceExp)              // EXP : TERMINO EXP_P
-	setReduceFunc(57, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
-	setReduceFunc(58, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
-	setReduceFunc(59, returnEmptySpecs)       // EXP_P : empty
-	setReduceFunc(60, reduceTermino)          // TERMINO : FACTOR TERMINO_P
-	setReduceFunc(61, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
-	setReduceFunc(62, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
-	setReduceFunc(63, returnEmptySpecs)       // TERMINO_P : empty
-	setReduceFunc(64, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
-	setReduceFunc(65, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
-	setReduceFunc(66, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
-	setReduceFunc(67, reduceFactorCoreCte)    // FACTOR_CORE : CTE
-	setReduceFunc(68, reduceFactorSuffixCall)
-	setReduceFunc(69, returnEmptySpecs)
+	setReduceFunc(47, reduceElseMark)         // ELSE_MARK : empty
+	setReduceFunc(48, reduceReturn)           // RETURN : "return" EXPRESSION ";"
+	setReduceFunc(49, reduceReturnVoid)       // RETURN : "return" ";"
+	setReduceFunc(50, reduceExpression)       // EXPRESSION : EXP REL_TAIL
+	setReduceFunc(51, reduceRelTail)          // REL_TAIL : REL_OP EXP
+	setReduceFunc(52, returnEmptySpecs)       // REL_TAIL : empty
+	setReduceFunc(53, reduceRelOpGt)          // REL_OP : ">"
+	setReduceFunc(54, reduceRelOpLt)          // REL_OP : "<"
+	setReduceFunc(55, reduceRelOpNeq)         // REL_OP : "!="
+	setReduceFunc(56, reduceRelOpEq)          // REL_OP : "=="
+	setReduceFunc(57, reduceExp)              // EXP : TERMINO EXP_P
+	setReduceFunc(58, reduceExpPAdd)          // EXP_P : "+" TERMINO EXP_P
+	setReduceFunc(59, reduceExpPSub)          // EXP_P : "-" TERMINO EXP_P
+	setReduceFunc(60, returnEmptySpecs)       // EXP_P : empty
+	setReduceFunc(61, reduceTermino)          // TERMINO : FACTOR TERMINO_P
+	setReduceFunc(62, reduceTerminoPMul)      // TERMINO_P : "*" FACTOR TERMINO_P
+	setReduceFunc(63, reduceTerminoPDiv)      // TERMINO_P : "/" FACTOR TERMINO_P
+	setReduceFunc(64, returnEmptySpecs)       // TERMINO_P : empty
+	setReduceFunc(65, reduceFactor)           // FACTOR : S_OP FACTOR_CORE
+	setReduceFunc(66, reduceFactorCoreParen)  // FACTOR_CORE : "(" EXPRESSION ")"
+	setReduceFunc(67, reduceFactorCoreId)     // FACTOR_CORE : id FACTOR_SUFFIX
+	setReduceFunc(68, reduceFactorCoreCte)    // FACTOR_CORE : CTE
+	setReduceFunc(69, reduceFactorSuffixCall)
+	setReduceFunc(70, returnEmptySpecs)
 }
 
 func setReduceFunc(index int, fn reduceFunc) {
@@ -784,7 +785,19 @@ func reduceIfMark(_ []Attrib, C interface{}) (Attrib, error) {
 	return nil, nil
 }
 
-// reduceCondition: CONDITION -> "if" "(" EXPRESSION ")" BODY ";"
+// reduceElseMark: ELSE_MARK -> empty
+func reduceElseMark(_ []Attrib, C interface{}) (Attrib, error) {
+	ctx, err := semanticCtx(C)
+	if err != nil {
+		return nil, err
+	}
+	if _, err := semantic.ProcessElse(ctx); err != nil {
+		return nil, err
+	}
+	return nil, nil
+}
+
+// reduceCondition: CONDITION -> "if" "(" EXPRESSION ")" IF_MARK BODY ";"
 func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
@@ -798,17 +811,13 @@ func reduceCondition(X []Attrib, C interface{}) (Attrib, error) {
 	return nil, nil
 }
 
-// reduceConditionElse: CONDITION -> "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+// reduceConditionElse: CONDITION -> "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
 func reduceConditionElse(X []Attrib, C interface{}) (Attrib, error) {
 	ctx, err := semanticCtx(C)
 	if err != nil {
 		return nil, err
 	}
-	// Después del primer BODY, procesar else
-	if _, err := semantic.ProcessElse(ctx); err != nil {
-		return nil, err
-	}
-	// Al final del segundo BODY, completar el if-else
+	// IF_MARK y ELSE_MARK ya generaron los saltos correspondientes; aquí sólo cerramos el if-else
 	if err := semantic.ProcessIfElseEnd(ctx); err != nil {
 		return nil, err
 	}

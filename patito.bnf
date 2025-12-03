@@ -140,10 +140,14 @@ CYCLE
 /// condition
 CONDITION
   : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
-  | "if" "(" EXPRESSION ")" IF_MARK BODY "else" BODY ";"
+  | "if" "(" EXPRESSION ")" IF_MARK BODY ELSE_MARK "else" BODY ";"
   ;
 
 IF_MARK
+  : empty
+  ;
+
+ELSE_MARK
   : empty
   ;
 
