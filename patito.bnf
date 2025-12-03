@@ -139,8 +139,12 @@ CYCLE
 
 /// condition
 CONDITION
-  : "if" "(" EXPRESSION ")" BODY ";"
-  | "if" "(" EXPRESSION ")" BODY "else" BODY ";"
+  : "if" "(" EXPRESSION ")" IF_MARK BODY ";"
+  | "if" "(" EXPRESSION ")" IF_MARK BODY "else" BODY ";"
+  ;
+
+IF_MARK
+  : empty
   ;
 
 /// return
