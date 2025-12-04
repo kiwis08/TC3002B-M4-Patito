@@ -233,7 +233,8 @@ graph LR
 ```
 
 #### Diagrama D · Control de Flujo
-```
+
+```mermaid
 graph LR
     classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
     classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
@@ -271,7 +272,7 @@ graph LR
 
 Jerarquía completa de operaciones aritméticas y lógicas: EXPRESIÓN > EXP > TÉRMINO > FACTOR.
 
-```
+```mermaid
 graph LR
     classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
     classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
