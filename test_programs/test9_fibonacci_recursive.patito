@@ -11,7 +11,7 @@ int fibonacci(x: int) [var a, b: int;]
     };
 
 main {
-    n = 10;
+    n = 13;
     resultado = fibonacci(n);
     print("Fibonacci de ", n, " es: ", resultado);
 }
