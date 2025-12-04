@@ -1,6 +1,6 @@
 # Documentación integral del compilador Patito
 
-Este documento consolida todas las decisiones de diseño, la gramática completa, los flujos de trabajo y los artefactos del proyecto `TC3002B-M3-Patito`. La intención es que cualquier desarrollador pueda comprender y extender el compilador con rapidez; el contenido está listo para publicarse en internet sin depender de contexto adicional.
+Este documento consolida todas las decisiones de diseño, la gramática completa, los flujos de trabajo y los artefactos del proyecto `Patito`. La intención es que cualquier desarrollador pueda comprender y extender el compilador con rapidez; el contenido está listo para publicarse en internet sin depender de contexto adicional.
 
 ---
 
@@ -34,7 +34,7 @@ go install github.com/goccmack/gocc@latest
 ### Regenerar lexer y parser
 
 ```bash
-cd /Users/santiagoquihui/Developer/TC3002B-M3-Patito
+cd Patito
 gocc patito.bnf
 ```
 
