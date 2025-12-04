@@ -219,7 +219,8 @@ graph TD
     S_OP --> MINUS
     S_OP --> EPS23["ε"]
 
-    FACTOR_CORE -->|"(\" EXPRESSION \")"| Group
+    FACTOR_CORE -->|"( EXPRESSION )"| Group
+    
     FACTOR_CORE -->|"id FACTOR_SUFFIX"| VarOrCall
     FACTOR_CORE --> CTE
     CTE -->|"cte_int"| CTE_INT
