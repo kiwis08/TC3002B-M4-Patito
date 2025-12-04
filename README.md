@@ -1,6 +1,6 @@
 # Patito - Compilador
 
-Editor con binario de compilador y VM: [Disponible para macOS 26+](https://github.com/kiwis08/Patito/releases/download/untagged-9db89c7428f0cc7dae26/PatitoEditor.1.0.dmg)
+Editor con binario de compilador y VM: [Disponible para macOS 26+](https://github.com/kiwis08/Patito/releases/download/submission-part6/PatitoEditor.1.0.dmg)
 
 Compilador para el lenguaje educativo Patito escrito íntegramente en Go. La cadena completa cubre análisis léxico/sintáctico, verificación semántica, generación de cuádruplos y ejecución sobre una máquina virtual ligera.
 
