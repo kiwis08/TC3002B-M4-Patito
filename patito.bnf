@@ -61,7 +61,11 @@ F_T
   ;
 
 FUNCS
-  : F_T id "(" S_T ")" FUNC_LOCALS BODY ";"
+  : FUNC_HEADER FUNC_LOCALS BODY ";"
+  ;
+
+FUNC_HEADER
+  : F_T id "(" S_T ")"
   ;
 
 FUNC_LOCALS
@@ -226,7 +230,7 @@ FACTOR_CORE
   ;
 
 FACTOR_SUFFIX
-  : "(" S_E ")"
+  : CALL_ARGS_OPEN S_E ")"
   | empty
   ;
 
@@ -243,7 +247,11 @@ CTE
 
 /// Calls
 F_CALL
-  : id "(" S_E ")"
+  : id CALL_ARGS_OPEN S_E ")"
+  ;
+
+CALL_ARGS_OPEN
+  : "("
   ;
 
 S_E

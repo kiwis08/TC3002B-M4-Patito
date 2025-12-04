@@ -23,7 +23,8 @@ type Context struct {
 	// We use a stack to handle nested scopes (if needed in the future)
 	FunctionStack []*FunctionEntry
 	// HasReturn tracks if the current function has at least one return statement
-	HasReturn bool
+	HasReturn       bool
+	CurrentFunction *FunctionEntry
 	// CurrentFunctionName tracks the name of the function currently being processed
 	// This is set when we start processing a function and used by return statements
 	// CurrentFunctionName string

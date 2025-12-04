@@ -192,7 +192,7 @@ func ProcessExpressionEnd(ctx *Context) error {
 			break
 		}
 		if op == "(" {
-			return fmt.Errorf("error: paréntesis no balanceado")
+			break
 		}
 
 		// Desapilar el operador
@@ -525,10 +525,14 @@ func ProcessWhileEnd(ctx *Context) error {
 
 // ProcessReturn processes a return statement with an expression (non-void functions)
 func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
+	fnName := ""
+	if ctx.CurrentFunction != nil {
+		fnName = ctx.CurrentFunction.Name
+	}
 	ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
 		Value:    exprValue,
 		Type:     exprType,
-		Function: "", // Will be set in reduceFunction
+		Function: fnName,
 	})
 	generateQuadruple(ctx, "RETURN", exprValue, "", "")
 	ctx.HasReturn = true
@@ -538,12 +542,14 @@ func ProcessReturn(ctx *Context, exprValue string, exprType Type) error {
 // ProcessReturnVoid processes a return statement without expression (void functions)
 func ProcessReturnVoid(ctx *Context) error {
 
-	// If we still can't find the function, store for later
-	// (This handles the case where we're in a function but can't identify it yet)
+	fnName := ""
+	if ctx.CurrentFunction != nil {
+		fnName = ctx.CurrentFunction.Name
+	}
 	ctx.PendingReturns = append(ctx.PendingReturns, PendingReturn{
 		Value:    "",
 		Type:     TypeVoid,
-		Function: "", // Will be set in reduceFunction
+		Function: fnName,
 	})
 	generateQuadruple(ctx, "RETURN", "", "", "")
 	ctx.HasReturn = true

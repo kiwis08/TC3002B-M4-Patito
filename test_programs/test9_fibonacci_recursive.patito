@@ -1,19 +1,18 @@
-program test9_fibonacci_recursive;
-var n, fib: int;
+program Fibonacci;
+var n, resultado: int;
 
-int fib_rec(k: int)[ ] {
-    if (k < 2) {
-        return k;
-    } else {
-        return fib_rec(k - 1) + fib_rec(k - 2);
+int fibonacci(x: int) [var a, b: int;]
+    {
+        if (x < 2) {
+            return(x);
+        } else {
+            return(fibonacci(x - 1) + fibonacci(x - 2));
+        };
     };
-};
 
 main {
-    n = 6;
-    fib = fib_rec(n);
-    print("fibonacci_rec(6) = ", fib);
+    n = 10;
+    resultado = fibonacci(n);
+    print("Fibonacci de ", n, " es: ", resultado);
 }
 end
-
-

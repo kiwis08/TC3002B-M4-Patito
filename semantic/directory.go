@@ -111,8 +111,9 @@ type FunctionEntry struct {
 	ReturnType Type
 	DeclaredAt token.Pos
 
-	Params *VariableTable
-	Locals *VariableTable
+	Params    *VariableTable
+	Locals    *VariableTable
+	Finalized bool
 }
 
 // FunctionDirectory centraliza la tabla de funciones y la tabla global.
@@ -211,6 +212,70 @@ func (fd *FunctionDirectory) AddFunction(name string, returnType Type, pos token
 
 	fd.Functions[name] = fn
 	return fn, nil
+}
+
+func (fd *FunctionDirectory) AddFunctionPrototype(name string, returnType Type, pos token.Pos, params []*VariableSpec, addressManager *VirtualAddressManager) (*FunctionEntry, error) {
+	if existing, ok := fd.Functions[name]; ok {
+		return nil, &FunctionRedefinitionError{
+			Name:         name,
+			ExistingPos:  existing.DeclaredAt,
+			RedeclaredAt: pos,
+		}
+	}
+
+	// Reiniciar contador de locales
+	addressManager.ResetLocals()
+
+	// Asignar virutales a parametros
+	for _, spec := range params {
+		if spec.Address == 0 {
+			spec.Address = addressManager.NextLocal()
+		}
+	}
+
+	paramTable := NewVariableTable(ScopeParam)
+	if err := paramTable.AddMany(params); err != nil {
+		return nil, err
+	}
+
+	fn := &FunctionEntry{
+		Name:       name,
+		ReturnType: returnType,
+		DeclaredAt: pos,
+		Params:     paramTable,
+		Locals:     NewVariableTable(ScopeLocal),
+		Finalized:  false,
+	}
+
+	fd.Functions[name] = fn
+	return fn, nil
+
+}
+
+func (fd *FunctionDirectory) FinalizeFunction(fn *FunctionEntry, locals []*VariableSpec, addressManager *VirtualAddressManager) error {
+	if fn.Finalized {
+		return fmt.Errorf("funcion %s ya fue finalizada", fn.Name)
+	}
+
+	for _, spec := range locals {
+		if spec.Address == 0 {
+			spec.Address = addressManager.NextLocal()
+		}
+		if fn.Params.Has(spec.Name) {
+			return &DuplicateSymbolError{
+				Name:      spec.Name,
+				Scope:     ScopeLocal,
+				FirstPos:  fn.Params.entries[spec.Name].DeclaredAt,
+				SecondPos: spec.Pos,
+			}
+		}
+		if err := fn.Locals.Add(spec); err != nil {
+			return err
+		}
+	}
+
+	fn.Finalized = true
+	return nil
 }
 
 func (fd *FunctionDirectory) GetFunction(name string) (*FunctionEntry, bool) {
