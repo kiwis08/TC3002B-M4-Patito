@@ -85,161 +85,257 @@ flowchart LR
 - **Operadores**: `+ - * / > < != == =`
 - **Ignorados**: espacio, tabulaciones, saltos de línea, comentarios `//` y `/* */`
 
-### 5.2 Diagramas en Mermaid (puntos neurálgicos resaltados)
+### 5.2 Diagramas en Mermaid (Estilo Ferrocarril)
 
-#### Diagrama A · Programa, variables y funciones
+Estos diagramas representan la gramática formal del lenguaje Patito, divididos por módulos para facilitar la lectura, siguiendo el flujo horizontal original.
 
-```mermaid
-graph TD
-    Program["Program"] -->|"program id ;"| P_VAR
-    Program --> P_FUNCS
-    Program -->|"main"| BODY
-    Program -->|"end"| EndProgram[Fin]
-
-    P_VAR --> VARS
-    P_VAR --> EPS1["ε"]
-    VARS -->|"var"| FVAR_LIST
-    FVAR_LIST --> F_VAR
-    FVAR_LIST --> EPS2["ε"]
-    F_VAR -->|"id R_ID : TYPE ;"| EndFVar
-    R_ID -->|", id"| R_ID
-    R_ID --> EPS3["ε"]
-    TYPE -->|"int"| T_INT
-    TYPE -->|"float"| T_FLOAT
-
-    P_FUNCS --> EPS4["ε"]
-    P_FUNCS --> FUNCS
-    FUNCS --> FUNC_HEADER
-    FUNCS --> FUNC_LOCALS
-    FUNCS --> BODY
-    FUNCS -->|";"| P_FUNCS
-    FUNC_HEADER --> F_T
-    FUNC_HEADER -->|"id"| S_T
-    F_T -->|"TYPE"| TYPE
-    F_T -->|"void"| VOID
-    S_T --> I_T
-    S_T --> EPS5["ε"]
-    I_T -->|"id : TYPE"| EndParam
-    R_T -->|", I_T"| R_T
-    R_T --> EPS6["ε"]
-    FUNC_LOCALS -->|"[ S_V ]"| Locals
-    FUNC_LOCALS --> EPS7["ε"]
-    S_V --> VARS
-    S_V --> EPS8["ε"]
-    BODY -->|"{"| P_STAT
-    P_STAT --> STATEMENT
-    P_STAT --> EPS9["ε"]
-```
-
-#### Diagrama B · Estatutos y control de flujo
+#### A. Estructura General y Variables
+Define la estructura base del programa (`<Programa>`), la declaración de variables globales/locales (`<VARS>`) y los tipos de datos (`<TIPO>`).
 
 ```mermaid
-graph TD
-    STATEMENT --> ASSIGN
-    STATEMENT --> CONDITION
-    STATEMENT --> CYCLE
-    STATEMENT --> CALL_ST["F_CALL ;"]
-    STATEMENT --> PRINT
-    STATEMENT --> RETURN
-    STATEMENT --> BLOCK["[ P_STAT ]"]
+graph LR
+    %% Estilos: Amarillos para Terminales, Azules para No-Terminales
+    classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
+    classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
 
-    PRINT -->|"print ( PRINT_P ) ;"| PRINT_P
-    PRINT_P --> E_PRINT
-    PRINT_P --> R_PRINT
-    E_PRINT --> EXPRESSION
-    E_PRINT -->|"cte_string"| STRING
-    R_PRINT -->|", PRINT_P"| PRINT_P
-    R_PRINT --> EPS10["ε"]
+    %% --- PROGRAMA ---
+    subgraph S_PROG ["< Programa >"]
+        direction LR
+        P_Start((programa)) --> P_Id((id))
+        P_Id --> P_Semi((;))
+        P_Semi --> P_VARS[VARS]
+        P_VARS --> P_FUNCS[FUNCS]
+        P_FUNCS --> P_Main((inicio))
+        P_Main --> P_Body[CUERPO]
+        P_Body --> P_End((fin))
+    end
 
-    ASSIGN -->|"id = EXPRESSION ;"| EndAssign
+    %% --- VARS ---
+    subgraph S_VARS ["< VARS >"]
+        direction LR
+        V_Start((vars)) --> V_Id((id))
+        V_Id --> V_Comma((,)) 
+        V_Comma --> V_Id
+        V_Id --> V_Colon((:))
+        V_Colon --> V_Type[TIPO]
+        V_Type --> V_Semi((;))
+        V_Semi --> V_More{ }
+        V_More -->|más vars| V_Id
+        V_More -->|fin vars| V_End(( ))
+    end
 
-    CYCLE -->|"while ( EXPRESSION )"| WHILE_MARK
-    WHILE_MARK --> EPS11["ε (acción)"]
-    WHILE_MARK -->|"do"| BODY
-    BODY -->|";"| EndWhile
+    %% --- TIPO ---
+    subgraph S_TIPO ["< TIPO >"]
+        direction LR
+        T_Start{ } --> T_Int((entero))
+        T_Start --> T_Float((flotante))
+    end
 
-    CONDITION -->|"if ( EXPRESSION )"| IF_MARK
-    IF_MARK --> EPS12["ε (acción)"]
-    IF_MARK --> BODY
-    CONDITION -->|";"| EndIf
-    CONDITION -->|"if (...) IF_MARK BODY"| ELSE_BRANCH
-    ELSE_BRANCH --> ELSE_MARK
-    ELSE_MARK --> EPS13["ε (acción)"]
-    ELSE_MARK -->|"else"| BODY
-    ELSE_MARK -->|";"| EndIfElse
-
-    RETURN -->|"return EXPRESSION ;"| EndReturnExpr
-    RETURN -->|"return ;"| EndReturnVoid
-
-    classDef neuralgic fill:#fff2cc,stroke:#ff6f00,stroke-width:2px,color:#5d4037;
-    class IF_MARK,ELSE_MARK,WHILE_MARK neuralgic;
+    class P_Start,P_Id,P_Semi,P_Main,P_End,V_Start,V_Id,V_Comma,V_Colon,V_Semi,T_Int,T_Float,V_End terminal;
+    class P_VARS,P_FUNCS,P_Body,V_Type nonterminal;
 ```
 
-#### Diagrama C · Expresiones, factores y llamadas
+#### Diagrama B · Funciones y Cuerpo
+Define la declaración de funciones (<FUNCS>) y el bloque principal de código (<CUERPO>).
 
 ```mermaid
-graph TD
-    EXPRESSION --> EXP
-    EXPRESSION --> REL_TAIL
-    REL_TAIL --> REL_OP
-    REL_TAIL --> EXP
-    REL_TAIL --> EPS20["ε"]
-    REL_OP --> GT[">"]
-    REL_OP --> LT["<"]
-    REL_OP --> NEQ["!="]
-    REL_OP --> EQ["=="]
+graph LR
+    classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
+    classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
 
-    EXP --> TERMINO
-    EXP --> EXP_P
-    EXP_P --> ADD_MARK
-    EXP_P --> SUB_MARK
-    EXP_P --> EPS21["ε"]
-    ADD_MARK --> PLUS["+"]
-    ADD_MARK --> TERMINO
-    ADD_MARK --> EXP_P
-    SUB_MARK --> MINUS["-"]
-    SUB_MARK --> TERMINO
-    SUB_MARK --> EXP_P
+    %% --- FUNCS ---
+    subgraph S_FUNCS ["< FUNCS >"]
+        direction LR
+        F_Choice{ } --> F_Void((nula))
+        F_Choice --> F_Type[TIPO]
+        
+        F_Void --> F_Id((id))
+        F_Type --> F_Id
+        
+        F_Id --> F_OP(( "(" ))
+        F_OP --> F_Args{Args?}
+        F_Args --> F_P_Id((id))
+        F_P_Id --> F_Colon((:))
+        F_Colon --> F_P_Type[TIPO]
+        F_P_Type --> F_Comma((,))
+        F_Comma --> F_P_Id
+        F_P_Type --> F_CP(( ")" ))
+        F_Args -->|vacio| F_CP
+        
+        F_CP --> F_OB(( { ))
+        F_OB --> F_VARS[VARS]
+        F_VARS --> F_Body[CUERPO]
+        F_Body --> F_CB(( } ))
+        
+        F_CB --> F_Loop(( ; ))
+        F_Loop -->|otra func| F_Choice
+        F_Loop -->|fin funcs| F_End(( ))
+    end
 
-    TERMINO --> FACTOR
-    TERMINO --> TERMINO_P
-    TERMINO_P --> MUL_MARK
-    TERMINO_P --> DIV_MARK
-    TERMINO_P --> EPS22["ε"]
-    MUL_MARK --> STAR["*"]
-    MUL_MARK --> FACTOR
-    MUL_MARK --> TERMINO_P
-    DIV_MARK --> SLASH["/"]
-    DIV_MARK --> FACTOR
-    DIV_MARK --> TERMINO_P
+    %% --- CUERPO ---
+    subgraph S_CUERPO ["< CUERPO >"]
+        direction LR
+        C_Start(( { )) --> C_Stat[ESTATUTO]
+        C_Stat --> C_More{ }
+        C_More -->|más| C_Stat
+        C_More --> C_End(( } ))
+    end
 
-    FACTOR --> S_OP
-    FACTOR --> FACTOR_CORE
-    S_OP --> PLUS
-    S_OP --> MINUS
-    S_OP --> EPS23["ε"]
-
-    FACTOR_CORE -->|"( EXPRESSION )"| Group
-    
-    FACTOR_CORE -->|"id FACTOR_SUFFIX"| VarOrCall
-    FACTOR_CORE --> CTE
-    CTE -->|"cte_int"| CTE_INT
-    CTE -->|"cte_float"| CTE_FLOAT
-
-    FACTOR_SUFFIX -->|"CALL_ARGS_OPEN S_E )"| CallTail
-    FACTOR_SUFFIX --> EPS24["ε"]
-    CALL_ARGS_OPEN -->|"("| ArgOpen
-    S_E --> EXPRESSION
-    S_E --> R_E
-    S_E --> EPS25["ε"]
-    R_E -->|", EXPRESSION"| R_E
-    R_E --> EPS26["ε"]
-
-    F_CALL -->|"id CALL_ARGS_OPEN S_E )"| EndCall
-
-    classDef neuralgic fill:#fff2cc,stroke:#ff6f00,stroke-width:2px,color:#5d4037;
-    class ADD_MARK,SUB_MARK,MUL_MARK,DIV_MARK neuralgic;
+    class F_Void,F_Id,F_OP,F_P_Id,F_Colon,F_Comma,F_CP,F_OB,F_CB,F_Loop,F_End,C_Start,C_End terminal;
+    class F_Type,F_P_Type,F_VARS,F_Body,C_Stat nonterminal;
 ```
+
+#### Diagrama C · Estatutos (Sentencias)
+
+Detalle de las acciones posibles dentro de un cuerpo: Asignación, Lectura, Escritura, etc.
+
+```mermaid
+graph LR
+    classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
+    classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
+
+    %% --- ESTATUTO ---
+    subgraph S_EST ["< ESTATUTO >"]
+        direction LR
+        E_Start{ } --> E_Asig[ASIGNA]
+        E_Start --> E_Cond[CONDICIÓN]
+        E_Start --> E_Cicl[CICLO]
+        E_Start --> E_Llam[LLAMADA]
+        E_Llam --> E_Semi((;))
+        E_Start --> E_Imp[IMPRIME]
+    end
+
+    %% --- ASIGNA ---
+    subgraph S_ASIG ["< ASIGNA >"]
+        direction LR
+        A_Id((id)) --> A_Eq((=))
+        A_Eq --> A_Exp[EXPRESIÓN]
+        A_Exp --> A_Semi((;))
+    end
+
+    %% --- IMPRIME ---
+    subgraph S_IMP ["< IMPRIME >"]
+        direction LR
+        I_Wri((escribe)) --> I_OP(( "(" ))
+        I_OP --> I_Choice{ }
+        I_Choice --> I_Exp[EXPRESIÓN]
+        I_Choice --> I_Str((letrero))
+        I_Exp --> I_Comma((,))
+        I_Str --> I_Comma
+        I_Comma --> I_Choice
+        I_Exp --> I_CP(( ")" ))
+        I_Str --> I_CP
+        I_CP --> I_Semi_Imp((;))
+    end
+
+    class E_Semi,A_Id,A_Eq,A_Semi,I_Wri,I_OP,I_Str,I_Comma,I_CP,I_Semi_Imp terminal;
+    class E_Asig,E_Cond,E_Cicl,E_Llam,E_Imp,A_Exp,I_Exp nonterminal;
+```
+
+#### Diagrama D · Control de Flujo
+```
+graph LR
+    classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
+    classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
+
+    %% --- CICLO ---
+    subgraph S_CICLO ["< CICLO >"]
+        direction LR
+        W_While((mientras)) --> W_OP(( "(" ))
+        W_OP --> W_Exp[EXPRESIÓN]
+        W_Exp --> W_CP(( ")" ))
+        W_CP --> W_Do((haz))
+        W_Do --> W_Body[CUERPO]
+        W_Body --> W_Semi((;))
+    end
+
+    %% --- CONDICION ---
+    subgraph S_COND ["< CONDICIÓN >"]
+        direction LR
+        IF_Si((si)) --> IF_OP(( "(" ))
+        IF_OP --> IF_Exp[EXPRESIÓN]
+        IF_Exp --> IF_CP(( ")" ))
+        IF_CP --> IF_Body[CUERPO]
+        IF_Body --> IF_Semi((;))
+        
+        IF_Body --> IF_Else((sino))
+        IF_Else --> IF_BodyElse[CUERPO]
+        IF_BodyElse --> IF_Semi
+    end
+
+    class W_While,W_OP,W_CP,W_Do,W_Semi,IF_Si,IF_OP,IF_CP,IF_Semi,IF_Else terminal;
+    class W_Exp,W_Body,IF_Exp,IF_Body,IF_BodyElse nonterminal;
+```
+
+#### Diagrama E · Expresiones y Matemáticas
+
+Jerarquía completa de operaciones aritméticas y lógicas: EXPRESIÓN > EXP > TÉRMINO > FACTOR.
+
+```
+graph LR
+    classDef terminal fill:#ffeb3b,stroke:#fbc02d,stroke-width:2px,rx:10,ry:10;
+    classDef nonterminal fill:#e3f2fd,stroke:#2196f3,stroke-width:2px;
+
+    %% --- EXPRESION ---
+    subgraph S_EXPR ["< EXPRESIÓN >"]
+        direction LR
+        EX_Exp[EXP] --> EX_Op{ > < != == }
+        EX_Op --> EX_Exp2[EXP]
+        EX_Exp --> EX_End(( ))
+        EX_Exp2 --> EX_End
+    end
+
+    %% --- EXP (Suma/Resta) ---
+    subgraph S_EXP ["< EXP >"]
+        direction LR
+        E_Term[TÉRMINO] --> E_Op{ + - }
+        E_Op --> E_Term
+    end
+
+    %% --- TÉRMINO (Mult/Div) ---
+    subgraph S_TERM ["< TÉRMINO >"]
+        direction LR
+        T_Fact[FACTOR] --> T_Op{ * / }
+        T_Op --> T_Fact
+    end
+
+    %% --- FACTOR ---
+    subgraph S_FACT ["< FACTOR >"]
+        direction LR
+        F_Choice{ }
+        F_Choice --> F_OP(( "(" )) 
+        F_OP --> F_Expr[EXPRESIÓN]
+        F_Expr --> F_CP(( ")" ))
+        
+        F_Choice --> F_Sign{+ -}
+        F_Sign --> F_Val
+        F_Choice --> F_Val
+        
+        F_Val{ } --> F_Id((id))
+        F_Val --> F_Int((cte_ent))
+        F_Val --> F_Float((cte_flot))
+        
+        %% LLAMADA está implícita en ID segun el diagrama original,
+        %% pero aquí se conecta explícitamente para claridad
+        F_Id --> F_Llam[LLAMADA]
+    end
+
+    %% --- LLAMADA ---
+    subgraph S_CALL ["< LLAMADA >"]
+        direction LR
+        L_Id((id)) --> L_OP(( "(" ))
+        L_OP --> L_Exp[EXPRESIÓN]
+        L_Exp --> L_Comma((,))
+        L_Comma --> L_Exp
+        L_Exp --> L_CP(( ")" ))
+        L_OP --> L_CP
+    end
+
+    class EX_Op,EX_End,E_Op,T_Op,F_OP,F_CP,F_Id,F_Int,F_Float,L_Id,L_OP,L_Comma,L_CP terminal;
+    class EX_Exp,EX_Exp2,E_Term,T_Fact,F_Expr,F_Llam,L_Exp nonterminal;
+```
+
+Estructuras para la toma de decisiones (<CONDICIÓN>) y repetición (<CICLO>).
 
 Los nodos coloreados representan las producciones `<< >>` conectadas a acciones semánticas en el parser: ahí se invoca código Go inmediatamente al reducir la producción.
 
