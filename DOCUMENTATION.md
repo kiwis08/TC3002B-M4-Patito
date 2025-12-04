@@ -152,22 +152,25 @@ graph LR
         F_Void --> F_Id((id))
         F_Type --> F_Id
         
-        F_Id --> F_OP(( "(" ))
-        F_OP --> F_Args{Args?}
+        %% Corrección: Eliminados espacios dentro de (( )) y añadidas comillas
+        F_Id --> F_OP(("("))
+        F_OP --> F_Args{"Args?"}
+        
         F_Args --> F_P_Id((id))
         F_P_Id --> F_Colon((:))
         F_Colon --> F_P_Type[TIPO]
-        F_P_Type --> F_Comma((,))
+        F_P_Type --> F_Comma((","))
         F_Comma --> F_P_Id
-        F_P_Type --> F_CP(( ")" ))
+        F_P_Type --> F_CP((")"))
+        
         F_Args -->|vacio| F_CP
         
-        F_CP --> F_OB(( { ))
+        F_CP --> F_OB(("{"))
         F_OB --> F_VARS[VARS]
         F_VARS --> F_Body[CUERPO]
-        F_Body --> F_CB(( } ))
+        F_Body --> F_CB(("}"))
         
-        F_CB --> F_Loop(( ; ))
+        F_CB --> F_Loop((";"))
         F_Loop -->|otra func| F_Choice
         F_Loop -->|fin funcs| F_End(( ))
     end
@@ -175,10 +178,10 @@ graph LR
     %% --- CUERPO ---
     subgraph S_CUERPO ["< CUERPO >"]
         direction LR
-        C_Start(( { )) --> C_Stat[ESTATUTO]
+        C_Start(("{")) --> C_Stat[ESTATUTO]
         C_Stat --> C_More{ }
         C_More -->|más| C_Stat
-        C_More --> C_End(( } ))
+        C_More --> C_End(("}"))
     end
 
     class F_Void,F_Id,F_OP,F_P_Id,F_Colon,F_Comma,F_CP,F_OB,F_CB,F_Loop,F_End,C_Start,C_End terminal;
@@ -201,31 +204,31 @@ graph LR
         E_Start --> E_Cond[CONDICIÓN]
         E_Start --> E_Cicl[CICLO]
         E_Start --> E_Llam[LLAMADA]
-        E_Llam --> E_Semi((;))
+        E_Llam --> E_Semi((";"))
         E_Start --> E_Imp[IMPRIME]
     end
 
     %% --- ASIGNA ---
     subgraph S_ASIG ["< ASIGNA >"]
         direction LR
-        A_Id((id)) --> A_Eq((=))
+        A_Id((id)) --> A_Eq(("="))
         A_Eq --> A_Exp[EXPRESIÓN]
-        A_Exp --> A_Semi((;))
+        A_Exp --> A_Semi((";"))
     end
 
     %% --- IMPRIME ---
     subgraph S_IMP ["< IMPRIME >"]
         direction LR
-        I_Wri((escribe)) --> I_OP(( "(" ))
+        I_Wri((escribe)) --> I_OP(("("))
         I_OP --> I_Choice{ }
         I_Choice --> I_Exp[EXPRESIÓN]
         I_Choice --> I_Str((letrero))
-        I_Exp --> I_Comma((,))
+        I_Exp --> I_Comma((","))
         I_Str --> I_Comma
         I_Comma --> I_Choice
-        I_Exp --> I_CP(( ")" ))
+        I_Exp --> I_CP((")"))
         I_Str --> I_CP
-        I_CP --> I_Semi_Imp((;))
+        I_CP --> I_Semi_Imp((";"))
     end
 
     class E_Semi,A_Id,A_Eq,A_Semi,I_Wri,I_OP,I_Str,I_Comma,I_CP,I_Semi_Imp terminal;
@@ -242,22 +245,22 @@ graph LR
     %% --- CICLO ---
     subgraph S_CICLO ["< CICLO >"]
         direction LR
-        W_While((mientras)) --> W_OP(( "(" ))
+        W_While((mientras)) --> W_OP(("("))
         W_OP --> W_Exp[EXPRESIÓN]
-        W_Exp --> W_CP(( ")" ))
+        W_Exp --> W_CP((")"))
         W_CP --> W_Do((haz))
         W_Do --> W_Body[CUERPO]
-        W_Body --> W_Semi((;))
+        W_Body --> W_Semi((";"))
     end
 
     %% --- CONDICION ---
     subgraph S_COND ["< CONDICIÓN >"]
         direction LR
-        IF_Si((si)) --> IF_OP(( "(" ))
+        IF_Si((si)) --> IF_OP(("("))
         IF_OP --> IF_Exp[EXPRESIÓN]
-        IF_Exp --> IF_CP(( ")" ))
+        IF_Exp --> IF_CP((")"))
         IF_CP --> IF_Body[CUERPO]
-        IF_Body --> IF_Semi((;))
+        IF_Body --> IF_Semi((";"))
         
         IF_Body --> IF_Else((sino))
         IF_Else --> IF_BodyElse[CUERPO]
@@ -304,9 +307,9 @@ graph LR
     subgraph S_FACT ["< FACTOR >"]
         direction LR
         F_Choice{ }
-        F_Choice --> F_OP(( "(" )) 
+        F_Choice --> F_OP(("(")) 
         F_OP --> F_Expr[EXPRESIÓN]
-        F_Expr --> F_CP(( ")" ))
+        F_Expr --> F_CP((")"))
         
         F_Choice --> F_Sign{+ -}
         F_Sign --> F_Val
@@ -316,19 +319,18 @@ graph LR
         F_Val --> F_Int((cte_ent))
         F_Val --> F_Float((cte_flot))
         
-        %% LLAMADA está implícita en ID segun el diagrama original,
-        %% pero aquí se conecta explícitamente para claridad
+        %% LLAMADA está implícita en ID
         F_Id --> F_Llam[LLAMADA]
     end
 
     %% --- LLAMADA ---
     subgraph S_CALL ["< LLAMADA >"]
         direction LR
-        L_Id((id)) --> L_OP(( "(" ))
+        L_Id((id)) --> L_OP(("("))
         L_OP --> L_Exp[EXPRESIÓN]
-        L_Exp --> L_Comma((,))
+        L_Exp --> L_Comma((","))
         L_Comma --> L_Exp
-        L_Exp --> L_CP(( ")" ))
+        L_Exp --> L_CP((")"))
         L_OP --> L_CP
     end
 
